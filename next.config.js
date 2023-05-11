@@ -2,7 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
 
   /*
   If you prefer to use the new next13 APP folder structure, uncomment the line below
