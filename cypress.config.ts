@@ -11,7 +11,7 @@ export default defineConfig({
 
   e2e: {
     baseUrl: "http://localhost:3000/",
-    specPattern: "src/**/*.e2e.cy.{js,jsx,ts,tsx}",
+    specPattern: "test/e2e/*.cy.ts",
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
