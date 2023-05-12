@@ -7,7 +7,8 @@ import {
 } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
-  uri: "https://countries.trevorblades.com/",
+  // To fill in the futire with actual API uri
+  uri: "",
   cache: new InMemoryCache(),
 });
 
