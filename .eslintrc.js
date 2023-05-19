@@ -41,6 +41,8 @@ module.exports = {
 
   rules: {
     semi: 0,
+    "consistent-return": 0,
+    "no-param-reassign": 0,
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-empty-function": "off",
@@ -54,6 +56,7 @@ module.exports = {
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
+    "class-methods-use-this": "off",
     "react/jsx-filename-extension": [
       1,
       {
