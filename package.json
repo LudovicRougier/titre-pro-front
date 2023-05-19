@@ -17,15 +17,20 @@
     "cypress:run": "cypress run"
   },
   "dependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-proposal-decorators": "^7.21.0",
     "@emotion/react": "11.10.8",
     "@emotion/styled": "11.10.8",
     "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-query": "^4.29.5",
     "@tanstack/react-query-devtools": "^4.29.6",
     "@typescript-eslint/parser": "^5.59.5",
+    "axios": "^1.4.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "eslint-plugin-import": "^2.27.5",
     "framer-motion": "10.12.4",
     "next": "13.3.2",
+    "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.8.0",
@@ -50,8 +55,10 @@
     "eslint-plugin-simple-import-sort": "10.0.0",
     "eslint-plugin-sonarjs": "0.19.0",
     "husky": "8.0.3",
+    "inversify": "^6.0.1",
     "lint-staged": "13.2.2",
     "prettier": "2.8.8",
+    "reflect-metadata": "^0.1.13",
     "typescript": "5.0.4"
   },
   "husky": {
