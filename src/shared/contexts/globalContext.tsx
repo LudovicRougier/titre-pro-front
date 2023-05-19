@@ -1,9 +1,10 @@
 import React from "react";
 import { ChildrenInterface } from "@/shared/interfaces/general/childrenNode";
-import ReduxProvider from "@/redux/provider";
-import QueryProvider from "@/query/provider";
+import apolloClient from "@/lib/apollo/apollo";
+import QueryProvider from "@/lib/react-query/provider";
+import ReduxProvider from "@/lib/redux-toolkit/provider";
 import { DependenciesProvider } from "@/shared/contexts/dependencies";
-import apolloClient, { ApolloProvider } from "@/lib/apollo";
+import { ApolloProvider } from "@apollo/client";
 
 const GlobalContext: React.FC<ChildrenInterface> = ({ children }) => {
   return (
