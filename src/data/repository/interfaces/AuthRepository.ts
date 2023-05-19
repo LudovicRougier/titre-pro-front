@@ -1,4 +1,4 @@
-import { LoginResponse } from "@/data/datasource/AuthDataSource";
+import { LoginResponse } from "@/data/datasource/interfaces/AuthDataSource";
 
 export interface AuthRepository {
   login: (credentials: {

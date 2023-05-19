@@ -1,7 +1,7 @@
-import { injectable } from "inversify";
 import "reflect-metadata";
-import { AuthDataSource } from "@/data/datasource/AuthDataSource";
+import { injectable } from "inversify";
 import { HTTPBaseService } from "@/data/HTTPBaseService";
+import { AuthDataSource } from "@/data/datasource/interfaces/AuthDataSource";
 
 @injectable()
 export class AuthDataSourceImpl

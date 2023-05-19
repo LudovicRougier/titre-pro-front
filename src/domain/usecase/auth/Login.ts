@@ -1,4 +1,4 @@
-import { LoginResponse } from "@/data/datasource/AuthDataSource";
+import { LoginResponse } from "@/data/datasource/Auth/AuthDataSource";
 
 export interface Login {
   invoke: (

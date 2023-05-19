@@ -2,8 +2,8 @@ import "reflect-metadata";
 import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
-import type { AuthDataSource } from "@/data/datasource/AuthDataSource";
-import { AuthRepository } from "@/data/repository/AuthRepository";
+import { AuthRepository } from "@/data/repository/interfaces/AuthRepository";
+import type { AuthDataSource } from "@/data/datasource/interfaces/AuthDataSource";
 
 @injectable()
 export class AuthRepositoryImpl implements AuthRepository {

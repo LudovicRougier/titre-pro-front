@@ -3,7 +3,7 @@ import { ChildrenInterface } from "@/shared/interfaces/general/childrenNode";
 
 import { TYPES, container } from "@/container/container.config";
 
-import { AuthRepository } from "@/data/repository/AuthRepository";
+import { AuthRepository } from "@/data/repository/interfaces/AuthRepository";
 import { LoginUseCase } from "@/domain/useCase/auth/LoginUseCase";
 import { LogoutUseCase } from "@/domain/useCase/auth/LogoutUseCase";
 
