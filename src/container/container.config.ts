@@ -43,7 +43,7 @@ container
 /* REPOSITORIES */
 container.bind<MoodRepository>(TYPES.MoodRepository).to(MoodRepositoryImpl);
 container.bind<AuthRepository>(TYPES.AuthRepository).to(AuthRepositoryImpl);
-container.bind<MovieRepository>(TYPES.MoodRepository).to(MovieRepositoryImpl);
+container.bind<MovieRepository>(TYPES.MovieRepository).to(MovieRepositoryImpl);
 container
   .bind<AccountRepository>(TYPES.AccountRepository)
   .to(AcccountRepositoryImpl);
