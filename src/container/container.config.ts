@@ -14,11 +14,21 @@ import { AuthRepository } from "@/data/repository/interfaces/AuthRepository";
 import { AuthRepositoryImpl } from "@/data/repository/AuthRepositoryImpl";
 import { MoodRepository } from "@/data/repository/interfaces/MoodRepository";
 import { MoodRepositoryImpl } from "@/data/repository/MoodRepositoryImpl";
+import { MovieRepository } from "@/data/repository/interfaces/MovieRepository";
+import { MovieRepositoryImpl } from "@/data/repository/MovieRepositoryImpl";
 import { AccountRepository } from "@/data/repository/interfaces/AccountRepository";
 import { AcccountRepositoryImpl } from "@/data/repository/AccountRepositoryImpl";
 
 import { LoginUseCase } from "@/domain/useCase/auth/LoginUseCase";
 import { LogoutUseCase } from "@/domain/useCase/auth/LogoutUseCase";
+import { GetAccountDetailsUseCase } from "@/domain/useCase/account/GetAccountDetailsUseCase";
+import { UpdateAccountDetailsUseCase } from "@/domain/useCase/account/UpdateAccountDetailsUseCase";
+import { DeleteAccountUseCase } from "@/domain/useCase/account/DeleteAccountUseCase";
+import { FetchMoodRecommendationsUseCase } from "@/domain/useCase/mood/FetchMoodRecommendationsUseCase copy";
+import { RetrieveMoodHistoryListUseCase } from "@/domain/useCase/mood/RetrieveMoodHistoryListUseCase";
+import { RemoveMoodHistoryEntryUseCase } from "@/domain/useCase/mood/RemoveMoodHistoryEntryUseCase";
+import { GetMoodDetailsUseCase } from "@/domain/useCase/mood/GetMoodDetailsUseCase";
+import { GetMovieDetailsUseCase } from "@/domain/useCase/movie/GetMovieDetailsUseCase";
 
 const container = new Container();
 
@@ -33,7 +43,7 @@ container
 /* REPOSITORIES */
 container.bind<MoodRepository>(TYPES.MoodRepository).to(MoodRepositoryImpl);
 container.bind<AuthRepository>(TYPES.AuthRepository).to(AuthRepositoryImpl);
-container.bind<MoodRepository>(TYPES.MoodRepository).to(MoodRepositoryImpl);
+container.bind<MovieRepository>(TYPES.MoodRepository).to(MovieRepositoryImpl);
 container
   .bind<AccountRepository>(TYPES.AccountRepository)
   .to(AcccountRepositoryImpl);
@@ -42,4 +52,30 @@ container
 container.bind<LoginUseCase>(TYPES.LoginUseCase).to(LoginUseCase);
 container.bind<LogoutUseCase>(TYPES.LogoutUseCase).to(LogoutUseCase);
 
+container
+  .bind<GetAccountDetailsUseCase>(TYPES.GetAccountDetailsUseCase)
+  .to(GetAccountDetailsUseCase);
+container
+  .bind<UpdateAccountDetailsUseCase>(TYPES.UpdateAccountDetailsUseCase)
+  .to(UpdateAccountDetailsUseCase);
+container
+  .bind<DeleteAccountUseCase>(TYPES.DeleteAccountUseCase)
+  .to(DeleteAccountUseCase);
+
+container
+  .bind<FetchMoodRecommendationsUseCase>(TYPES.FetchMoodRecommendationsUseCase)
+  .to(FetchMoodRecommendationsUseCase);
+container
+  .bind<RetrieveMoodHistoryListUseCase>(TYPES.RetrieveMoodHistoryListUseCase)
+  .to(RetrieveMoodHistoryListUseCase);
+container
+  .bind<RemoveMoodHistoryEntryUseCase>(TYPES.RemoveMoodHistoryEntryUseCase)
+  .to(RemoveMoodHistoryEntryUseCase);
+container
+  .bind<GetMoodDetailsUseCase>(TYPES.GetMoodDetailsUseCase)
+  .to(GetMoodDetailsUseCase);
+
+container
+  .bind<GetMovieDetailsUseCase>(TYPES.GetMovieDetailsUseCase)
+  .to(GetMovieDetailsUseCase);
 export { container, TYPES };

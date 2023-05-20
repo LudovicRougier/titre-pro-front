@@ -2,8 +2,8 @@ import "reflect-metadata";
 import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
-import { Login } from "@/domain/useCase/auth/Login";
 import type { AuthRepository } from "@/data/repository/interfaces/AuthRepository";
+import { Login } from "@/domain/useCase/auth/interfaces/Login";
 
 @injectable()
 export class LoginUseCase implements Login {
