@@ -14,7 +14,7 @@ export abstract class HTTPBaseService {
 
     this.api.interceptors.request.use(
       async (config) => {
-        const res = await fetch("/api/token");
+        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/token`);
         const data = await res.json();
         if (data.token) config.headers.Authorization = `Bearer ${data.token}`;
         return config;
