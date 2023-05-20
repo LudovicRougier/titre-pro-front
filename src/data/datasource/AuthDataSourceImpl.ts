@@ -9,8 +9,7 @@ export class AuthDataSourceImpl
   implements AuthDataSource
 {
   async login(credentials: { username: string; password: string }) {
-    const response = await this.api.post("/auth/login", {
-      data: credentials,
+    const response = await this.api.post("/auth/login", credentials, {
       headers: { "Content-Type": "application/json" },
     });
 
