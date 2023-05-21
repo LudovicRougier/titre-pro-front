@@ -10,12 +10,12 @@ export class MovieRepositoryImpl implements MovieRepository {
   private movieDataSource: MovieDataSource;
 
   public constructor(
-    @inject(TYPES.MoodDataSource) movieDataSource: MovieDataSource
+    @inject(TYPES.MovieDataSource) movieDataSource: MovieDataSource
   ) {
     this.movieDataSource = movieDataSource;
   }
 
-  async getMovieDetails() {
+  getMovieDetails() {
     return this.movieDataSource.getMovieDetails();
   }
 }

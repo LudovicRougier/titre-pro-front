@@ -3,13 +3,16 @@ import {
   QueryKey,
   UseQueryOptions,
   useQuery,
+  QueryObserverResult,
 } from "@tanstack/react-query";
 
-export const useAppQuery = (
+export const useAppQuery = <TData = unknown, TError = Error>(
   queryKey: QueryKey,
-  queryFn: QueryFunction,
+  queryFn: QueryFunction<TData>,
   options?: Omit<
-    UseQueryOptions<unknown, Error, unknown, QueryKey>,
+    UseQueryOptions<TData, TError>,
     "queryKey" | "queryFn" | "initialData"
-  > & { initialData?: () => undefined }
-) => useQuery(queryKey, queryFn, options);
+  > & { initialData?: TData }
+): QueryObserverResult<TData, TError> => {
+  return useQuery<TData, TError>(queryKey, queryFn, options);
+};

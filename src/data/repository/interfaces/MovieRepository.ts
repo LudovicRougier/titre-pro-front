@@ -1,3 +1,3 @@
 export interface MovieRepository {
-  getMovieDetails: () => Promise<void>;
+  getMovieDetails: () => Promise<string>;
 }

@@ -15,7 +15,7 @@ export class GetMovieDetailsUseCase implements GetMovieDetails {
     this.movieRepository = movieRepository;
   }
 
-  public async invoke() {
+  public invoke() {
     return this.movieRepository.getMovieDetails();
   }
 }

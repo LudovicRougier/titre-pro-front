@@ -1,3 +1,3 @@
 export interface GetMovieDetails {
-  invoke: () => Promise<void>;
+  invoke: () => Promise<string>;
 }

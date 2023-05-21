@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import { injectable } from "inversify";
 import axios, { AxiosInstance } from "axios";
+import { getToken } from "@/utils/getToken";
 
 @injectable()
 export abstract class HTTPBaseService {
@@ -14,9 +15,8 @@ export abstract class HTTPBaseService {
 
     this.api.interceptors.request.use(
       async (config) => {
-        const res = await fetch("http://localhost:3000/api/token");
-        const data = await res.json();
-        if (data.token) config.headers.Authorization = `Bearer ${data.token}`;
+        const token = await getToken();
+        if (token) config.headers.Authorization = `Bearer ${token}`;
         return config;
       },
       (error) => {
