@@ -6,6 +6,7 @@ import {
   gql,
   useQuery,
   createHttpLink,
+  NormalizedCacheObject,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
@@ -31,4 +32,5 @@ const apolloClient = new ApolloClient({
 
 export default apolloClient;
 
-export { ApolloProvider, gql, useQuery as useGraphQuery };
+export { ApolloProvider, gql, useQuery as useGraphQuery, ApolloClient };
+export type { NormalizedCacheObject };

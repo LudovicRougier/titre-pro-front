@@ -1,6 +1,6 @@
 import React from "react";
 import { ChildrenInterface } from "@/shared/interfaces/general/childrenNode";
-import apolloClient from "@/lib/apollo/apollo";
+import apolloClient from "@/lib/apollo/client";
 import QueryProvider from "@/lib/react-query/provider";
 import ReduxProvider from "@/lib/redux-toolkit/provider";
 import { DependenciesProvider } from "@/shared/contexts/dependencies";
