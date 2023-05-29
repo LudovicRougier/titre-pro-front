@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { inject, injectable } from "inversify";
 import { TYPES } from "@/container/types";
 import { APIService } from "@/data/datasource/interfaces/APIService";
