@@ -3,7 +3,7 @@ import { injectable } from "inversify";
 import axiosClient, { AxiosInstance } from "@/lib/axios/client";
 
 @injectable()
-export abstract class HTTPBaseService {
+export abstract class AxiosBaseService {
   protected api: AxiosInstance;
 
   constructor() {

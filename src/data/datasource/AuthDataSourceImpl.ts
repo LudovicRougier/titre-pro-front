@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import { injectable } from "inversify";
-import { HTTPBaseService } from "@/data/HTTPBaseService";
+import { AxiosBaseService } from "@/data/AxiosBaseService";
 import { AuthDataSource } from "@/data/datasource/interfaces/AuthDataSource";
 
 @injectable()
 export class AuthDataSourceImpl
-  extends HTTPBaseService
+  extends AxiosBaseService
   implements AuthDataSource
 {
   async login(credentials: { username: string; password: string }) {
