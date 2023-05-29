@@ -1,4 +1,3 @@
-import { getToken } from "@/utils/getToken";
 import {
   ApolloProvider,
   ApolloClient,
@@ -9,6 +8,7 @@ import {
   NormalizedCacheObject,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { getSession } from "next-auth/react";
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_GRAPHQL_API_URL,
@@ -16,7 +16,9 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext(async (_, { headers }) => {
-  const token = await getToken();
+  const session = await getSession();
+  if (!session) return { headers };
+  const { token } = session.user;
   return {
     headers: {
       ...headers,
