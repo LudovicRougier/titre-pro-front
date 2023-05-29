@@ -14,12 +14,13 @@
     "husky-install": "husky install",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit && eslint --fix . && prettier --write .",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "test:gui": "cypress open"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.14",
     "@babel/core": "^7.21.8",
     "@babel/plugin-proposal-decorators": "^7.21.0",
-    "@apollo/client": "^3.7.14",
     "@emotion/react": "11.10.8",
     "@emotion/styled": "11.10.8",
     "@reduxjs/toolkit": "^1.9.5",
@@ -49,6 +50,7 @@
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-next": "13.3.2",
     "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-jsx-a11y": "6.7.1",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.32.2",
