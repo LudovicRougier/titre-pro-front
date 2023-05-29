@@ -5,9 +5,13 @@ import apolloClient, {
   NormalizedCacheObject,
 } from "@/lib/apollo/client";
 
+interface IGraphQLBaseService {
+  api: ApolloClient<NormalizedCacheObject>;
+}
+
 @injectable()
-export abstract class GraphQLBaseService {
-  protected api: ApolloClient<NormalizedCacheObject>;
+export class GraphQLBaseService implements IGraphQLBaseService {
+  public api;
 
   constructor() {
     this.api = apolloClient;

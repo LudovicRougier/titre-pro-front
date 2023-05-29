@@ -1,6 +1,7 @@
 import { useAuthDependencies } from "@/shared/contexts/dependencies/auth";
 import type { NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
+
 import React from "react";
 
 const Home: NextPage = () => {
@@ -17,7 +18,7 @@ const Home: NextPage = () => {
       )}
       <div>Hello Index</div>
       {session?.user ? (
-        <button type="button" onClick={() => logoutUseCase.invoke()}>
+        <button type="button" onClick={() => signOut()}>
           Sign out
         </button>
       ) : (
