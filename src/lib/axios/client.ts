@@ -1,5 +1,8 @@
-import { getToken } from "@/utils/getToken";
 import axios, { AxiosInstance } from "axios";
+import { Session } from "next-auth";
+import { getSession } from "next-auth/react";
+
+let sessionPromise: Promise<Session | null> | null = null;
 
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -8,7 +11,11 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   async (config) => {
-    const token = await getToken();
+    if (!sessionPromise) {
+      sessionPromise = getSession();
+    }
+    const session = await sessionPromise;
+    const token = session?.user.token;
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
