@@ -14,7 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["reflect-metadata", "cypress", "node", "inversify"],
+    "types": ["reflect-metadata", "node", "inversify", "jest"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "baseUrl": ".",
@@ -28,12 +28,6 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "cypress.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "cypress.config.ts", "cypress"]
 }
