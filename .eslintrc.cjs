@@ -38,7 +38,15 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
   ],
-
+  ignorePatterns: [
+    "build",
+    "build/**",
+    "build/**/*",
+    "node_modules/",
+    ".cypress-cache",
+    "cypress.config.ts",
+    "cypress/",
+  ],
   rules: {
     semi: 0,
     "consistent-return": 0,

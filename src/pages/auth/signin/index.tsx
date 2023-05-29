@@ -35,6 +35,7 @@ const SignIn: NextPage = (): JSX.Element => {
           }
           type="text"
           placeholder="john@email.com"
+          data-test="auth-username"
         />
         atuny0
         <input
@@ -44,9 +45,10 @@ const SignIn: NextPage = (): JSX.Element => {
           }
           type="password"
           placeholder="********"
+          data-test="auth-password"
         />
         9uQFF1Lh
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login" data-test="auth-submit" />
       </form>
     </div>
   );
