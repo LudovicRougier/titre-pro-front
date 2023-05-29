@@ -41,4 +41,5 @@ export interface AuthDataSource {
     password: string;
   }) => Promise<APILoginResponse>;
   logout: () => Promise<APILogoutResponse>;
+  refreshToken: () => Promise<APILoginResponse>;
 }

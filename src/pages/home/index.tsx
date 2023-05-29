@@ -1,4 +1,5 @@
 import { useAppQuery } from "@/lib/react-query/hooks";
+import { useAuthDependencies } from "@/shared/contexts/dependencies/auth";
 import { useMovieDependencies } from "@/shared/contexts/dependencies/movie";
 import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
@@ -6,10 +7,15 @@ import { useSession } from "next-auth/react";
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
   const { getMovieDetailsUseCase } = useMovieDependencies();
+  const { repository } = useAuthDependencies();
+
+  const refresh = async () => {
+    await repository.refreshToken();
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data, refetch } = useAppQuery<any>(
-    ["todos"],
+    [""],
     () => getMovieDetailsUseCase.invoke(),
     {
       cacheTime: 5 * 1000 * 60,
@@ -25,10 +31,13 @@ const Home: NextPage = () => {
       <button type="button" onClick={() => refetch()}>
         Click me to load data
       </button>
-      {data &&
+      <button type="button" onClick={() => refresh()}>
+        Click me to refresh
+      </button>
+      {/* {data &&
         data.todos.map((item: any, index: number) => (
           <div key={index as number}>{item.description}</div>
-        ))}
+        ))} */}
     </>
   );
 };

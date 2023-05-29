@@ -24,4 +24,9 @@ export class AuthDataSourceImpl implements AuthDataSource {
     const response = await this.api.get("/logout");
     return response.data;
   }
+
+  async refreshToken() {
+    const response = await this.api.get("/test");
+    return response.data;
+  }
 }

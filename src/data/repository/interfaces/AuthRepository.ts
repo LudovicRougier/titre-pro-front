@@ -1,4 +1,5 @@
 import {
+  APILoginResponse,
   LoginResponse,
   LogoutResponse,
 } from "@/data/datasource/interfaces/AuthDataSource";
@@ -10,4 +11,5 @@ export interface AuthRepository {
   }) => Promise<LoginResponse | null>;
 
   logout: () => Promise<LogoutResponse>;
+  refreshToken: () => Promise<APILoginResponse | null>;
 }
