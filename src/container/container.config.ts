@@ -29,8 +29,11 @@ import { RetrieveMoodHistoryListUseCase } from "@/domain/useCase/mood/RetrieveMo
 import { RemoveMoodHistoryEntryUseCase } from "@/domain/useCase/mood/RemoveMoodHistoryEntryUseCase";
 import { GetMoodDetailsUseCase } from "@/domain/useCase/mood/GetMoodDetailsUseCase";
 import { GetMovieDetailsUseCase } from "@/domain/useCase/movie/GetMovieDetailsUseCase";
+import { AxiosBaseService } from "@/data/AxiosBaseService";
 
 const container = new Container();
+
+container.bind<AxiosBaseService>(TYPES.APIService).to(AxiosBaseService);
 
 /* DATA SOURCES */
 container.bind<AuthDataSource>(TYPES.AuthDataSource).to(AuthDataSourceImpl);

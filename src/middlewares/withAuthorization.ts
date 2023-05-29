@@ -18,7 +18,7 @@ export default function withAuthorization(
         secret: process.env.NEXTAUTH_SECRET,
       });
       if (!token) {
-        const url = new URL(`/api/auth/signin`, request.url);
+        const url = new URL("/api/auth/signin", request.url);
         url.searchParams.set("callbackUrl ", encodeURI(request.url));
         return NextResponse.redirect(url);
       }

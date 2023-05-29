@@ -14,9 +14,6 @@ const Home: NextPage = () => {
     {
       cacheTime: 5 * 1000 * 60,
       staleTime: 10 * 1000 * 60,
-      onSuccess(data) {
-        console.log("data", data);
-      },
     }
   );
 

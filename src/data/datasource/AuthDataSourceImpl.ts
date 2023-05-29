@@ -1,13 +1,19 @@
-import "reflect-metadata";
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
+import { TYPES } from "@/container/types";
 import { AxiosBaseService } from "@/data/AxiosBaseService";
 import { AuthDataSource } from "@/data/datasource/interfaces/AuthDataSource";
+import { APIService } from "@/data/datasource/interfaces/APIService";
 
 @injectable()
-export class AuthDataSourceImpl
-  extends AxiosBaseService
-  implements AuthDataSource
-{
+export class AuthDataSourceImpl implements AuthDataSource {
+  private api;
+
+  constructor(
+    @inject(TYPES.APIService) apiService: AxiosBaseService | APIService
+  ) {
+    this.api = apiService.api;
+  }
+
   async login(credentials: { username: string; password: string }) {
     const response = await this.api.post("/auth/login", credentials);
     return response.data;
