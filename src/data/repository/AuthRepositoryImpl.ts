@@ -15,18 +15,34 @@ export class AuthRepositoryImpl implements AuthRepository {
     this.authDataSource = authDataSource;
   }
 
-  public async login(credentials: { username: string; password: string }) {
+  public async login(credentials: { email: string; password: string }) {
     const res = await this.authDataSource.login(credentials);
 
+    // TODO: add UserModel to transform data
+    const user = {
+      id: res.user.id,
+      name: res.user.name,
+      age: res.user.age,
+      country: res.user.country,
+      gender: res.user.gender,
+      description: res.user.description,
+      email: res.user.email,
+      token: res.authorization.token,
+    };
+
     return {
-      id: res.id,
-      username: res.username,
-      email: res.email,
-      token: res.token,
+      id: user.id.toString(),
+      username: user.name,
+      email: user.email,
+      token: user.token,
     };
   }
 
   public async logout() {
-    return this.authDataSource.logout();
+    const res = await this.authDataSource.logout();
+    if (!res.success) {
+      throw new Error(res.message);
+    }
+    return res;
   }
 }

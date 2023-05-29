@@ -13,7 +13,7 @@ describe("Auth", () => {
   it("should be redirected to /auth/error if incorrect credentials", () => {
     cy.visit("/");
     cy.get('[data-test="sign-in"]').should("be.visible").click();
-    cy.get('[data-test="auth-username"]')
+    cy.get('[data-test="auth-email"]')
       .should("be.visible")
       .should("have.value", "");
     cy.get('[data-test="auth-password"]')
@@ -26,10 +26,10 @@ describe("Auth", () => {
   it("should be redirected to homepage if successful login", () => {
     cy.visit("/");
     cy.get('[data-test="sign-in"]').should("be.visible").click();
-    cy.get('[data-test="auth-username"]')
+    cy.get('[data-test="auth-email"]')
       .should("be.visible")
       .should("have.value", "")
-      .type(Cypress.env("authUsername"));
+      .type(Cypress.env("authEmail"));
     cy.get('[data-test="auth-password"]')
       .should("be.visible")
       .should("have.value", "")

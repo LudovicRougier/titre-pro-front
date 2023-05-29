@@ -15,13 +15,13 @@ export class AuthDataSourceImpl implements AuthDataSource {
     this.api = apiService.api;
   }
 
-  async login(credentials: { username: string; password: string }) {
-    const response = await this.api.post("/auth/login", credentials);
+  async login(credentials: { email: string; password: string }) {
+    const response = await this.api.post("/login", credentials);
     return response.data;
   }
 
   async logout() {
-    const response = await this.api.get("/users");
+    const response = await this.api.get("/logout");
     return response.data;
   }
 }

@@ -6,6 +6,12 @@ import React from "react";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
+  const { logoutUseCase } = useAuthDependencies();
+
+  const handleLogout = async () => {
+    await logoutUseCase.invoke();
+    signOut();
+  };
 
   return (
     <>
@@ -17,7 +23,7 @@ const Home: NextPage = () => {
       )}
       <div>Hello Index</div>
       {session?.user ? (
-        <button type="button" onClick={() => signOut()}>
+        <button type="button" onClick={handleLogout}>
           Sign out
         </button>
       ) : (

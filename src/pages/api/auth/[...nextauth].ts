@@ -17,7 +17,7 @@ const authOptions: NextAuthOptions = {
     CredentialsProvider({
       type: "credentials",
       credentials: {
-        username: { label: "username", type: "text" },
+        email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
       },
       authorize: async (credentials) => loginUseCase.invoke(credentials),

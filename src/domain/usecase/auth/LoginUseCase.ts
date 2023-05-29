@@ -15,12 +15,10 @@ export class LoginUseCase implements Login {
     this.authRepository = authRepository;
   }
 
-  public async invoke(
-    data: Record<"username" | "password", string> | undefined
-  ) {
+  public async invoke(data: Record<"email" | "password", string> | undefined) {
     if (!data) throw new Error("Credentials not found");
     const credentials = {
-      username: data.username,
+      email: data.email,
       password: data.password,
     };
     const res = await this.authRepository.login(credentials);

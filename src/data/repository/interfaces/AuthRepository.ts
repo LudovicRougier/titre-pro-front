@@ -1,10 +1,13 @@
-import { LoginResponse } from "@/data/datasource/interfaces/AuthDataSource";
+import {
+  LoginResponse,
+  LogoutResponse,
+} from "@/data/datasource/interfaces/AuthDataSource";
 
 export interface AuthRepository {
   login: (credentials: {
-    username: string;
+    email: string;
     password: string;
-  }) => Promise<LoginResponse>;
+  }) => Promise<LoginResponse | null>;
 
-  logout: () => Promise<void>;
+  logout: () => Promise<LogoutResponse>;
 }

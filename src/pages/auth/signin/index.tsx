@@ -4,7 +4,7 @@ import { signIn, useSession } from "next-auth/react";
 import { FormEventHandler, useState } from "react";
 
 const SignIn: NextPage = (): JSX.Element => {
-  const [userInfo, setUserInfo] = useState({ username: "", password: "" });
+  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
 
   const { data, status } = useSession();
 
@@ -12,7 +12,7 @@ const SignIn: NextPage = (): JSX.Element => {
     e.preventDefault();
 
     const options = {
-      username: userInfo.username,
+      email: userInfo.email,
       password: userInfo.password,
       redirect: true,
       callbackUrl: "/",
@@ -29,13 +29,13 @@ const SignIn: NextPage = (): JSX.Element => {
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         <input
-          value={userInfo.username}
+          value={userInfo.email}
           onChange={({ target }) =>
-            setUserInfo({ ...userInfo, username: target.value })
+            setUserInfo({ ...userInfo, email: target.value })
           }
           type="text"
           placeholder="john@email.com"
-          data-test="auth-username"
+          data-test="auth-email"
         />
         atuny0
         <input

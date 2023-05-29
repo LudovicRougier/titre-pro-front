@@ -5,8 +5,8 @@ export default defineConfig({
     homeUrl: "/",
     signInUrl: "auth/signin",
     authErrorUrl: "auth/error",
-    authUsername: "atuny0",
-    authPassword: "9uQFF1Lh",
+    authEmail: "test@test.com",
+    authPassword: "MyPassword1!",
   },
   component: {
     specPattern: "src/**/*.component.cy.{js,jsx,ts,tsx}",
