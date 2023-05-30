@@ -1,8 +1,5 @@
 /* eslint-disable no-console */
-import { NextPage } from "next";
-import { signIn, useSession } from "next-auth/react";
-import { FormEventHandler, useState } from "react";
-
+import { GetServerSideProps, NextPage } from "next";
 import {
   TextInput,
   PasswordInput,
@@ -15,25 +12,12 @@ import {
   Group,
   Button,
 } from "@mantine/core";
+import { useViewModel } from "@/presentation/viewModel/signin";
+import { getSession } from "next-auth/react";
+import { Path } from "@/shared/enums/path";
 
 const SignIn: NextPage = (): JSX.Element => {
-  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
-
-  const { data, status } = useSession();
-
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-
-    const options = {
-      email: userInfo.email,
-      password: userInfo.password,
-      redirect: true,
-      callbackUrl: "/",
-    };
-
-    const res = await signIn("credentials", options);
-    console.log(res);
-  };
+  const { handleSubmit, handleUserInfoChange } = useViewModel();
   return (
     <Container size={420} my={40}>
       <form onSubmit={handleSubmit}>
@@ -55,22 +39,20 @@ const SignIn: NextPage = (): JSX.Element => {
 
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
           <TextInput
-            value={userInfo.email}
             label="Email"
             placeholder="you@mantine.dev"
             required
             onChange={({ target }) =>
-              setUserInfo({ ...userInfo, email: target.value })
+              handleUserInfoChange("email", target.value)
             }
           />
           <PasswordInput
-            value={userInfo.password}
             label="Password"
             placeholder="Your password"
             required
             mt="md"
             onChange={({ target }) =>
-              setUserInfo({ ...userInfo, password: target.value })
+              handleUserInfoChange("password", target.value)
             }
           />
           <Group position="apart" mt="lg">
@@ -86,6 +68,23 @@ const SignIn: NextPage = (): JSX.Element => {
       </form>
     </Container>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: Path.HOME,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default SignIn;

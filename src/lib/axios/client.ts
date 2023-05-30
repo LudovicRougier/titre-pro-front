@@ -15,8 +15,6 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   async (config) => {
-    console.log("[axiosClient] config", config);
-
     if (!sessionPromise) {
       sessionPromise = getSession();
     }
