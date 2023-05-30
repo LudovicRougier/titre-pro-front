@@ -3,6 +3,19 @@ import { NextPage } from "next";
 import { signIn, useSession } from "next-auth/react";
 import { FormEventHandler, useState } from "react";
 
+import {
+  TextInput,
+  PasswordInput,
+  Checkbox,
+  Anchor,
+  Paper,
+  Title,
+  Text,
+  Container,
+  Group,
+  Button,
+} from "@mantine/core";
+
 const SignIn: NextPage = (): JSX.Element => {
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
 
@@ -22,35 +35,56 @@ const SignIn: NextPage = (): JSX.Element => {
     console.log(res);
   };
   return (
-    <div className="sign-in-form">
-      {status.toString()}
-      {data && <h1>Session : {data.user?.email}</h1>}
-
+    <Container size={420} my={40}>
       <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <input
-          value={userInfo.email}
-          onChange={({ target }) =>
-            setUserInfo({ ...userInfo, email: target.value })
-          }
-          type="text"
-          placeholder="john@email.com"
-          data-test="auth-email"
-        />
-        atuny0
-        <input
-          value={userInfo.password}
-          onChange={({ target }) =>
-            setUserInfo({ ...userInfo, password: target.value })
-          }
-          type="password"
-          placeholder="********"
-          data-test="auth-password"
-        />
-        9uQFF1Lh
-        <input type="submit" value="Login" data-test="auth-submit" />
+        <Title
+          align="center"
+          sx={(theme) => ({
+            fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+            fontWeight: 900,
+          })}
+        >
+          Welcome back!
+        </Title>
+        <Text color="dimmed" size="sm" align="center" mt={5}>
+          Do not have an account yet?{" "}
+          <Anchor size="sm" component="button">
+            Create account
+          </Anchor>
+        </Text>
+
+        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+          <TextInput
+            value={userInfo.email}
+            label="Email"
+            placeholder="you@mantine.dev"
+            required
+            onChange={({ target }) =>
+              setUserInfo({ ...userInfo, email: target.value })
+            }
+          />
+          <PasswordInput
+            value={userInfo.password}
+            label="Password"
+            placeholder="Your password"
+            required
+            mt="md"
+            onChange={({ target }) =>
+              setUserInfo({ ...userInfo, password: target.value })
+            }
+          />
+          <Group position="apart" mt="lg">
+            <Checkbox label="Remember me" />
+            <Anchor component="button" size="sm">
+              Forgot password?
+            </Anchor>
+          </Group>
+          <Button fullWidth mt="xl" type="submit">
+            Sign in
+          </Button>
+        </Paper>
       </form>
-    </div>
+    </Container>
   );
 };
 

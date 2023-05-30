@@ -2,6 +2,8 @@ import "reflect-metadata";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
+import { MantineProvider } from "@mantine/core";
+
 import GlobalContext from "@/shared/contexts/globalContext";
 
 const MyApp = ({
@@ -26,7 +28,16 @@ const MyApp = ({
           />
           <meta name="rating" content="general" key="rating" />
         </Head>
-        <Component {...pageProps} />
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
+            /** Put your mantine theme override here */
+            colorScheme: "dark",
+          }}
+        >
+          <Component {...pageProps} />
+        </MantineProvider>
       </SessionProvider>
     </GlobalContext>
   );
