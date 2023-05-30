@@ -3,6 +3,7 @@
 import { container } from "@/container/container.config";
 import { TYPES } from "@/container/types";
 import { LoginUseCase } from "@/domain/useCase/auth/LoginUseCase";
+import { Path } from "@/shared/enums/path";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -33,7 +34,7 @@ const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/auth/signin",
+    signIn: Path.SIGNIN,
   },
 };
 
