@@ -4,6 +4,7 @@ import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
 import { MantineProvider } from "@mantine/core";
 
+import Layout from "@/presentation/components/layout";
 import GlobalContext from "@/shared/contexts/globalContext";
 
 const MyApp = ({
@@ -35,7 +36,9 @@ const MyApp = ({
             colorScheme: "dark",
           }}
         >
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </MantineProvider>
       </SessionProvider>
     </GlobalContext>
