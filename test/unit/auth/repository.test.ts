@@ -6,6 +6,7 @@ import { AuthDataSource } from "@/data/datasource/interfaces/AuthDataSource";
 const mockAuthDataSource: jest.Mocked<AuthDataSource> = {
   login: jest.fn(),
   logout: jest.fn(),
+  refreshToken: jest.fn(),
 };
 
 describe("AuthRepository", () => {
@@ -23,10 +24,23 @@ describe("AuthRepository", () => {
     it("should call login method of AuthDataSource and return user data", async () => {
       // Mock des données de retour
       const mockResponse = {
-        id: 1,
-        username: "john.doe",
-        email: "john.doe@example.com",
-        token: "abcd1234",
+        user: {
+          id: 1,
+          name: "Test",
+          age: 20,
+          country: "FR",
+          gender: null,
+          description: null,
+          email: "john.doe@example.com",
+          email_verified_at: null,
+          created_at: "2021-01-01 00:00:00",
+          updated_at: "2021-01-01 00:00:00",
+          deleted_at: null,
+        },
+        authorization: {
+          token: "abcd1234",
+          type: "bearer",
+        },
       };
 
       // Mock de la méthode login du AuthDataSource
@@ -34,7 +48,7 @@ describe("AuthRepository", () => {
 
       // Données d'entrée pour le test
       const credentials = {
-        username: "john.doe",
+        email: "john.doe",
         password: "password",
       };
 
@@ -45,18 +59,23 @@ describe("AuthRepository", () => {
       expect(mockAuthDataSource.login).toHaveBeenCalledTimes(1);
       expect(mockAuthDataSource.login).toHaveBeenCalledWith(credentials);
       expect(result).toEqual({
-        id: mockResponse.id,
-        username: mockResponse.username,
-        email: mockResponse.email,
-        token: mockResponse.token,
+        id: "1",
+        username: "Test",
+        email: "john.doe@example.com",
+        token: "abcd1234",
       });
     });
   });
 
   describe("logout", () => {
     it("should call logout method of AuthDataSource", async () => {
+      const mockReponse = {
+        message: "Successfully logged out.",
+        success: true,
+      };
+
       // Mock de la méthode logout du AuthDataSource
-      mockAuthDataSource.logout.mockImplementation(async () => undefined);
+      mockAuthDataSource.logout.mockImplementation(async () => mockReponse);
 
       // Appel de la méthode à tester
       await authRepository.logout();

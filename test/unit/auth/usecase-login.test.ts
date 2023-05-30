@@ -10,6 +10,7 @@ describe("LoginUseCase", () => {
     mockAuthRepository = {
       login: jest.fn(),
       logout: jest.fn(),
+      refreshToken: jest.fn(),
     };
 
     loginUseCase = new LoginUseCase(mockAuthRepository);
@@ -23,15 +24,15 @@ describe("LoginUseCase", () => {
     it("should call login method of AuthRepository and return the result", async () => {
       // Données de test
       const credentials = {
-        username: "john.doe",
+        email: "john.doe",
         password: "password",
       };
 
       // Mock de la méthode login du AuthRepository
       const mockResponse = {
-        id: 1,
-        username: "john.doe",
-        email: "john.doe@example.com",
+        id: "1",
+        username: "John Doe",
+        email: "john.doe",
         token: "abcd1234",
       };
       mockAuthRepository.login.mockResolvedValueOnce(mockResponse);

@@ -7,7 +7,7 @@ const mockAxiosInstance: any = {
   api: {
     post: jest
       .fn()
-      .mockResolvedValueOnce({ data: { id: 1, username: "john.doe" } }),
+      .mockResolvedValueOnce({ data: { id: 1, email: "john.doe" } }),
     get: jest.fn().mockResolvedValueOnce({ data: { success: true } }),
   },
 };
@@ -20,7 +20,7 @@ describe("AuthDataSourceImpl", () => {
 
       // Données de test
       const credentials = {
-        username: "john.doe",
+        email: "john.doe",
         password: "password",
       };
 
@@ -30,10 +30,10 @@ describe("AuthDataSourceImpl", () => {
       // Vérification des appels et des résultats
       expect(mockAxiosInstance.api.post).toHaveBeenCalledTimes(1);
       expect(mockAxiosInstance.api.post).toHaveBeenCalledWith(
-        "/auth/login",
+        "/login",
         credentials
       );
-      expect(result).toEqual({ id: 1, username: "john.doe" });
+      expect(result).toEqual({ id: 1, email: "john.doe" });
     });
   });
 
@@ -47,7 +47,7 @@ describe("AuthDataSourceImpl", () => {
 
       // Vérification des appels et des résultats
       expect(mockAxiosInstance.api.get).toHaveBeenCalledTimes(1);
-      expect(mockAxiosInstance.api.get).toHaveBeenCalledWith("/users");
+      expect(mockAxiosInstance.api.get).toHaveBeenCalledWith("/logout");
       expect(result).toEqual({ success: true });
     });
   });
