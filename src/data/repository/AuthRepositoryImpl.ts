@@ -32,7 +32,7 @@ export class AuthRepositoryImpl implements AuthRepository {
 
     return {
       id: user.id.toString(),
-      username: user.name,
+      name: user.name,
       email: user.email,
       token: user.token,
     };

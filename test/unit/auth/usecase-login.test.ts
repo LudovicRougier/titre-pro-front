@@ -31,7 +31,7 @@ describe("LoginUseCase", () => {
       // Mock de la méthode login du AuthRepository
       const mockResponse = {
         id: "1",
-        username: "John Doe",
+        name: "John Doe",
         email: "john.doe",
         token: "abcd1234",
       };

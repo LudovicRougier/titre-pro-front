@@ -60,7 +60,7 @@ describe("AuthRepository", () => {
       expect(mockAuthDataSource.login).toHaveBeenCalledWith(credentials);
       expect(result).toEqual({
         id: "1",
-        username: "Test",
+        name: "Test",
         email: "john.doe@example.com",
         token: "abcd1234",
       });

@@ -5,10 +5,8 @@
 import axios, { AxiosInstance } from "axios";
 import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
-import { checkTokenExpiration, refreshToken } from "@/utils/token";
 
 let sessionPromise: Promise<Session | null> | null = null;
-let refreshedToken: string | null = null;
 
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -25,18 +23,7 @@ axiosClient.interceptors.request.use(
     const session = await sessionPromise;
     if (!session) return config;
 
-    let token = session?.user.token;
-    if (refreshedToken) {
-      // Utiliser le token rafraîchi s'il existe
-      token = refreshedToken;
-    }
-
-    const isExpired = await checkTokenExpiration(token);
-    if (isExpired) {
-      // Rafraîchir le token uniquement s'il est expiré
-      token = await refreshToken(token);
-      refreshedToken = token; // Stocker le token rafraîchi pour les prochaines requêtes
-    }
+    const token = session?.user.token;
 
     config.headers.Authorization = `Bearer ${token}`;
     return config;

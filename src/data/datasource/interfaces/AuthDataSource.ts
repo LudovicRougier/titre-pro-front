@@ -1,6 +1,6 @@
 export type LoginResponse = {
   id: string;
-  username: string;
+  name: string;
   email: string;
   token: string;
 };
