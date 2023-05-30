@@ -12,7 +12,7 @@ export const useViewModel = () => {
       email: userInfo.current.email,
       password: userInfo.current.password,
       redirect: true,
-      callbackUrl: Path.HOME,
+      callbackUrl: Path.INDEX,
     });
   };
 

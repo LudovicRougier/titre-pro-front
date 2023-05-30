@@ -1,7 +1,18 @@
 import { useAuthDependencies } from "@/shared/contexts/dependencies/auth";
+import { signOut, signIn, useSession } from "next-auth/react";
 
 export const useViewModel = () => {
-  const { loginUseCase, logoutUseCase } = useAuthDependencies();
+  const { data: session, status } = useSession();
+  const { logoutUseCase } = useAuthDependencies();
 
-  return { loginUseCase, logoutUseCase };
+  const handleLogout = async () => {
+    await logoutUseCase.invoke();
+    signOut();
+  };
+
+  const handleLogin = async () => {
+    await signIn();
+  };
+
+  return { session, status, logoutUseCase, handleLogout, handleLogin };
 };
