@@ -5,7 +5,6 @@ import {
   Container,
   Grid,
   Header as HeaderMantine,
-  Flex,
   NavLink,
   Text,
 } from "@mantine/core";
