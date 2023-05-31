@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { GetServerSideProps } from "next";
 import {
   TextInput,
   PasswordInput,
@@ -15,8 +15,9 @@ import {
 import { useViewModel } from "@/presentation/viewModel/signin";
 import { getSession } from "next-auth/react";
 import { Path } from "@/shared/enums/path";
+import Layout from "@/presentation/components/layout";
 
-const SignIn: NextPage = () => {
+const SignIn = () => {
   const { handleSubmit, handleUserInfoChange } = useViewModel();
   return (
     <Container size={420} my={40}>
@@ -78,7 +79,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (session) {
     return {
       redirect: {
-        destination: Path.HOME,
+        destination: Path.INDEX,
         permanent: false,
       },
     };
@@ -87,6 +88,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {},
   };
+};
+
+SignIn.getLayout = function getLayout(page: React.ReactNode) {
+  return <Layout>{page}</Layout>;
 };
 
 export default SignIn;

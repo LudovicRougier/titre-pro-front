@@ -1,6 +1,6 @@
 import { APIMovie, MovieModel } from "@/domain/model/Movie";
 
-type Emotion = {
+export type Emotion = {
   name: string;
   color: string;
 };
@@ -11,7 +11,7 @@ export interface APIMood {
   custom_answer: string;
   mainEmotion: Emotion;
   subEmotion: Emotion | null;
-  // movies: APIMovie[];
+  movies: APIMovie[];
   created_at: string;
 }
 
@@ -22,7 +22,7 @@ export interface Mood {
   message: string;
   mainEmotion: Emotion;
   subEmotion: Emotion | null;
-  // movies: MovieModel[];
+  movies: MovieModel[];
 }
 
 export class MoodModel implements Mood {
@@ -38,7 +38,7 @@ export class MoodModel implements Mood {
 
   subEmotion: Emotion | null;
 
-  // movies: MovieModel[];
+  movies: MovieModel[];
 
   public constructor(mood: Mood) {
     this.id = mood.id;
@@ -47,7 +47,7 @@ export class MoodModel implements Mood {
     this.message = mood.message;
     this.mainEmotion = mood.mainEmotion;
     this.subEmotion = mood.subEmotion;
-    // this.movies = mood.movies;
+    this.movies = mood.movies;
   }
 
   public static fromJSON(mood: APIMood): MoodModel {
@@ -58,7 +58,7 @@ export class MoodModel implements Mood {
       message: mood.custom_answer,
       mainEmotion: mood.mainEmotion,
       subEmotion: mood.subEmotion,
-      // movies: mood.movies.map((movie) => MovieModel.fromJSON(movie)),
+      movies: mood.movies.map((movie) => MovieModel.fromJSON(movie)),
     });
   }
 }
