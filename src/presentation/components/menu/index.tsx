@@ -1,29 +1,34 @@
 import { Menu as MantineMenu } from "@mantine/core";
 import { FloatingPosition } from "@mantine/core/lib/Floating";
-import { Logout, Profile, Setting2 } from "iconsax-react";
 
 interface MenuProps {
+  label: string;
   target: JSX.Element;
   position?: FloatingPosition | undefined;
-  logout: () => void;
+  items: {
+    id: number;
+    label: string;
+    icon: JSX.Element;
+    onClick: () => unknown;
+  }[];
 }
 
-const Menu: React.FC<MenuProps> = ({ target, position, logout }) => {
+const Menu: React.FC<MenuProps> = ({ label, target, position, items }) => {
   return (
     <MantineMenu position={position} shadow="md" width={200}>
       <MantineMenu.Target>{target}</MantineMenu.Target>
 
       <MantineMenu.Dropdown>
-        <MantineMenu.Label>Account</MantineMenu.Label>
-        <MantineMenu.Item icon={<Profile size={14} />}>
-          Profile
-        </MantineMenu.Item>
-        <MantineMenu.Item icon={<Setting2 size={14} />}>
-          Settings
-        </MantineMenu.Item>
-        <MantineMenu.Item icon={<Logout size={14} />} onClick={logout}>
-          Logout
-        </MantineMenu.Item>
+        <MantineMenu.Label>{label}</MantineMenu.Label>
+        {items.map((item) => (
+          <MantineMenu.Item
+            key={item.id}
+            icon={item.icon}
+            onClick={item.onClick}
+          >
+            {item.label}
+          </MantineMenu.Item>
+        ))}
       </MantineMenu.Dropdown>
     </MantineMenu>
   );

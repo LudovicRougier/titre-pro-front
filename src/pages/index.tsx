@@ -3,24 +3,15 @@ import type { NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/home";
 
 const Home: NextPage = () => {
-  const { session, status, handleLogin, handleLogout } = useViewModel();
+  const { session, status } = useViewModel();
 
   return (
     <>
+      <div>Hello Index</div>
       {session && (
         <div data-test="authentificated">
-          Currently {status} with : {session.user.email} - {session.user?.token}
+          Currently {status} with : {session.user.email}
         </div>
-      )}
-      <div>Hello Index</div>
-      {session?.user ? (
-        <button type="button" onClick={handleLogout}>
-          Sign out
-        </button>
-      ) : (
-        <button type="button" onClick={handleLogin} data-test="sign-in">
-          Sign in
-        </button>
       )}
     </>
   );

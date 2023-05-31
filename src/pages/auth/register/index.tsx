@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (session) {
     return {
       redirect: {
-        destination: Path.HOME,
+        destination: Path.INDEX,
         permanent: false,
       },
     };
