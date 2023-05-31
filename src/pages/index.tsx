@@ -1,24 +1,15 @@
-import { useAuthDependencies } from "@/shared/contexts/dependencies/auth";
-import type { NextPage } from "next";
-import { signIn, signOut, useSession } from "next-auth/react";
-
 import React from "react";
+import type { NextPage } from "next";
+import { useViewModel } from "@/presentation/viewModel/home";
 
 const Home: NextPage = () => {
-  const { data: session, status } = useSession();
-  const { logoutUseCase } = useAuthDependencies();
-
-  const handleLogout = async () => {
-    await logoutUseCase.invoke();
-    signOut();
-  };
+  const { session, status, handleLogin, handleLogout } = useViewModel();
 
   return (
     <>
-      {status.toString()}
       {session && (
         <div data-test="authentificated">
-          Currently logged in : {session.user?.email} - {session.user?.token}
+          Currently {status} with : {session.user.email} - {session.user?.token}
         </div>
       )}
       <div>Hello Index</div>
@@ -27,7 +18,7 @@ const Home: NextPage = () => {
           Sign out
         </button>
       ) : (
-        <button type="button" onClick={() => signIn()} data-test="sign-in">
+        <button type="button" onClick={handleLogin} data-test="sign-in">
           Sign in
         </button>
       )}
