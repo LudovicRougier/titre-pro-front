@@ -1,5 +1,12 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "conventionalCommits.scopes": ["axios", "graphql", "test", "auth", "route"]
+  "conventionalCommits.scopes": [
+    "axios",
+    "graphql",
+    "test",
+    "auth",
+    "route",
+    "dependencies"
+  ]
 }
