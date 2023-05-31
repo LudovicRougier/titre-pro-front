@@ -93,7 +93,7 @@ const Header: React.FC = () => {
               Sign in
             </Button>
           ))}
-      </Flex>
+      </div>
     </HeaderMantine>
   );
 };
