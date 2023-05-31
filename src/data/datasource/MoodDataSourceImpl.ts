@@ -1,22 +1,22 @@
 import "reflect-metadata";
-import { inject, injectable } from "inversify";
-import { TYPES } from "@/container/types";
 import { GraphQLBaseService } from "@/data/GraphQLBaseService";
 import { MoodDataSource } from "@/data/datasource/interfaces/MoodDataSource";
-import { APIService } from "@/data/datasource/interfaces/APIService";
+import { GET_RECOMMANDATIONS } from "@/lib/apollo/request/mood/getRecommandations";
 
-@injectable()
-export class MoodDataSourceImpl implements MoodDataSource {
-  private api;
-
-  public constructor(
-    @inject(TYPES.APIService) apiService: GraphQLBaseService | APIService
-  ) {
-    this.api = apiService.api;
-  }
-
+export class MoodDataSourceImpl
+  extends GraphQLBaseService
+  implements MoodDataSource
+{
   async fetchMoodRecommendations(userInput: string) {
-    return null;
+    const res = await this.api.mutate({
+      mutation: GET_RECOMMANDATIONS.query,
+      variables: {
+        userInput,
+      },
+    });
+
+    if (res.errors) return null;
+    return res.data[GET_RECOMMANDATIONS.queryName];
   }
 
   async retrieveMoodHistoryList() {
