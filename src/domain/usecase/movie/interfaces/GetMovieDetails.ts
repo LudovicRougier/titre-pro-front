@@ -1,3 +1,5 @@
+import { MovieModel } from "@/domain/model/Movie";
+
 export interface GetMovieDetails {
-  invoke: () => Promise<string>;
+  invoke: () => Promise<MovieModel | null>;
 }

@@ -1,3 +1,5 @@
+import { MovieModel } from "@/domain/model/Movie";
+
 export interface MovieRepository {
-  getMovieDetails: () => Promise<string>;
+  getMovieDetails: () => Promise<MovieModel | null>;
 }

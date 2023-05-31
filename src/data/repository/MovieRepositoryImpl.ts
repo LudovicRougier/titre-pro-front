@@ -4,6 +4,7 @@ import { TYPES } from "@/container/types";
 
 import type { MovieDataSource } from "@/data/datasource/interfaces/MovieDataSource";
 import { MovieRepository } from "@/data/repository/interfaces/MovieRepository";
+import { MovieModel } from "@/domain/model/Movie";
 
 @injectable()
 export class MovieRepositoryImpl implements MovieRepository {
@@ -15,7 +16,9 @@ export class MovieRepositoryImpl implements MovieRepository {
     this.movieDataSource = movieDataSource;
   }
 
-  getMovieDetails() {
-    return this.movieDataSource.getMovieDetails();
+  public async getMovieDetails() {
+    const res = await this.movieDataSource.getMovieDetails();
+    if (res === null) return null;
+    return MovieModel.fromJSON(res);
   }
 }

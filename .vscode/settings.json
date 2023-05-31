@@ -8,6 +8,7 @@
     "auth",
     "route",
     "dependencies",
+    "movie",
     "mood"
   ]
 }

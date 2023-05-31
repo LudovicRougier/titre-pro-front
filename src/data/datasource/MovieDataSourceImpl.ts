@@ -15,5 +15,7 @@ export class MovieDataSourceImpl implements MovieDataSource {
     this.api = apiService.api;
   }
 
-  async getMovieDetails() {}
+  async getMovieDetails() {
+    return null;
+  }
 }

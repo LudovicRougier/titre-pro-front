@@ -1,3 +1,5 @@
+import { APIMovie } from "@/domain/model/Movie";
+
 export interface MovieDataSource {
-  getMovieDetails: () => Promise<void>;
+  getMovieDetails: () => Promise<APIMovie | null>;
 }
