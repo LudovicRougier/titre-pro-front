@@ -1,16 +1,28 @@
 import "reflect-metadata";
+import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
 import { MantineProvider } from "@mantine/core";
 
-import Layout from "@/presentation/components/layout";
+import LayoutMaster from "@/presentation/components/layoutMaster";
 import GlobalContext from "@/shared/contexts/globalContext";
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: React.ReactElement) => React.ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
 
 const MyApp = ({
   Component,
   pageProps: { session, ...pageProps },
-}: AppProps) => {
+}: AppPropsWithLayout) => {
+  const getLayout =
+    Component.getLayout ?? ((page) => <LayoutMaster>{page}</LayoutMaster>);
+
   return (
     <GlobalContext>
       <SessionProvider session={session}>
@@ -36,9 +48,7 @@ const MyApp = ({
             colorScheme: "dark",
           }}
         >
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          {getLayout(<Component {...pageProps} />)}
         </MantineProvider>
       </SessionProvider>
     </GlobalContext>

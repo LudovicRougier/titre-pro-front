@@ -1,10 +1,15 @@
 import React from "react";
 import { AppShell, Container } from "@mantine/core";
 import { ChildrenInterface } from "@/shared/interfaces/general/childrenNode";
+import Header from "@/presentation/components/header";
 
-const Layout: React.FC<ChildrenInterface> = ({ children }) => {
+const LayoutMaster: React.FC<ChildrenInterface> = ({ children }) => {
   return (
-    <AppShell navbarOffsetBreakpoint="sm" asideOffsetBreakpoint="sm">
+    <AppShell
+      navbarOffsetBreakpoint="sm"
+      asideOffsetBreakpoint="sm"
+      header={<Header />}
+    >
       <Container fluid className="bg">
         {children}
       </Container>
@@ -12,4 +17,4 @@ const Layout: React.FC<ChildrenInterface> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default LayoutMaster;

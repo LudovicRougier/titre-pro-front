@@ -3,8 +3,9 @@ import {
   Avatar,
   Button,
   Container,
-  Flex,
   Grid,
+  Header as HeaderMantine,
+  Flex,
   NavLink,
   Text,
 } from "@mantine/core";
@@ -43,15 +44,15 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <Container fluid>
-      <Flex
-        mih={50}
-        gap="xl"
-        justify="center"
-        align="center"
-        direction="row"
-        wrap="wrap"
-      >
+    <HeaderMantine
+      height={{ base: 50, md: 50 }}
+      p="md"
+      style={{
+        background: "transparent",
+        border: "none",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
         <Text td="bold">LOGO</Text>
         <Container>
           <Grid gutter={5} gutterXs="md" gutterMd="xl" gutterXl={50}>
@@ -93,7 +94,7 @@ const Header: React.FC = () => {
             </Button>
           ))}
       </Flex>
-    </Container>
+    </HeaderMantine>
   );
 };
 
