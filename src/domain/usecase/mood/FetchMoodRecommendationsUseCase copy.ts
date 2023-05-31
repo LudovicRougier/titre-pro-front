@@ -17,7 +17,7 @@ export class FetchMoodRecommendationsUseCase
     this.moodRepository = moodRepository;
   }
 
-  public async invoke() {
-    return this.moodRepository.fetchMoodRecommendations();
+  public async invoke(userInput: string) {
+    return this.moodRepository.fetchMoodRecommendations(userInput);
   }
 }

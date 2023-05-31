@@ -1,3 +1,5 @@
+import { MoodModel } from "@/domain/model/Mood";
+
 export interface FetchMoodRecommendations {
-  invoke: () => Promise<void>;
+  invoke: (userInput: string) => Promise<MoodModel | null>;
 }

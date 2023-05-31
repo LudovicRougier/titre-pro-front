@@ -4,6 +4,7 @@ import { TYPES } from "@/container/types";
 
 import type { MoodDataSource } from "@/data/datasource/interfaces/MoodDataSource";
 import { MoodRepository } from "@/data/repository/interfaces/MoodRepository";
+import { MoodModel } from "@/domain/model/Mood";
 
 @injectable()
 export class MoodRepositoryImpl implements MoodRepository {
@@ -15,12 +16,16 @@ export class MoodRepositoryImpl implements MoodRepository {
     this.moodDataSource = moodDataSource;
   }
 
-  async fetchMoodRecommendations() {
-    return this.moodDataSource.fetchMoodRecommendations();
+  async fetchMoodRecommendations(userInput: string) {
+    const res = await this.moodDataSource.fetchMoodRecommendations(userInput);
+    if (res === null) return null;
+    return MoodModel.fromJSON(res);
   }
 
   async retrieveMoodHistoryList() {
-    return this.moodDataSource.removeMoodHistoryEntry();
+    const res = await this.moodDataSource.retrieveMoodHistoryList();
+    if (res === null) return null;
+    return res.map((mood) => MoodModel.fromJSON(mood));
   }
 
   async removeMoodHistoryEntry() {
@@ -28,6 +33,8 @@ export class MoodRepositoryImpl implements MoodRepository {
   }
 
   async getMoodDetails() {
-    return this.moodDataSource.getMoodDetails();
+    const res = await this.moodDataSource.getMoodDetails();
+    if (res === null) return null;
+    return MoodModel.fromJSON(res);
   }
 }

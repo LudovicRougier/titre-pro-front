@@ -15,11 +15,17 @@ export class MoodDataSourceImpl implements MoodDataSource {
     this.api = apiService.api;
   }
 
-  async fetchMoodRecommendations() {}
+  async fetchMoodRecommendations(userInput: string) {
+    return null;
+  }
 
-  async retrieveMoodHistoryList() {}
+  async retrieveMoodHistoryList() {
+    return null;
+  }
 
   async removeMoodHistoryEntry() {}
 
-  async getMoodDetails() {}
+  async getMoodDetails() {
+    return null;
+  }
 }

@@ -1,6 +1,8 @@
+import { MoodModel } from "@/domain/model/Mood";
+
 export interface MoodRepository {
-  fetchMoodRecommendations: () => Promise<void>;
-  retrieveMoodHistoryList: () => Promise<void>;
+  fetchMoodRecommendations: (userInput: string) => Promise<MoodModel | null>;
+  retrieveMoodHistoryList: () => Promise<MoodModel[] | null>;
   removeMoodHistoryEntry: () => Promise<void>;
-  getMoodDetails: () => Promise<void>;
+  getMoodDetails: () => Promise<MoodModel | null>;
 }
