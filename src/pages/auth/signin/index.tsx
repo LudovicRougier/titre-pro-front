@@ -21,23 +21,22 @@ const SignIn = () => {
   const { handleSubmit, handleUserInfoChange } = useViewModel();
   return (
     <Container size={420} my={40}>
-      <Center>
+      <Center
+        style={{
+          height: "100vh",
+          marginTop: "-10vh",
+        }}
+      >
         <form onSubmit={handleSubmit}>
           <Title
             align="center"
             sx={(theme) => ({
               fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-              fontWeight: 900,
+              fontWeight: 600,
             })}
           >
-            Welcome back!
+            Emotion Pictures
           </Title>
-          <Text color="dimmed" size="sm" align="center" mt={5}>
-            Do not have an account yet?{" "}
-            <Anchor size="sm" component="button">
-              Create account
-            </Anchor>
-          </Text>
 
           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
             <TextInput
@@ -67,6 +66,12 @@ const SignIn = () => {
               Sign in
             </Button>
           </Paper>
+          <Text color="dimmed" size="sm" align="center" mt={24}>
+            Do not have an account yet?{" "}
+            <Anchor size="sm" component="button">
+              Create account
+            </Anchor>
+          </Text>
         </form>
       </Center>
     </Container>
