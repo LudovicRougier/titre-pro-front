@@ -10,7 +10,7 @@ const LayoutMaster: React.FC<ChildrenInterface> = ({ children }) => {
       asideOffsetBreakpoint="sm"
       header={<Header />}
     >
-      <Container fluid className="bg">
+      <Container fluid style={{ height: "100vh", width: "100vw", padding: 0 }}>
         {children}
       </Container>
     </AppShell>

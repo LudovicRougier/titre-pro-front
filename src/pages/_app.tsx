@@ -8,6 +8,8 @@ import { MantineProvider } from "@mantine/core";
 import LayoutMaster from "@/presentation/components/layoutMaster";
 import GlobalContext from "@/shared/contexts/globalContext";
 
+import "@/styles/reset.css";
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
 };
