@@ -27,6 +27,9 @@ const Header: React.FC = () => {
     signOut();
   };
 
+  const IS_HOME = router.pathname === Path.INDEX;
+  const IS_HISTORY = router.pathname === Path.MOOD_HISTORY;
+
   const menuItems = [
     {
       id: 1,
@@ -56,20 +59,30 @@ const Header: React.FC = () => {
         <Container>
           <Grid gutter={5} gutterXs="md" gutterMd="xl" gutterXl={50}>
             <Grid.Col span={6}>
-              <NavLink
-                active={router.pathname === Path.INDEX}
-                label="Home"
+              <Text
                 onClick={handleClickHome}
                 variant="subtle"
-              />
+                color={IS_HOME ? "white" : "light gray"}
+                style={{
+                  cursor: "pointer",
+                  transition: "all 0.8s ease",
+                }}
+              >
+                Home
+              </Text>
             </Grid.Col>
             <Grid.Col span={6}>
-              <NavLink
-                active={router.pathname === Path.MOOD_HISTORY}
-                label="History"
+              <Text
                 onClick={handleClickHistory}
                 variant="subtle"
-              />
+                color={IS_HISTORY ? "white" : "light gray"}
+                style={{
+                  cursor: "pointer",
+                  transition: "all 0.8s ease",
+                }}
+              >
+                History
+              </Text>
             </Grid.Col>
           </Grid>
         </Container>

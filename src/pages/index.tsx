@@ -33,7 +33,9 @@ const Home: NextPage = () => {
           size="md"
           radius="md"
           onChange={handleChangeInput}
-          rightSection={isLoading ? <Loader size="xs" /> : <ArrowRight2 />}
+          rightSection={
+            isLoading ? <Loader size="xs" /> : !error && <ArrowRight2 />
+          }
           onKeyDown={(e) => {
             if (e.key === "Enter") getRecommandations();
           }}
