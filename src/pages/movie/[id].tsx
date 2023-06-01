@@ -5,13 +5,9 @@ import MovieDetailsComponent from "@/presentation/components/movieDetails";
 
 interface MovieDetailsProps {
   movieId: string;
-  actors: {
-    id: number;
-    name: string;
-  }[];
 }
 
-const MovieDetails: NextPage<MovieDetailsProps> = () => {
+const MovieDetails: NextPage<MovieDetailsProps> = ({ movieId }) => {
   return <MovieDetailsComponent />;
 };
 
