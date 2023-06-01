@@ -1,19 +1,58 @@
 import React from "react";
 import type { NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/home";
-import { Container } from "@mantine/core";
+import { Button, Center, Container, TextInput } from "@mantine/core";
+import { ArrowRight2, Refresh } from "iconsax-react";
 
 const Home: NextPage = () => {
-  const { session, status } = useViewModel();
+  const {
+    handleChangeInput,
+    getRecommandations,
+    recommandations,
+    error,
+    userInput,
+    resetInput,
+  } = useViewModel();
 
   return (
     <Container>
-      <div>Hello Index</div>
-      {session && (
-        <div data-test="authentificated">
-          Currently {status} with : {session.user.email}
-        </div>
-      )}
+      <Center
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "-10vh",
+        }}
+      >
+        <TextInput
+          placeholder="How do you feel today ?"
+          variant="filled"
+          error={error}
+          size="md"
+          radius="md"
+          onChange={handleChangeInput}
+          value={userInput}
+          style={{
+            width: "100%",
+          }}
+        />
+
+        <Button
+          variant="light"
+          radius="md"
+          size="md"
+          ml={12}
+          onClick={error ? resetInput : getRecommandations}
+        >
+          {error ? (
+            <Refresh size={18} />
+          ) : (
+            <ArrowRight2 size={18} onClick={resetInput} />
+          )}
+        </Button>
+        {JSON.stringify(recommandations)}
+      </Center>
     </Container>
   );
 };

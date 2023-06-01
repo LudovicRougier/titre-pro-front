@@ -47,7 +47,7 @@ export class MoodModel implements Mood {
     this.message = mood.message;
     this.mainEmotion = mood.mainEmotion;
     this.subEmotion = mood.subEmotion;
-    this.movies = mood.movies;
+    this.movies = mood.movies ? mood.movies : [];
   }
 
   public static fromJSON(mood: APIMood): MoodModel {
@@ -58,7 +58,7 @@ export class MoodModel implements Mood {
       message: mood.custom_answer,
       mainEmotion: mood.mainEmotion,
       subEmotion: mood.subEmotion,
-      movies: mood.movies.map((movie) => MovieModel.fromJSON(movie)),
+      movies: mood.movies?.map((movie) => MovieModel.fromJSON(movie)),
     });
   }
 }

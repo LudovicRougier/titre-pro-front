@@ -4,6 +4,7 @@ import {
   UseQueryOptions,
   useQuery,
   QueryObserverResult,
+  useMutation,
 } from "@tanstack/react-query";
 
 export const useAppQuery = <TData = unknown, TError = Error>(
@@ -16,3 +17,5 @@ export const useAppQuery = <TData = unknown, TError = Error>(
 ): QueryObserverResult<TData, TError> => {
   return useQuery<TData, TError>(queryKey, queryFn, options);
 };
+
+export const useAppMutation = useMutation;

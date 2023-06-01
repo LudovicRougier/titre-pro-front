@@ -1,18 +1,40 @@
-import { useAuthDependencies } from "@/shared/contexts/dependencies/auth";
-import { signOut, signIn, useSession } from "next-auth/react";
+/* eslint-disable no-console */
+import { useState } from "react";
+import { useAppMutation } from "@/lib/react-query/hooks";
+import { useMoodDependencies } from "@/shared/contexts/dependencies/mood";
+import { MoodModel } from "@/domain/model/Mood";
 
 export const useViewModel = () => {
-  const { data: session, status } = useSession();
-  const { logoutUseCase } = useAuthDependencies();
+  const { fetchMoodRecommandations } = useMoodDependencies();
 
-  const handleLogout = async () => {
-    await logoutUseCase.invoke();
-    signOut();
+  const [userInput, setUserInput] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
+
+  const resetInput = () => {
+    setError(false);
+    setUserInput("");
   };
 
-  const handleLogin = async () => {
-    await signIn();
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (error) setError(false);
+    setUserInput(e.target.value);
   };
 
-  return { session, status, logoutUseCase, handleLogout, handleLogin };
+  const { mutate, data: recommandations } = useAppMutation<MoodModel | null>(
+    () => fetchMoodRecommandations.invoke(userInput),
+    {
+      onError: () => setError(true),
+    }
+  );
+
+  const getRecommandations = () => mutate();
+
+  return {
+    handleChangeInput,
+    getRecommandations,
+    recommandations,
+    error,
+    userInput,
+    resetInput,
+  };
 };
