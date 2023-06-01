@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/home";
-import { Button, Center, Container, TextInput } from "@mantine/core";
+import { Button, Center, Container, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
 
 const Home: NextPage = () => {
@@ -9,8 +9,8 @@ const Home: NextPage = () => {
     handleChangeInput,
     getRecommandations,
     recommandations,
+    isLoading,
     error,
-    userInput,
     resetInput,
   } = useViewModel();
 
@@ -22,7 +22,8 @@ const Home: NextPage = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "-10vh",
+          marginTop: "-5vh",
+          transition: "all 0.8s easeInOut",
         }}
       >
         <TextInput
@@ -32,25 +33,26 @@ const Home: NextPage = () => {
           size="md"
           radius="md"
           onChange={handleChangeInput}
-          value={userInput}
+          rightSection={isLoading ? <Loader size="xs" /> : <ArrowRight2 />}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") getRecommandations();
+          }}
           style={{
             width: "100%",
+            transition: "all 0.8s ease",
           }}
         />
-
-        <Button
-          variant="light"
-          radius="md"
-          size="md"
-          ml={12}
-          onClick={error ? resetInput : getRecommandations}
-        >
-          {error ? (
+        {error && (
+          <Button
+            variant="light"
+            radius="md"
+            size="md"
+            ml={12}
+            onClick={resetInput}
+          >
             <Refresh size={18} />
-          ) : (
-            <ArrowRight2 size={18} onClick={resetInput} />
-          )}
-        </Button>
+          </Button>
+        )}
         {JSON.stringify(recommandations)}
       </Center>
     </Container>
