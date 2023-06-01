@@ -25,6 +25,15 @@ export class AuthDataSourceImpl implements AuthDataSource {
     return response.data;
   }
 
+  async register(credentials: {
+    name: string;
+    email: string;
+    password: string;
+  }) {
+    const response = await this.api.post("/register", credentials);
+    return response.data;
+  }
+
   async refreshToken() {
     const response = await this.api.get("/test");
     return response.data;

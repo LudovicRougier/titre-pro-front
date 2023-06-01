@@ -30,6 +30,7 @@ import { RemoveMoodHistoryEntryUseCase } from "@/domain/useCase/mood/RemoveMoodH
 import { GetMoodDetailsUseCase } from "@/domain/useCase/mood/GetMoodDetailsUseCase";
 import { GetMovieDetailsUseCase } from "@/domain/useCase/movie/GetMovieDetailsUseCase";
 import { AxiosBaseService } from "@/data/AxiosBaseService";
+import { RegisterUseCase } from "@/domain/useCase/auth/RegisterUseCase";
 
 const container = new Container();
 
@@ -54,6 +55,7 @@ container
 /* USE CASES */
 container.bind<LoginUseCase>(TYPES.LoginUseCase).to(LoginUseCase);
 container.bind<LogoutUseCase>(TYPES.LogoutUseCase).to(LogoutUseCase);
+container.bind<RegisterUseCase>(TYPES.RegisterUseCase).to(RegisterUseCase);
 
 container
   .bind<GetAccountDetailsUseCase>(TYPES.GetAccountDetailsUseCase)

@@ -18,7 +18,9 @@ import { Path } from "@/shared/enums/path";
 import Layout from "@/presentation/components/layout";
 
 const SignIn = () => {
-  const { handleSubmit, handleUserInfoChange } = useViewModel();
+  const { handleSubmit, handleUserInfoChange, handleClickCreateAccount } =
+    useViewModel();
+
   return (
     <Container size={420} my={40}>
       <Center
@@ -35,7 +37,7 @@ const SignIn = () => {
               fontWeight: 600,
             })}
           >
-            Emotion Pictures
+            Login
           </Title>
 
           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
@@ -68,7 +70,11 @@ const SignIn = () => {
           </Paper>
           <Text color="dimmed" size="sm" align="center" mt={24}>
             Do not have an account yet?{" "}
-            <Anchor size="sm" component="button">
+            <Anchor
+              size="sm"
+              component="button"
+              onClick={handleClickCreateAccount}
+            >
               Create account
             </Anchor>
           </Text>

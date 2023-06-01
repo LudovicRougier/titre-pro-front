@@ -17,6 +17,7 @@ const TYPES = {
   /* Auth */
   LoginUseCase: Symbol.for("LoginUseCase"),
   LogoutUseCase: Symbol.for("LogoutUseCase"),
+  RegisterUseCase: Symbol.for("RegisterUseCase"),
 
   /* Account */
   GetAccountDetailsUseCase: Symbol.for("GetAccountDetailsUseCase"),

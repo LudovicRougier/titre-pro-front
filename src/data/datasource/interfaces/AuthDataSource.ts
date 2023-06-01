@@ -10,6 +10,11 @@ export type LogoutResponse = {
   success: boolean;
 };
 
+export type RegisterResponse = {
+  message: string;
+  success: boolean;
+};
+
 export interface APILoginResponse {
   user: {
     id: number;
@@ -35,6 +40,11 @@ export interface APILogoutResponse {
   success: boolean;
 }
 
+export interface APIRegisterResponse {
+  message: string;
+  success: boolean;
+}
+
 export interface AuthDataSource {
   login: (credentials: {
     email: string;
@@ -42,4 +52,9 @@ export interface AuthDataSource {
   }) => Promise<APILoginResponse>;
   logout: () => Promise<APILogoutResponse>;
   refreshToken: () => Promise<APILoginResponse>;
+  register: (credentials: {
+    name: string;
+    email: string;
+    password: string;
+  }) => Promise<APIRegisterResponse>;
 }

@@ -46,6 +46,18 @@ export class AuthRepositoryImpl implements AuthRepository {
     return res;
   }
 
+  public async register(credentials: {
+    name: string;
+    email: string;
+    password: string;
+  }) {
+    const res = await this.authDataSource.register(credentials);
+    if (res) {
+      return res;
+    }
+    return null;
+  }
+
   public async refreshToken() {
     const res = await this.authDataSource.refreshToken();
     if (res) {
