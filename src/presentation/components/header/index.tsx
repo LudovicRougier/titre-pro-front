@@ -5,7 +5,6 @@ import {
   Container,
   Grid,
   Header as HeaderMantine,
-  NavLink,
   Text,
 } from "@mantine/core";
 import { signIn, signOut, useSession } from "next-auth/react";
