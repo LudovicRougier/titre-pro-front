@@ -6,7 +6,7 @@ const Blob: React.FC = () => {
       className={s.tkBlob}
       style={{
         width: "150px",
-        fill: "cyan",
+        fill: "white",
       }}
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 747.2 726.7">
