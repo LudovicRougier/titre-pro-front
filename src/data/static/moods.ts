@@ -1,9 +1,3 @@
-import React from "react";
-import type { NextPage } from "next";
-import { useViewModel } from "@/presentation/viewModel/moodHistory";
-import { Timeline, Container } from "@mantine/core";
-import { MoodCard } from "@/presentation/components/moodCard";
-
 export const moods = [
   {
     id: 1,
@@ -43,7 +37,6 @@ export const moods = [
     date: "2022-11-23",
     userInput:
       "I feel nothing, I'm empty. I'm a void. I'm a black hole. I'm a dead star.",
-
     mainEmotion: {
       name: "sadness",
       color: "purple",
@@ -92,26 +85,3 @@ export const moods = [
     ],
   },
 ];
-
-const MoodHistory: NextPage = () => {
-  const { data } = useViewModel();
-
-  return (
-    <Container>
-      {/* <div>Hello MoodHistory</div> */}
-
-      <Timeline active={4} bulletSize={12} lineWidth={2} color="gray">
-        {moods &&
-          moods.map((mood) => {
-            return (
-              <Timeline.Item key={mood.id}>
-                <MoodCard mood={mood} />
-              </Timeline.Item>
-            );
-          })}
-      </Timeline>
-    </Container>
-  );
-};
-
-export default MoodHistory;
