@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/home";
 import { Button, Center, Container, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
+import Blob from "@/presentation/components/blob";
 
 const Home: NextPage = () => {
   const {
@@ -15,17 +16,19 @@ const Home: NextPage = () => {
   } = useViewModel();
 
   return (
-    <Container>
-      <Center
-        style={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "-5vh",
-          transition: "all 0.8s easeInOut",
-        }}
-      >
+    <Container
+      style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Center style={{ width: "100%" }}>
+        <Container style={{ position: "absolute", top: "25%" }}>
+          <Blob />
+        </Container>
         <TextInput
           placeholder="How do you feel today ?"
           variant="filled"
