@@ -1,0 +1,94 @@
+.movieCarouselSlide {
+  position: relative;
+  margin: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.movieCarouselSlidePoster {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  padding: 0;
+}
+
+.movieCarouselSlidePosterImg {
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+}
+
+.movieCarouselSlideDetails {
+  position: absolute;
+  width: 100%;
+  bottom: -100px;
+  left: 0;
+  padding: 20px;
+  z-index: 2;
+  transition: 0.5s;
+}
+
+.movieCarouselSlideDetailsTitle {
+  max-width: 180px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.movieCarouselSlideDetailsDirector {
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.movieCarouselSlideDetailsRating {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0;
+}
+
+.movieCarouselSlideDetailsGenres {
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.movieCarouselSlideDetailsDescription {
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+.movieCarouselSlide .movieCarouselSlidePoster {
+  position: relative;
+  overflow: hidden;
+}
+
+.movieCarouselSlide .movieCarouselSlidePoster::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: -180px;
+  background: linear-gradient(0deg, black 50%, transparent 100%);
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.movieCarouselSlide:hover .movieCarouselSlidePoster::before {
+  bottom: 0px;
+}
+
+.movieCarouselSlide .movieCarouselSlidePosterImg {
+  width: 100%;
+  transition: 0.5;
+}
+
+.movieCarouselSlide:hover .movieCarouselSlidePosterImg {
+  transform: translateY(-50px) scale(1.1);
+  filter: blur(5px);
+}
+
+.movieCarouselSlide:hover .movieCarouselSlideDetails {
+  bottom: 40px;
+}
