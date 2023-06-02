@@ -9,14 +9,25 @@ import {
   PasswordInput,
   TextInput,
   Text,
+  Group,
+  Checkbox,
+  Modal,
 } from "@mantine/core";
 import { getSession } from "next-auth/react";
 import { Path } from "@/shared/enums/path";
 import Layout from "@/presentation/components/layout";
 import { useViewModel } from "@/presentation/viewModel/register";
+import { useShow } from "@/shared/hooks/useShow";
+import { TERMS_OF_SERVICE } from "@/data/static/termsOfService";
 
 const Register = () => {
-  const { handleClickSignIn } = useViewModel();
+  const { form, handleSubmit, handleClickSignIn } = useViewModel();
+
+  const {
+    show: showModal,
+    handleShow: handleShowModal,
+    handleClose: handleCloseModal,
+  } = useShow();
 
   return (
     <Container size={420} my={40}>
@@ -26,9 +37,7 @@ const Register = () => {
           marginTop: "-10vh",
         }}
       >
-        <form
-        // onSubmit={handleSubmit}
-        >
+        <form onSubmit={handleSubmit}>
           <Title
             align="center"
             sx={(theme) => ({
@@ -44,38 +53,40 @@ const Register = () => {
               label="Name"
               placeholder="David"
               mt="md"
-              required
-              // onChange={({ target }) =>
-              //   handleUserInfoChange("email", target.value)
-              // }
+              withAsterisk
+              {...form.getInputProps("name")}
             />
             <TextInput
               label="Email"
               placeholder="you@emotion.dev"
-              required
               mt="md"
-              // onChange={({ target }) =>
-              //   handleUserInfoChange("email", target.value)
-              // }
+              withAsterisk
+              {...form.getInputProps("email")}
             />
             <PasswordInput
               label="Password"
               placeholder="Your password"
-              required
               mt="md"
-              // onChange={({ target }) =>
-              //   handleUserInfoChange("password", target.value)
-              // }
+              withAsterisk
+              {...form.getInputProps("password")}
             />
             <PasswordInput
               label="Confirm password"
               placeholder="Your password"
-              required
               mt="md"
-              // onChange={({ target }) =>
-              //   handleUserInfoChange("password", target.value)
-              // }
+              withAsterisk
+              {...form.getInputProps("confirmPassword")}
             />
+
+            <Group position="apart" mt="lg">
+              <Checkbox
+                label="I agree to the terms and conditions"
+                {...form.getInputProps("termsOfService")}
+              />
+              <Anchor component="button" size="sm" onClick={handleShowModal}>
+                Terms and conditions
+              </Anchor>
+            </Group>
             <Button fullWidth mt="xl" type="submit">
               Register
             </Button>
@@ -87,6 +98,18 @@ const Register = () => {
             </Anchor>
           </Text>
         </form>
+
+        <Modal
+          opened={showModal}
+          onClose={handleCloseModal}
+          size="80%"
+          title="Terms and conditions"
+          transitionProps={{ transition: "fade", duration: 200 }}
+        >
+          {TERMS_OF_SERVICE.split("<br>").map((line) => (
+            <p key={`line_${line.length}`}>{line}</p>
+          ))}
+        </Modal>
       </Center>
     </Container>
   );

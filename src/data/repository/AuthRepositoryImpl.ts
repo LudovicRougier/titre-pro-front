@@ -51,18 +51,10 @@ export class AuthRepositoryImpl implements AuthRepository {
     email: string;
     password: string;
   }) {
-    const res = await this.authDataSource.register(credentials);
-    if (res) {
-      return res;
-    }
-    return null;
+    return this.authDataSource.register(credentials);
   }
 
   public async refreshToken() {
-    const res = await this.authDataSource.refreshToken();
-    if (res) {
-      return res;
-    }
-    return null;
+    return this.authDataSource.refreshToken();
   }
 }

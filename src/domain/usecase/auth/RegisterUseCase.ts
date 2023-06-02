@@ -15,12 +15,19 @@ export class RegisterUseCase implements Register {
     this.authRepository = authRepository;
   }
 
-  public async invoke(data: { name: string; email: string; password: string }) {
-    const res = await this.authRepository.register(data);
+  public async invoke(data: {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    termsOfService: boolean;
+  }) {
+    const credentials = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
 
-    if (res) {
-      return res;
-    }
-    return null;
+    return this.authRepository.register(credentials);
   }
 }
