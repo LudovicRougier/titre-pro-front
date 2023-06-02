@@ -1,9 +1,11 @@
 import { UserInfo } from "@/data/datasource/interfaces/AccountDataSource";
 import { useAccountDependencies } from "@/shared/contexts/dependencies/account";
+import { useShow } from "@/shared/hooks/useShow";
 import { useForm } from "@mantine/form";
 
 export const useViewModel = (userInfo: UserInfo) => {
   const { updateAccountDetailsUseCase } = useAccountDependencies();
+  const { show: isOnEdit, toggle: toggleEdit } = useShow(false);
 
   const form = useForm({
     initialValues: {
@@ -21,9 +23,10 @@ export const useViewModel = (userInfo: UserInfo) => {
     },
   });
 
-  const handleSubmit = form.onSubmit((values) =>
-    updateAccountDetailsUseCase.invoke(values)
-  );
+  const handleSubmit = form.onSubmit(async (values) => {
+    updateAccountDetailsUseCase.invoke(values);
+    toggleEdit();
+  });
 
-  return { form, handleSubmit };
+  return { form, handleSubmit, isOnEdit, toggleEdit };
 };
