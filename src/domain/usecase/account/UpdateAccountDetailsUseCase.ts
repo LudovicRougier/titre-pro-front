@@ -4,6 +4,7 @@ import { TYPES } from "@/container/types";
 
 import type { AccountRepository } from "@/data/repository/interfaces/AccountRepository";
 import { UpdateAccountDetails } from "@/domain/useCase/account/interfaces/UpdateAccountDetails";
+import { UserInfo } from "@/data/datasource/interfaces/AccountDataSource";
 
 @injectable()
 export class UpdateAccountDetailsUseCase implements UpdateAccountDetails {
@@ -15,7 +16,7 @@ export class UpdateAccountDetailsUseCase implements UpdateAccountDetails {
     this.accountRepository = accountRepository;
   }
 
-  public async invoke() {
-    return this.accountRepository.updateAccountDetails();
+  public async invoke(userInfo: UserInfo) {
+    return this.accountRepository.updateAccountDetails(userInfo);
   }
 }

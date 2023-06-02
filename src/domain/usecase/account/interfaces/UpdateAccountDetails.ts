@@ -1,3 +1,5 @@
+import { UserInfo } from "@/data/datasource/interfaces/AccountDataSource";
+
 export interface UpdateAccountDetails {
-  invoke: () => Promise<void>;
+  invoke: (userInfo: UserInfo) => Promise<void>;
 }

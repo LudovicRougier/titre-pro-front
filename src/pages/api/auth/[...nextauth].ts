@@ -9,7 +9,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 const loginUseCase = container.get<LoginUseCase>(TYPES.LoginUseCase);
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
