@@ -72,4 +72,10 @@ export class MovieModel implements Movie {
       genre: movie.genre,
     });
   }
+
+  public toJSON() {
+    return {
+      ...this,
+    };
+  }
 }

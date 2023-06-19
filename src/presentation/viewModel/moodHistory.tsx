@@ -15,7 +15,8 @@ export const useViewModel = (userId: number) => {
     ["mood-history", userId],
     queryFn,
     {
-      staleTime: 1000 * 60 * 1,
+      staleTime: 1000 * 60 * 3,
+      refetchOnWindowFocus: false,
       enabled: !!userId,
       retry: 1,
     }

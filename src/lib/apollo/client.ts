@@ -18,10 +18,13 @@ const httpLink = createHttpLink({
 const authLink = setContext(async (_, { headers }) => {
   const session = await getSession();
   if (!session) return { headers };
+
   const { token } = session.user;
+
   return {
     headers: {
       ...headers,
+      "Content-Type": "application/json",
       Authorization: token ? `Bearer ${token}` : "",
     },
   };

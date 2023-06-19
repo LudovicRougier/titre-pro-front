@@ -11,12 +11,10 @@ export const GET_MOOD_HISTORY = {
           custom_answer
           created_at
           mainEmotion {
-            id
             name
             color
           }
           subEmotion {
-            id
             name
             color
           }
