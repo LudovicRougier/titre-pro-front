@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useAppMutation } from "@/lib/react-query/hooks";
 import { useMoodDependencies } from "@/shared/contexts/dependencies/mood";
 import { MoodModel } from "@/domain/model/Mood";
@@ -21,16 +21,18 @@ export const useViewModel = () => {
     setUserInput(e.target.value);
   };
 
+  const mutationFn = useCallback(
+    () => fetchMoodRecommandations.invoke(userInput),
+    [fetchMoodRecommandations, userInput]
+  );
+
   const {
     mutate,
     data: recommandations,
     isLoading,
-  } = useAppMutation<MoodModel | null>(
-    () => fetchMoodRecommandations.invoke(userInput),
-    {
-      onError: () => setError(true),
-    }
-  );
+  } = useAppMutation<MoodModel | null>(mutationFn, {
+    onError: () => setError(true),
+  });
 
   const getRecommandations = () => mutate();
 

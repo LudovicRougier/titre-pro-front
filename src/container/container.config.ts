@@ -24,7 +24,7 @@ import { LogoutUseCase } from "@/domain/useCase/auth/LogoutUseCase";
 import { GetAccountDetailsUseCase } from "@/domain/useCase/account/GetAccountDetailsUseCase";
 import { UpdateAccountDetailsUseCase } from "@/domain/useCase/account/UpdateAccountDetailsUseCase";
 import { DeleteAccountUseCase } from "@/domain/useCase/account/DeleteAccountUseCase";
-import { FetchMoodRecommendationsUseCase } from "@/domain/useCase/mood/FetchMoodRecommendationsUseCase copy";
+import { FetchMoodRecommendationsUseCase } from "@/domain/useCase/mood/FetchMoodRecommendationsUseCase";
 import { RetrieveMoodHistoryListUseCase } from "@/domain/useCase/mood/RetrieveMoodHistoryListUseCase";
 import { RemoveMoodHistoryEntryUseCase } from "@/domain/useCase/mood/RemoveMoodHistoryEntryUseCase";
 import { GetMoodDetailsUseCase } from "@/domain/useCase/mood/GetMoodDetailsUseCase";

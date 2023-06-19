@@ -19,15 +19,16 @@ export class AccountDataSourceImpl implements AccountDataSource {
   }
 
   async getAccountDetails() {
-    return {
-      id: "1",
-      age: "28",
-      name: "John Doe",
-      email: "john@doe.fr",
-      country: "FR",
-      description: "I'm a developer",
-      favoriteGenres: ["Action", "Comedy"],
-    };
+    // return {
+    //   id: "1",
+    //   age: "28",
+    //   name: "John Doe",
+    //   email: "john@doe.fr",
+    //   country: "FR",
+    //   description: "I'm a developer",
+    //   favoriteGenres: ["Action", "Comedy"],
+    // };
+    return null;
   }
 
   async updateAccountDetails(userInfo: UserInfo) {

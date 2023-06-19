@@ -1,25 +1,25 @@
 export interface APIMovie {
   id: number;
   title: string;
-  tagline: string | null;
-  genre: string[];
-  director: string;
-  sypnosis: string;
-  rating: number;
+  overview: string | null;
+  backdrop_path: string | null;
   poster_path: string | null;
-  backdro_path: string | null;
+  runtime: number;
+  directors: { name: string; profile_picture: string }[];
+  actors: { name: string; profile_picture: string }[];
+  genre: { name: string }[];
 }
 
 export interface Movie {
   id: number;
   title: string;
-  tagline: string | null;
-  genre: string[];
-  director: string;
-  sypnosis: string;
-  rating: number;
-  posterPath: string | null;
+  overview: string | null;
   backdropPath: string | null;
+  posterPath: string | null;
+  runtime: number;
+  directors: { name: string; profilePicture: string }[];
+  actors: { name: string; profilePicture: string }[];
+  genre: { name: string }[];
 }
 
 export class MovieModel implements Movie {
@@ -27,43 +27,49 @@ export class MovieModel implements Movie {
 
   title: string;
 
-  tagline: string | null;
+  overview: string | null;
 
-  genre: string[];
-
-  director: string;
-
-  sypnosis: string;
-
-  rating: number;
+  backdropPath: string | null;
 
   posterPath: string | null;
 
-  backdropPath: string | null;
+  runtime: number;
+
+  directors: { name: string; profilePicture: string }[];
+
+  actors: { name: string; profilePicture: string }[];
+
+  genre: { name: string }[];
 
   public constructor(movie: Movie) {
     this.id = movie.id;
     this.title = movie.title;
-    this.tagline = movie.tagline;
-    this.genre = movie.genre;
-    this.director = movie.director;
-    this.sypnosis = movie.sypnosis;
-    this.rating = movie.rating;
-    this.posterPath = movie.posterPath;
+    this.overview = movie.overview;
     this.backdropPath = movie.backdropPath;
+    this.posterPath = movie.posterPath;
+    this.runtime = movie.runtime;
+    this.directors = movie.directors;
+    this.actors = movie.actors;
+    this.genre = movie.genre;
   }
 
   public static fromJSON(movie: APIMovie): MovieModel {
     return new MovieModel({
       id: movie.id,
       title: movie.title,
-      tagline: movie.tagline,
-      genre: movie.genre,
-      director: movie.director,
-      sypnosis: movie.sypnosis,
-      rating: movie.rating,
+      overview: movie.overview,
+      runtime: movie.runtime,
+      directors: movie.directors.map((director) => ({
+        name: director.name,
+        profilePicture: director.profile_picture,
+      })),
+      actors: movie.actors.map((actor) => ({
+        name: actor.name,
+        profilePicture: actor.profile_picture,
+      })),
       posterPath: movie.poster_path,
-      backdropPath: movie.backdro_path,
+      backdropPath: movie.backdrop_path,
+      genre: movie.genre,
     });
   }
 }

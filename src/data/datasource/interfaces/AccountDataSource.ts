@@ -7,7 +7,7 @@ export interface UserInfo {
   excludedGenres: string[];
 }
 export interface AccountDataSource {
-  getAccountDetails: () => Promise<UserInfo>;
+  getAccountDetails: () => Promise<UserInfo | null>;
   updateAccountDetails: (userInfo: UserInfo) => Promise<void>;
   deleteAccount: () => Promise<void>;
 }
