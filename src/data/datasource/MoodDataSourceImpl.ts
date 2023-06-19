@@ -1,7 +1,11 @@
 import "reflect-metadata";
 import { GraphQLBaseService } from "@/data/GraphQLBaseService";
 import { MoodDataSource } from "@/data/datasource/interfaces/MoodDataSource";
-import { GET_RECOMMANDATIONS } from "@/lib/apollo/request/mood/getRecommandations";
+import {
+  GET_MOOD_DETAILS,
+  GET_RECOMMANDATIONS,
+  GET_MOOD_HISTORY,
+} from "@/lib/apollo/request/mood";
 
 export class MoodDataSourceImpl
   extends GraphQLBaseService
@@ -19,13 +23,29 @@ export class MoodDataSourceImpl
     return res.data[GET_RECOMMANDATIONS.queryName];
   }
 
-  async retrieveMoodHistoryList() {
-    return null;
+  async getMoodDetails(id: number) {
+    const res = await this.api.query({
+      query: GET_MOOD_DETAILS.query,
+      variables: {
+        id,
+      },
+    });
+
+    if (res.errors) return null;
+    return res.data[GET_MOOD_DETAILS.queryName];
+  }
+
+  async retrieveMoodHistoryList(id: number) {
+    const res = await this.api.query({
+      query: GET_MOOD_HISTORY.query,
+      variables: {
+        id,
+      },
+    });
+
+    if (res.errors) return null;
+    return res.data[GET_MOOD_HISTORY.queryName].prompts;
   }
 
   async removeMoodHistoryEntry() {}
-
-  async getMoodDetails() {
-    return null;
-  }
 }

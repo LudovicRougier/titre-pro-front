@@ -15,7 +15,7 @@ export class RetrieveMoodHistoryListUseCase implements RetrieveMoodHistoryList {
     this.moodRepository = moodRepository;
   }
 
-  public async invoke() {
-    return this.moodRepository.retrieveMoodHistoryList();
+  public async invoke(id: number) {
+    return this.moodRepository.retrieveMoodHistoryList(id);
   }
 }

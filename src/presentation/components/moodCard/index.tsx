@@ -27,30 +27,26 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
   const handleHoverTitleLeave = () => setHoveredTitle(false);
 
   const handleClickDetails = () => router.push(`/mood/${mood.id}`);
-  const handleClickMovie = () => router.push(`/movie/${mood.movies[0].id}`);
+  const handleClickMovie = () =>
+    router.push(`/movie/${mood.moviesRelatedToEmotions[0].id}`);
 
-  const movie = mood?.movies[0];
+  const movie = mood?.moviesRelatedToEmotions[0];
   const emotion = mood?.mainEmotion;
   const date = new Date(mood?.date);
   const userInput = mood?.userInput;
+  const AIMessage = mood?.message;
 
   return (
     <>
       <Paper
         shadow="md"
         radius="lg"
-        onClick={handleClickMovie}
+        onClick={handleClickDetails}
         onPointerEnter={handleHoverEnter}
         onPointerLeave={handleHoverLeave}
         style={{ cursor: "pointer" }}
       >
-        <BackgroundImage
-          radius="md"
-          src={
-            movie?.backdropPath ??
-            "https://film-grab.com/wp-content/uploads/photo-gallery/White_Noise_27.jpg?bwg=1680018251"
-          }
-        >
+        <BackgroundImage radius="md" src={movie?.backdropPath ?? ""}>
           <Container
             bg={`rgba(0, 0, 0, ${hovered ? "0.4" : "0.55"})`}
             px={0}
@@ -73,15 +69,15 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
                   opacity: hoveredTitle ? 1 : 0.8,
                 }}
               >
-                {movie?.title ?? "White Noise"}
+                {movie?.title ?? ""}
               </Text>
               <Badge color={emotion?.color ?? "gray"} variant="light">
-                {emotion?.name ?? "Neutral"}
+                {emotion?.name ?? ""}
               </Badge>
             </Group>
 
             <Group position="left" mt="md" mb="xs" p="md">
-              <Blockquote cite="– me, myself and I">
+              <Blockquote cite={AIMessage}>
                 {userInput ??
                   "Life is like an npm install – you never know what you are going to get."}
               </Blockquote>

@@ -37,6 +37,7 @@ export const moods = [
     date: "2022-11-23",
     userInput:
       "I feel nothing, I'm empty. I'm a void. I'm a black hole. I'm a dead star.",
+
     mainEmotion: {
       name: "sadness",
       color: "purple",

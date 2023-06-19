@@ -5,10 +5,14 @@ import { TYPES, container } from "@/container/container.config";
 
 import { MoodRepository } from "@/data/repository/interfaces/MoodRepository";
 import { FetchMoodRecommendationsUseCase } from "@/domain/useCase/mood/FetchMoodRecommendationsUseCase";
+import { GetMoodDetailsUseCase } from "@/domain/useCase/mood/GetMoodDetailsUseCase";
+import { RetrieveMoodHistoryListUseCase } from "@/domain/useCase/mood/RetrieveMoodHistoryListUseCase";
 
 export const MoodDependencyContext = createContext<{
   repository: MoodRepository;
   fetchMoodRecommandations: FetchMoodRecommendationsUseCase;
+  getMoodDetails: GetMoodDetailsUseCase;
+  retrieveMoodHistoryList: RetrieveMoodHistoryListUseCase;
 } | null>(null);
 
 export const MoodDependencyProvider: React.FC<ChildrenInterface> = ({
@@ -19,6 +23,12 @@ export const MoodDependencyProvider: React.FC<ChildrenInterface> = ({
       repository: container.get<MoodRepository>(TYPES.MoodRepository),
       fetchMoodRecommandations: container.get<FetchMoodRecommendationsUseCase>(
         TYPES.FetchMoodRecommendationsUseCase
+      ),
+      getMoodDetails: container.get<GetMoodDetailsUseCase>(
+        TYPES.GetMoodDetailsUseCase
+      ),
+      retrieveMoodHistoryList: container.get<RetrieveMoodHistoryListUseCase>(
+        TYPES.RetrieveMoodHistoryListUseCase
       ),
     };
   }, []);

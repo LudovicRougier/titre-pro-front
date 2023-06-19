@@ -22,19 +22,19 @@ export class MoodRepositoryImpl implements MoodRepository {
     return MoodModel.fromJSON(res);
   }
 
-  async retrieveMoodHistoryList() {
-    const res = await this.moodDataSource.retrieveMoodHistoryList();
+  async getMoodDetails(id: number) {
+    const res = await this.moodDataSource.getMoodDetails(id);
+    if (res === null) return null;
+    return MoodModel.fromJSON(res);
+  }
+
+  async retrieveMoodHistoryList(id: number) {
+    const res = await this.moodDataSource.retrieveMoodHistoryList(id);
     if (res === null) return null;
     return res.map((mood) => MoodModel.fromJSON(mood));
   }
 
   async removeMoodHistoryEntry() {
     return this.moodDataSource.removeMoodHistoryEntry();
-  }
-
-  async getMoodDetails() {
-    const res = await this.moodDataSource.getMoodDetails();
-    if (res === null) return null;
-    return MoodModel.fromJSON(res);
   }
 }
