@@ -4,8 +4,11 @@ import type { NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/home";
 import { Button, Center, Container, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
+import { motion } from "framer-motion";
 // import Blob from "@/presentation/components/blob";
-// import Suggestions from "@/presentation/components/suggestions";
+import Suggestions from "@/presentation/components/suggestions";
+
+import s from "./style.module.css";
 
 const Home: NextPage = () => {
   const {
@@ -14,54 +17,78 @@ const Home: NextPage = () => {
     recommandations,
     isLoading,
     error,
+    active,
+    setActive,
     resetInput,
   } = useViewModel();
 
   return (
-    <Container
-      style={{
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Center
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          gap: "3rem",
-        }}
-      >
-        <Container style={{ position: "absolute", top: "25%" }}>
-          {/* <Blob /> */}
-        </Container>
-        <TextInput
-          placeholder="How do you feel today ?"
-          variant="filled"
-          error={error}
-          size="md"
-          radius="md"
-          onChange={handleChangeInput}
-          rightSection={
-            isLoading ? <Loader size="xs" /> : !error && <ArrowRight2 />
-          }
-          onKeyDown={(e) => {
-            if (e.key === "Enter") getRecommandations();
+    <Container className={s.homepage}>
+      <Center className={s.homepageContent}>
+        {/* <Container style={{ position: "absolute", top: "25%" }}> */}
+        {/* <Blob /> */}
+        {/* </Container> */}
+        <motion.div
+          className={s.emotionTextInputMotion}
+          layout
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            opacity: { duration: 1 },
+            layout: { duration: 1 },
           }}
-          style={{
-            width: "100%",
-            transition: "all 0.8s ease",
-          }}
-        />
-        {/* DO NOT UNCOMMENT <TEXT> AND <SUGGESTIONS /> BELOW */}
-        {/* <Text>
-          "You seem to have had a very bad day at work. Here are some movies
-          about people hating their jobs."
-        </Text>
-        <Suggestions movies /> */}
+        >
+          <TextInput
+            placeholder="How do you feel today ?"
+            variant="filled"
+            error={error}
+            size="md"
+            radius="md"
+            onChange={handleChangeInput}
+            className={s.emotionInput}
+            rightSection={
+              isLoading ? <Loader size="xs" /> : !error && <ArrowRight2 />
+            }
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setTimeout(() => setActive(true), 2000);
+                getRecommandations();
+              }
+            }}
+          />
+        </motion.div>
+        {active && (
+          <>
+            <motion.div
+              layout
+              initial={{ opacity: 0, y: 250 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                y: { duration: 1 },
+                opacity: { duration: 1 },
+                layout: { duration: 1 },
+              }}
+            >
+              <Text>
+                "You seem to have had a very bad day at work. Here are some
+                movies about people hating their jobs."
+              </Text>
+            </motion.div>
+            <motion.div
+              layout
+              initial={{ opacity: 0, y: 250 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={s.emotionSuggestionstMotion}
+              transition={{
+                y: { duration: 1 },
+                opacity: { duration: 1 },
+                layout: { duration: 1 },
+              }}
+            >
+              <Suggestions movies />
+            </motion.div>
+          </>
+        )}
         {error && (
           <Button
             variant="light"
@@ -69,6 +96,7 @@ const Home: NextPage = () => {
             size="md"
             ml={12}
             onClick={resetInput}
+            color="gray"
           >
             <Refresh size={18} />
           </Button>

@@ -13,6 +13,8 @@ import { Logout, Setting2 } from "iconsax-react";
 import { useRouter } from "next/router";
 import { Path } from "@/shared/enums/path";
 
+import s from "./style.module.css";
+
 const Header: React.FC = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -45,15 +47,8 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <HeaderMantine
-      height={{ base: 50, md: 50 }}
-      p="md"
-      style={{
-        background: "transparent",
-        border: "none",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
+    <HeaderMantine height={{ base: 50, md: 50 }} p="md" className={s.header}>
+      <div className={s.headerWrapper}>
         <Text td="bold">LOGO</Text>
         <Container>
           <Grid gutter={5} gutterXs="md" gutterMd="xl" gutterXl={50}>
@@ -62,10 +57,7 @@ const Header: React.FC = () => {
                 onClick={handleClickHome}
                 variant="subtle"
                 color={IS_HOME ? "white" : "light gray"}
-                style={{
-                  cursor: "pointer",
-                  transition: "all 0.8s ease",
-                }}
+                className={s.headerNavLink}
               >
                 Home
               </Text>
@@ -75,10 +67,7 @@ const Header: React.FC = () => {
                 onClick={handleClickHistory}
                 variant="subtle"
                 color={IS_HISTORY ? "white" : "light gray"}
-                style={{
-                  cursor: "pointer",
-                  transition: "all 0.8s ease",
-                }}
+                className={s.headerNavLink}
               >
                 History
               </Text>

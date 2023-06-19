@@ -1,29 +1,36 @@
+/* Suggestions CSS */
+
 .suggestions {
   display: flex;
-  flex-direction: "column";
-  width: "100%";
+  flex-direction: column;
+  width: 100%;
   padding: 0;
 }
+
 .suggestionsTop {
-  display: "flex";
-  flex-direction: "row";
-  justify-content: "space-between";
-  align-items: "center";
-  width: "100%";
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   padding: 0;
 }
+
 .suggestionsTopTitle {
   font-weight: 600;
-  font-size: "1.5rem";
+  font-size: 1.5rem;
   padding: 0;
 }
+
 .suggestionsMain {
-  width: "100%";
+  width: 100%;
 }
+
 .suggestionsCarousel {
-  width: "100%";
+  width: 100%;
 }
+
 .suggestionsCarouselSlide {
-  margin: "1rem";
-  background-color: "#d0bfff";
+  margin: 1rem;
+  background-color: #d0bfff;
 }

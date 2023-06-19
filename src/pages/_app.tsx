@@ -48,6 +48,20 @@ const MyApp = ({
           withNormalizeCSS
           theme={{
             colorScheme: "dark",
+            components: {
+              Input: {
+                styles: () => ({
+                  input: {
+                    "&:hover": {
+                      borderColor: "#dbdbdb",
+                    },
+                    "&:focus": {
+                      borderColor: "#dbdbdb",
+                    },
+                  },
+                }),
+              },
+            },
           }}
         >
           {getLayout(<Component {...pageProps} />)}

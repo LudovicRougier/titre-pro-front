@@ -51,7 +51,7 @@
     "dayjs": "^1.11.7",
     "embla-carousel-react": "^8.0.0-rc05",
     "eslint-plugin-import": "^2.27.5",
-    "framer-motion": "10.12.4",
+    "framer-motion": "^10.12.16",
     "graphql": "^16.6.0",
     "iconsax-react": "^0.0.8",
     "identity-obj-proxy": "^3.0.0",

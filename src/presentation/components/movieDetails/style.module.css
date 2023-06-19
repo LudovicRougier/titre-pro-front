@@ -1,0 +1,74 @@
+/* MovieDetails CSS */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  width: 100%,;
+  min-height: 100%,
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(15,15,15, 1) 45%, rgba(15,15,15, 0.8) 60%, rgba(15,15,15, 0.2) 100%);
+}
+
+.cardInner {
+  position: absolute;
+  z-index: 2;
+  top: "25%";
+  left: "10%";
+  height: "100%";
+}
+
+.cardBody {
+  width: 50%;
+}
+
+.cardTitle {
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.cardDirector {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardSlug {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.cardIcons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.cardIconPair {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cardSubText {
+  font-size: 0.7rem;
+  margin: auto;
+}
+
+.cardActors {
+  font-style: italic;
+  font-weight: 200;
+  font-size: 0.9rem;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}

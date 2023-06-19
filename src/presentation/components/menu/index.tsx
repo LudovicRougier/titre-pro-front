@@ -17,7 +17,6 @@ const Menu: React.FC<MenuProps> = ({ label, target, position, items }) => {
   return (
     <MantineMenu position={position} shadow="md" width={200}>
       <MantineMenu.Target>{target}</MantineMenu.Target>
-
       <MantineMenu.Dropdown>
         <MantineMenu.Label>{label}</MantineMenu.Label>
         {items.map((item) => (

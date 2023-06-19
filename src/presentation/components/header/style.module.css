@@ -1,0 +1,23 @@
+/* Header CSS */
+
+.header {
+  background: transparent;
+  border: none;
+}
+
+.headerWrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.headerNavLink {
+    cursor: pointer;
+    transition: all 0.8s ease;
+}
+
+.headerNavLink:hover {
+  color: white;
+  transition: all 0.8s ease;
+  text-decoration: underline;
+}

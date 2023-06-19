@@ -1,10 +1,10 @@
-import { Badge, Container, createStyles, Text } from "@mantine/core";
+import { Badge, Container, Text } from "@mantine/core";
 import MovieCarousel from "@/presentation/components/movieCarousel";
 
 import s from "./style.module.css";
 
 interface SuggestionsProps {
-  movies: any;
+  movies?: any;
 }
 
 const Suggestions: React.FC<SuggestionsProps> = () => {
