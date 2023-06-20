@@ -13,8 +13,9 @@ import {
 import { ArrowRight2, Refresh } from "iconsax-react";
 import { motion } from "framer-motion";
 // import Blob from "@/presentation/components/blob";
+import { waitingSentences } from "@/data/static/waitingSentences";
+import { TypingAnimation } from "@/presentation/components/typeAnimation";
 import Suggestions from "@/presentation/components/suggestions";
-
 import s from "./style.module.css";
 
 const Home: NextPage = () => {
@@ -61,6 +62,7 @@ const Home: NextPage = () => {
             }}
           />
         </motion.div>
+        {isLoading && <TypingAnimation sentences={waitingSentences.fr} />}
         {recommandations && (
           <>
             <motion.div
@@ -73,7 +75,8 @@ const Home: NextPage = () => {
                 layout: { duration: 1 },
               }}
             >
-              <Text>{recommandations.message}</Text>
+              <TypingAnimation sentences={[recommandations.message]} />
+              {/* <Text>{recommandations.message}</Text> */}
             </motion.div>
             <motion.div
               layout
