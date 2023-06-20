@@ -1,4 +1,5 @@
 import React from "react";
+import { convertDurationToString } from "@/utils/convertDurationToString";
 import {
   BackgroundImage,
   Badge,
@@ -7,23 +8,29 @@ import {
   Group,
 } from "@mantine/core";
 
+import { MovieModel } from "@/domain/model/Movie";
 import { Star1, Calendar, Clock } from "iconsax-react";
 
 import s from "./style.module.css";
 
-interface MovieDetailsProps {}
+interface MovieDetailsProps {
+  movie: MovieModel | null | undefined;
+}
 
-const MovieDetails: React.FC<MovieDetailsProps> = () => {
+const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
+  if (!movie) return null;
+
+  const directors = movie.directors.map((director) => director.name).join(", ");
+  const actors = movie.actors.map((actor) => actor.name).join(", ");
+  const duration = convertDurationToString(movie.runtime);
+
   return (
     <Center style={{ height: "100%" }}>
-      <BackgroundImage
-        src="https://film-grab.com/wp-content/uploads/2019/11/Avatar-059.jpg"
-        className={s.card}
-      >
+      <BackgroundImage src={movie.backdropPath} className={s.card}>
         <Container className={s.cardInner}>
           <div className={s.cardBody}>
-            <div className={s.cardTitle}>avatar</div>
-            <div className={s.cardDirector}>Director</div>
+            <div className={s.cardTitle}>{movie.title}</div>
+            <div className={s.cardDirector}>{directors}</div>
             <div>
               <ul className={s.cardIcons}>
                 <li className={s.cardIconPair}>
@@ -36,25 +43,21 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
                 </li>
                 <li className={s.cardIconPair}>
                   <Clock size={16} />
-                  <span className={s.cardSubText}>2h45</span>
+                  <span className={s.cardSubText}>{duration}</span>
                 </li>
               </ul>
             </div>
-            <div className={s.cardSlug}>
-              Sur le monde extraterrestre luxuriant de Pandora vivent les Navi,
-              des êtres qui semblent primitifs, mais qui sont très évolués.
-              Voilà voilà, allez le voir !
-            </div>
+            <div className={s.cardSlug}>{movie.overview}</div>
             <Group className={s.cardActors}>
-              <span>Brad Pitt,</span>
-              <span>Dick Grayson,</span>
-              <span>Jack Sparrow</span>
+              <span>{actors}</span>
             </Group>
             <div>
               <Group>
-                <Badge color="red">Action</Badge>
-                <Badge color="violet">Aventure</Badge>
-                <Badge color="grape">Drama</Badge>
+                {movie.genres.map((genre) => (
+                  <Badge color="gray" key={genre.id}>
+                    {genre.name}
+                  </Badge>
+                ))}
               </Group>
             </div>
           </div>

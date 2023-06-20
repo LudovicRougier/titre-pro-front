@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { BackgroundImage, Badge, Container, Title } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import { Movie } from "@/domain/model/Movie";
@@ -10,9 +11,18 @@ interface MoviePosterProps {
 }
 
 const MoviePoster: React.FC<MoviePosterProps> = ({ movie }) => {
+  const router = useRouter();
+  const handleClickMovie = () => router.push(`/movie/${movie.id}`);
+
   return (
     <Carousel.Slide className={s.movieCarouselSlide}>
-      <Container className={s.movieCarouselSlidePoster}>
+      <Container
+        className={s.movieCarouselSlidePoster}
+        onClick={(e) => {
+          // e.stopPropagation();
+          return handleClickMovie();
+        }}
+      >
         <BackgroundImage
           src={movie.posterPath ? movie.posterPath : ""}
           className={s.movieCarouselSlidePosterImg}

@@ -11,46 +11,56 @@ export const GET_MOOD_DETAILS = {
         is_positive
         created_at
         mainEmotion {
+          id
           name
           color
         }
         subEmotion {
+          id
           name
           color
         }
         movies_related_to_emotions {
+          id
           title
           overview
           backdrop_path
           poster_path
           runtime
           directors {
+            id
             name
             profile_picture
           }
           actors {
+            id
             name
             profile_picture
           }
           genres {
+            id
             name
           }
         }
         movies_related_to_topic {
+          id
           title
           overview
           backdrop_path
           poster_path
           runtime
           directors {
+            id
             name
             profile_picture
           }
           actors {
+            id
             name
             profile_picture
           }
           genres {
+            id
             name
           }
         }

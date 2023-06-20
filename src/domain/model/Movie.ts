@@ -1,45 +1,45 @@
 export interface APIMovie {
-  id: number;
+  id: string;
   title: string;
   overview: string | null;
-  backdrop_path: string | null;
-  poster_path: string | null;
+  backdrop_path: string;
+  poster_path: string;
   runtime: number;
-  directors: { name: string; profile_picture: string }[];
-  actors: { name: string; profile_picture: string }[];
-  genres: { name: string }[];
+  directors: { id: string; name: string; profile_picture: string }[];
+  actors: { id: string; name: string; profile_picture: string }[];
+  genres: { id: string; name: string }[];
 }
 
 export interface Movie {
-  id: number;
+  id: string;
   title: string;
   overview: string | null;
-  backdropPath: string | null;
-  posterPath: string | null;
+  backdropPath: string;
+  posterPath: string;
   runtime: number;
-  directors: { name: string; profilePicture: string }[];
-  actors: { name: string; profilePicture: string }[];
-  genres: { name: string }[];
+  directors: { id: string; name: string; profilePicture: string }[];
+  actors: { id: string; name: string; profilePicture: string }[];
+  genres: { id: string; name: string }[];
 }
 
 export class MovieModel implements Movie {
-  id: number;
+  id: string;
 
   title: string;
 
   overview: string | null;
 
-  backdropPath: string | null;
+  backdropPath: string;
 
-  posterPath: string | null;
+  posterPath: string;
 
   runtime: number;
 
-  directors: { name: string; profilePicture: string }[];
+  directors: { id: string; name: string; profilePicture: string }[];
 
-  actors: { name: string; profilePicture: string }[];
+  actors: { id: string; name: string; profilePicture: string }[];
 
-  genres: { name: string }[];
+  genres: { id: string; name: string }[];
 
   public constructor(movie: Movie) {
     this.id = movie.id;
@@ -60,16 +60,21 @@ export class MovieModel implements Movie {
       overview: movie.overview,
       runtime: movie.runtime,
       directors: movie.directors.map((director) => ({
+        id: director.id,
         name: director.name,
         profilePicture: director.profile_picture,
       })),
       actors: movie.actors.map((actor) => ({
+        id: actor.id,
         name: actor.name,
         profilePicture: actor.profile_picture,
       })),
       posterPath: movie.poster_path,
       backdropPath: movie.backdrop_path,
-      genres: movie.genres,
+      genres: movie.genres.map((genre) => ({
+        id: genre.id,
+        name: genre.name,
+      })),
     });
   }
 

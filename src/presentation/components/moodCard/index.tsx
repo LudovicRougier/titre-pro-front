@@ -41,12 +41,15 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
       <Paper
         shadow="md"
         radius="lg"
-        onClick={handleClickDetails}
         onPointerEnter={handleHoverEnter}
         onPointerLeave={handleHoverLeave}
         style={{ cursor: "pointer" }}
       >
-        <BackgroundImage radius="md" src={movie?.backdropPath ?? ""}>
+        <BackgroundImage
+          radius="md"
+          src={movie?.backdropPath ?? ""}
+          onClick={handleClickMovie}
+        >
           <Container
             bg={`rgba(0, 0, 0, ${hovered ? "0.4" : "0.55"})`}
             px={0}
@@ -60,7 +63,6 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
               <Text
                 weight={600}
                 size={20}
-                onClick={handleClickMovie}
                 onPointerEnter={handleHoverTitleEnter}
                 onPointerLeave={handleHoverTitleLeave}
                 style={{
@@ -89,7 +91,10 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
                 color="gray"
                 mt="md"
                 radius="md"
-                onClick={handleClickDetails}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClickDetails();
+                }}
                 style={{ transition: "0.5s" }}
               >
                 Details

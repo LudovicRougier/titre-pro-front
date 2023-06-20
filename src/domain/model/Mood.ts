@@ -6,7 +6,7 @@ export type Emotion = {
 };
 
 export interface APIMood {
-  id: number | null;
+  id: string;
   user_input: string;
   custom_answer: string;
   mainEmotion: Emotion;
@@ -17,7 +17,7 @@ export interface APIMood {
 }
 
 export interface Mood {
-  id: number;
+  id: string;
   date: string;
   userInput: string;
   message: string;
@@ -28,7 +28,7 @@ export interface Mood {
 }
 
 export class MoodModel implements Mood {
-  id: number;
+  id: string;
 
   date: string;
 
@@ -57,7 +57,7 @@ export class MoodModel implements Mood {
 
   public static fromJSON(mood: APIMood): MoodModel {
     return new MoodModel({
-      id: mood.id ? mood.id : 0,
+      id: mood.id ? mood.id : "0",
       date: mood.created_at,
       userInput: mood.user_input,
       message: mood.custom_answer,
