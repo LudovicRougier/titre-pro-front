@@ -2,7 +2,14 @@
 import React from "react";
 import type { NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/home";
-import { Button, Center, Container, Loader, TextInput } from "@mantine/core";
+import {
+  Button,
+  Center,
+  Container,
+  Loader,
+  TextInput,
+  Text,
+} from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
 import { motion } from "framer-motion";
 // import Blob from "@/presentation/components/blob";
@@ -17,8 +24,6 @@ const Home: NextPage = () => {
     recommandations,
     isLoading,
     error,
-    active,
-    setActive,
     resetInput,
   } = useViewModel();
 
@@ -51,17 +56,16 @@ const Home: NextPage = () => {
             }
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                setTimeout(() => setActive(true), 2000);
                 getRecommandations();
               }
             }}
           />
         </motion.div>
-        {active && (
+        {recommandations && (
           <>
             <motion.div
               layout
-              initial={{ opacity: 0, y: 250 }}
+              initial={{ opacity: 0, y: 325 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 y: { duration: 1 },
@@ -69,14 +73,11 @@ const Home: NextPage = () => {
                 layout: { duration: 1 },
               }}
             >
-              <Text>
-                "You seem to have had a very bad day at work. Here are some
-                movies about people hating their jobs."
-              </Text>
+              <Text>{recommandations.message}</Text>
             </motion.div>
             <motion.div
               layout
-              initial={{ opacity: 0, y: 250 }}
+              initial={{ opacity: 0, y: 325 }}
               animate={{ opacity: 1, y: 0 }}
               className={s.emotionSuggestionstMotion}
               transition={{
@@ -85,7 +86,14 @@ const Home: NextPage = () => {
                 layout: { duration: 1 },
               }}
             >
-              <Suggestions movies />
+              <Suggestions
+                movies={[
+                  ...recommandations.moviesRelatedToEmotions,
+                  ...recommandations.moviesRelatedToTopic,
+                ]}
+                mainEmotion={recommandations.mainEmotion}
+                subEmotion={recommandations.subEmotion}
+              />
             </motion.div>
           </>
         )}
@@ -101,7 +109,6 @@ const Home: NextPage = () => {
             <Refresh size={18} />
           </Button>
         )}
-        {JSON.stringify(recommandations)}
       </Center>
     </Container>
   );

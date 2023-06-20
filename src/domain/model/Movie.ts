@@ -7,7 +7,7 @@ export interface APIMovie {
   runtime: number;
   directors: { name: string; profile_picture: string }[];
   actors: { name: string; profile_picture: string }[];
-  genre: { name: string }[];
+  genres: { name: string }[];
 }
 
 export interface Movie {
@@ -19,7 +19,7 @@ export interface Movie {
   runtime: number;
   directors: { name: string; profilePicture: string }[];
   actors: { name: string; profilePicture: string }[];
-  genre: { name: string }[];
+  genres: { name: string }[];
 }
 
 export class MovieModel implements Movie {
@@ -39,7 +39,7 @@ export class MovieModel implements Movie {
 
   actors: { name: string; profilePicture: string }[];
 
-  genre: { name: string }[];
+  genres: { name: string }[];
 
   public constructor(movie: Movie) {
     this.id = movie.id;
@@ -50,7 +50,7 @@ export class MovieModel implements Movie {
     this.runtime = movie.runtime;
     this.directors = movie.directors;
     this.actors = movie.actors;
-    this.genre = movie.genre;
+    this.genres = movie.genres;
   }
 
   public static fromJSON(movie: APIMovie): MovieModel {
@@ -69,7 +69,7 @@ export class MovieModel implements Movie {
       })),
       posterPath: movie.poster_path,
       backdropPath: movie.backdrop_path,
-      genre: movie.genre,
+      genres: movie.genres,
     });
   }
 
