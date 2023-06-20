@@ -31,7 +31,8 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
     router.push(`/movie/${mood.moviesRelatedToEmotions[0].id}`);
 
   const movie = mood?.moviesRelatedToEmotions[0];
-  const emotion = mood?.mainEmotion;
+  const mainEmotion = mood?.mainEmotion;
+  const subEmotion = mood?.subEmotion;
   const date = new Date(mood?.date);
   const userInput = mood?.userInput;
   const AIMessage = mood?.message;
@@ -73,8 +74,15 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
               >
                 {movie?.title ?? ""}
               </Text>
-              <Badge color={emotion?.color ?? "gray"} variant="light">
-                {emotion?.name ?? ""}
+              <Badge
+                variant="gradient"
+                gradient={{
+                  from: `${mainEmotion.color}`,
+                  to: `${subEmotion?.color}`,
+                  deg: 35,
+                }}
+              >
+                {mainEmotion?.name ?? ""}
               </Badge>
             </Group>
 
