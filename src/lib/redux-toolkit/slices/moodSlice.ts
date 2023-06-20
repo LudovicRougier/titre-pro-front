@@ -1,8 +1,8 @@
-import { APIMood } from "@/domain/model/Mood";
+import { MoodModel } from "@/domain/model/Mood";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  moods: [] as APIMood[],
+  moods: [] as MoodModel[],
 };
 
 const moodSlice = createSlice({

@@ -99,7 +99,7 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
         </BackgroundImage>
       </Paper>
       <Text size="xs" mt={4}>
-        {date.toLocaleDateString()}
+        {date.toLocaleDateString()} - {date.toLocaleTimeString("fr-FR")}
       </Text>
     </>
   );

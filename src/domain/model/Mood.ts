@@ -75,9 +75,9 @@ export class MoodModel implements Mood {
   public toJSON() {
     return {
       id: this.id,
-      created_at: this.date,
+      date: this.date,
       userInput: this.userInput,
-      customAnswer: this.message,
+      message: this.message,
       mainEmotion: this.mainEmotion,
       subEmotion: this.subEmotion,
       moviesRelatedToEmotions: this.moviesRelatedToEmotions?.map((movie) =>
