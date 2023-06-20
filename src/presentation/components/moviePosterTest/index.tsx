@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { Badge, Container, Title } from "@mantine/core";
 import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { Carousel } from "@mantine/carousel";
@@ -7,7 +8,6 @@ import { Star1 } from "iconsax-react";
 import { interpolate } from "@popmotion/popcorn";
 
 import s from "./style.module.css";
-import { useRouter } from "next/router";
 
 interface MoviePosterProps {
   movie: Movie;
@@ -157,9 +157,8 @@ const MoviePosterTest: React.FC<MoviePosterProps> = ({
             </span>
           </Container>
           <Container className={s.movieCarouselSlideContentDetailsGenres}>
-            {movie.genres?.map((genre, index) => (
-              // Index needs to be replaced with ID
-              <Badge key={index} size="xs" mr="xs">
+            {movie.genres?.map((genre) => (
+              <Badge key={genre.id} size="xs" mr="xs">
                 {genre.name}
               </Badge>
             ))}
