@@ -7,6 +7,7 @@ import { Star1 } from "iconsax-react";
 import { interpolate } from "@popmotion/popcorn";
 
 import s from "./style.module.css";
+import { useRouter } from "next/router";
 
 interface MoviePosterProps {
   movie: Movie;
@@ -89,12 +90,19 @@ const MoviePosterTest: React.FC<MoviePosterProps> = ({
     return `linear-gradient(${degree}deg, rgba(255,255,255,${opacity}), rgba(255,255,255,0) 80%)`;
   });
 
+  const router = useRouter();
+  const handleClickMovie = () => router.push(`/movie/${movie.id}`);
+
   return (
     <Carousel.Slide
       className={s.movieCarouselSlide}
       style={{ height: `${height}px`, width: `${width}px` }}
     >
       <motion.div
+        onClick={(e) => {
+          e.stopPropagation();
+          handleClickMovie();
+        }}
         className={s.movieCarouselSlideContent}
         style={{
           scale: 1,
