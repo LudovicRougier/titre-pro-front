@@ -1,24 +1,56 @@
+
 .movieCarouselSlide {
-  position: relative;
+  border-radius: 8px;
+  transform-style: preserve-3d;
+  transform: perspective(921px);
   margin: 1rem;
   cursor: pointer;
-  overflow: hidden;
 }
 
-.movieCarouselSlidePoster {
+.movieCarouselSlideContent {
+  position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  padding: 0;
+  border-radius: 8px;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  backface-visibility: hidden;
 }
 
-.movieCarouselSlidePosterImg {
-  width: 100%;
-  height: 100%;
-  transition: 0.5s;
+.movieCarouselSlideContentBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateZ(0);
+  bottom: 0;
+  background-size: cover;
+  border-radius: 1rem;
 }
 
-.movieCarouselSlideDetails {
+.movieCarouselSlideContentShadow {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  border-radius: 1rem;
+  height: 90%;
+  transition: all 0.2s ease-out 0s;
+  box-shadow: rgba(0, 0, 0, 06) 0px 50px 100px -30px;
+}
+
+.movieCarouselSlideContentGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.5s ease;
+  z-index: 10;
+}
+
+
+.movieCarouselSlideContentDetails {
   position: absolute;
   width: 100%;
   bottom: -200px;
@@ -28,67 +60,63 @@
   transition: 0.5s;
 }
 
-.movieCarouselSlideDetailsTitle {
+.movieCarouselSlideContentDetailsTitle {
   max-width: 180px;
   font-size: 1.3rem;
   font-weight: 400;
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
 }
 
-.movieCarouselSlideDetailsDirector {
+.movieCarouselSlideContentDetailsDirector {
   font-size: 1rem;
   font-weight: 200;
+  margin-bottom: 1rem;
 }
 
-.movieCarouselSlideDetailsRating {
+.movieCarouselSlideContentDetailsRating {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.8rem;
   padding: 0;
+  margin-bottom: 1rem;
+
 }
 
-.movieCarouselSlideDetailsGenres {
+.movieCarouselSlideContentDetailsGenres {
   padding: 0;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 }
 
-.movieCarouselSlideDetailsDescription {
-  padding: 0;
-  font-size: 0.8rem;
-}
+/* Hover Effect */
 
-.movieCarouselSlide .movieCarouselSlidePoster {
+.movieCarouselSlide .movieCarouselSlideContent {
   position: relative;
   overflow: hidden;
+  border-radius: 1rem;
 }
 
-.movieCarouselSlide .movieCarouselSlidePoster::before {
+.movieCarouselSlide .movieCarouselSlideContent::before {
   content: "";
   position: absolute;
   width: 100%;
   height: 100%;
-  bottom: -180px;
+  bottom: -200px;
   background: linear-gradient(0deg, black 50%, transparent 100%);
   transition: 0.5s;
   z-index: 1;
 }
 
-.movieCarouselSlide:hover .movieCarouselSlidePoster::before {
-  bottom: 0px;
+.movieCarouselSlide:hover .movieCarouselSlideContent::before {
+  bottom: -10px;
 }
 
-.movieCarouselSlide .movieCarouselSlidePosterImg {
-  width: 100%;
-  transition: 0.5;
+.movieCarouselSlide:hover .movieCarouselSlideContentBackground {
+  filter: blur(0.75px);
 }
 
-.movieCarouselSlide:hover .movieCarouselSlidePosterImg {
-  transform: translateY(-50px) scale(1.1);
-  filter: blur(5px);
-}
-
-.movieCarouselSlide:hover .movieCarouselSlideDetails {
+.movieCarouselSlide:hover .movieCarouselSlideContentDetails {
   bottom: 40px;
 }
