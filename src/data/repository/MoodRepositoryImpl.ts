@@ -47,7 +47,7 @@ export class MoodRepositoryImpl implements MoodRepository {
    * @param {number} id - The ID of the mood.
    * @returns {Promise<?MoodModel>} A promise that resolves to the retrieved mood details.
    */
-  async getMoodDetails(id: number): Promise<MoodModel | null> {
+  async getMoodDetails(id: string): Promise<MoodModel | null> {
     const res = await this.moodDataSource.getMoodDetails(id);
     if (res === null) return null;
 

@@ -15,7 +15,7 @@ export class GetMoodDetailsUseCase implements GetMoodDetails {
     this.moodRepository = moodRepository;
   }
 
-  public async invoke(id: number) {
+  public async invoke(id: string) {
     return this.moodRepository.getMoodDetails(id);
   }
 }

@@ -1,20 +1,78 @@
 import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/moodDetails";
+import Suggestions from "@/presentation/components/suggestions";
+import { Center, Container, Text, Blockquote } from "@mantine/core";
+import { motion } from "framer-motion";
+
+import s from "../style.module.css";
 
 interface MoodDetailsProps {
   moodId: string;
 }
 
 const MoodDetails: NextPage<MoodDetailsProps> = ({ moodId }) => {
-  const id = parseInt(moodId, 10);
-  const { moodDetails } = useViewModel(id);
+  const { moodDetails } = useViewModel(moodId);
+
+  if (!moodDetails) return null;
 
   return (
-    <>
-      <div>Hello MoodDetails for mood id: {moodId}</div>
-      <div>{JSON.stringify(moodDetails)}</div>
-    </>
+    <Container className={s.homepage}>
+      <Center className={s.homepageContent}>
+        {/* <Container style={{ position: "absolute", top: "25%" }}> */}
+        {/* <Blob /> */}
+        {/* </Container> */}
+        <motion.div
+          className={s.emotionTextInputMotion}
+          layout
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            opacity: { duration: 1 },
+            layout: { duration: 1 },
+          }}
+        >
+          <Blockquote cite="">
+            {moodDetails.userInput ??
+              "Life is like an npm install – you never know what you are going to get."}
+          </Blockquote>
+        </motion.div>
+        <>
+          <motion.div
+            layout
+            initial={{ opacity: 0, y: 325 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              y: { duration: 1 },
+              opacity: { duration: 1 },
+              layout: { duration: 1 },
+            }}
+          >
+            <Text>{moodDetails.message}</Text>
+          </motion.div>
+          <motion.div
+            layout
+            initial={{ opacity: 0, y: 325 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={s.emotionSuggestionstMotion}
+            transition={{
+              y: { duration: 1 },
+              opacity: { duration: 1 },
+              layout: { duration: 1 },
+            }}
+          >
+            <Suggestions
+              movies={[
+                ...moodDetails.moviesRelatedToEmotions,
+                ...moodDetails.moviesRelatedToTopic,
+              ]}
+              mainEmotion={moodDetails.mainEmotion}
+              subEmotion={moodDetails.subEmotion}
+            />
+          </motion.div>
+        </>
+      </Center>
+    </Container>
   );
 };
 

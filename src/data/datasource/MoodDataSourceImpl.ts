@@ -43,7 +43,7 @@ export class MoodDataSourceImpl
    * @param {number} id - The ID of the mood.
    * @returns {Promise<APIMood | null>} A promise that resolves to the retrieved mood details.
    */
-  async getMoodDetails(id: number): Promise<APIMood | null> {
+  async getMoodDetails(id: string): Promise<APIMood | null> {
     const res = await this.api.query({
       query: GET_MOOD_DETAILS.query,
       variables: {
