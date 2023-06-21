@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { GetServerSideProps } from "next";
+import Image from "next/image";
 import {
   Container,
   Center,
@@ -27,6 +28,7 @@ import { useShow } from "@/shared/hooks/useShow";
 import { TERMS_OF_SERVICE } from "@/data/static/termsOfService";
 import { IconX, IconCheck } from "@tabler/icons-react";
 import { useState } from "react";
+import Link from "next/link";
 
 const Register = () => {
   const { form, handleSubmit, handleClickSignIn } = useViewModel();
@@ -60,6 +62,11 @@ const Register = () => {
         }}
       >
         <form onSubmit={handleSubmit}>
+          <Center mb="md">
+            <Link href={Path.INDEX}>
+              <Image src="/logo.png" alt="" width={75} height={75} />
+            </Link>
+          </Center>
           <Title
             align="center"
             sx={(theme) => ({

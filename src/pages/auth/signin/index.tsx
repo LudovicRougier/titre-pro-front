@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import Image from "next/image";
 import {
   TextInput,
   PasswordInput,
@@ -16,6 +17,7 @@ import { useViewModel } from "@/presentation/viewModel/signin";
 import { getSession } from "next-auth/react";
 import { Path } from "@/shared/enums/path";
 import Layout from "@/presentation/components/layout";
+import Link from "next/link";
 
 const SignIn = () => {
   const { handleSubmit, handleUserInfoChange, handleClickCreateAccount } =
@@ -30,6 +32,11 @@ const SignIn = () => {
         }}
       >
         <form onSubmit={handleSubmit}>
+          <Center mb="md">
+            <Link href={Path.INDEX}>
+              <Image src="/logo.png" alt="" width={75} height={75} />
+            </Link>
+          </Center>
           <Title
             align="center"
             sx={(theme) => ({

@@ -1,4 +1,6 @@
 import { useAuthDependencies } from "@/shared/contexts/dependencies/auth";
+import Image from "next/image";
+import Link from "next/link";
 import {
   Avatar,
   Button,
@@ -49,7 +51,9 @@ const Header: React.FC = () => {
   return (
     <HeaderMantine height={{ base: 50, md: 50 }} p="md" className={s.header}>
       <div className={s.headerWrapper}>
-        <Text td="bold">LOGO</Text>
+        <Link href={Path.INDEX}>
+          <Image src="/logo.png" alt="" width={50} height={50} />
+        </Link>
         <Container>
           <Grid gutter={5} gutterXs="md" gutterMd="xl" gutterXl={50}>
             <Grid.Col span={6}>
