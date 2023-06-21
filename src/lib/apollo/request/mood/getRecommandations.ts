@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 export const GET_RECOMMANDATIONS = {
   queryName: "createPrompt",
   query: gql`
-    mutation CreatePrompt($userInput: String!) {
+    mutation CreatePrompt($userInput: PromptInput!) {
       createPrompt(
         input: {
           user_input: $userInput
