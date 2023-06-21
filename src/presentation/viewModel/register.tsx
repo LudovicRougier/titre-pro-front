@@ -11,14 +11,20 @@ export const useViewModel = () => {
     initialValues: {
       name: "",
       email: "",
+      country: "",
+      age: "",
       password: "",
       confirmPassword: "",
       termsOfService: false,
     },
 
     validate: {
-      name: (value) => (value.trim().length < 3 ? "Name is too short" : null),
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      name: (value: string) =>
+        value.trim().length < 3 ? "Name is too short" : null,
+      email: (value: string) =>
+        /^\S+@\S+$/.test(value) ? null : "Invalid email",
+      country: (value: string) => (!value ? "You must select a country" : null),
+      age: (value: string) => (!value ? "How old are your?" : null),
       password: (value) =>
         value.trim().length < 8 ? "Password is too short" : null,
       confirmPassword: (value, values) =>
@@ -28,9 +34,10 @@ export const useViewModel = () => {
     },
   });
 
-  const handleSubmit = form.onSubmit((values) =>
-    registerUseCase.invoke(values)
-  );
+  const handleSubmit = form.onSubmit(async (values) => {
+    const res = await registerUseCase.invoke(values);
+    if (res?.success) router.push(Path.SIGNIN);
+  });
 
   const handleClickSignIn = () => router.push(Path.SIGNIN);
 

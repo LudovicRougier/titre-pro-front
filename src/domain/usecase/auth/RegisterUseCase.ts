@@ -18,6 +18,8 @@ export class RegisterUseCase implements Register {
   public async invoke(data: {
     name: string;
     email: string;
+    age: string;
+    country: string;
     password: string;
     confirmPassword: string;
     termsOfService: boolean;
@@ -25,6 +27,8 @@ export class RegisterUseCase implements Register {
     const credentials = {
       name: data.name,
       email: data.email,
+      age: parseInt(data.age, 10),
+      country: data.country,
       password: data.password,
     };
 

@@ -51,10 +51,11 @@ export interface AuthDataSource {
     password: string;
   }) => Promise<APILoginResponse>;
   logout: () => Promise<APILogoutResponse>;
-  refreshToken: () => Promise<APILoginResponse>;
-  register: (credentials: {
+  register: (data: {
     name: string;
     email: string;
+    age: number;
+    country: string;
     password: string;
   }) => Promise<APIRegisterResponse>;
 }

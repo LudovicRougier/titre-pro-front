@@ -46,15 +46,13 @@ export class AuthRepositoryImpl implements AuthRepository {
     return res;
   }
 
-  public async register(credentials: {
+  public async register(data: {
     name: string;
     email: string;
+    age: number;
+    country: string;
     password: string;
   }) {
-    return this.authDataSource.register(credentials);
-  }
-
-  public async refreshToken() {
-    return this.authDataSource.refreshToken();
+    return this.authDataSource.register(data);
   }
 }

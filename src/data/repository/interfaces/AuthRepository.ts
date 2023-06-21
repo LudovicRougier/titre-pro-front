@@ -1,5 +1,4 @@
 import {
-  APILoginResponse,
   APIRegisterResponse,
   LoginResponse,
   LogoutResponse,
@@ -12,10 +11,11 @@ export interface AuthRepository {
   }) => Promise<LoginResponse | null>;
 
   logout: () => Promise<LogoutResponse>;
-  refreshToken: () => Promise<APILoginResponse | null>;
-  register: (credentials: {
+  register: (data: {
     name: string;
     email: string;
+    age: number;
+    country: string;
     password: string;
   }) => Promise<APIRegisterResponse | null>;
 }
