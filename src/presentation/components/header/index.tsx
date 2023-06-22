@@ -67,14 +67,16 @@ const Header: React.FC = () => {
               </Text>
             </Grid.Col>
             <Grid.Col span={6}>
-              <Text
-                onClick={handleClickHistory}
-                variant="subtle"
-                color={IS_HISTORY ? "white" : "light gray"}
-                className={s.headerNavLink}
-              >
-                History
-              </Text>
+              {session && (
+                <Text
+                  onClick={handleClickHistory}
+                  variant="subtle"
+                  color={IS_HISTORY ? "white" : "light gray"}
+                  className={s.headerNavLink}
+                >
+                  History
+                </Text>
+              )}
             </Grid.Col>
           </Grid>
         </Container>

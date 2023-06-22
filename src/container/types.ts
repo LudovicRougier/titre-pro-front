@@ -6,12 +6,14 @@ const TYPES = {
   MoodDataSource: Symbol.for("MoodDataSource"),
   MovieDataSource: Symbol.for("MovieDataSource"),
   AccountDataSource: Symbol.for("AccountDataSource"),
+  WatchProviderDataSource: Symbol.for("WatchProviderDataSource"),
 
   /* REPOSITORIES */
   AuthRepository: Symbol.for("AuthRepository"),
   MoodRepository: Symbol.for("MoodRepository"),
   MovieRepository: Symbol.for("MovieRepository"),
   AccountRepository: Symbol.for("AccountRepository"),
+  WatchProviderRepository: Symbol.for("WatchProviderRepository"),
 
   /* USE CASES */
   /* Auth */
@@ -34,6 +36,9 @@ const TYPES = {
 
   /* Movie */
   GetMovieDetailsUseCase: Symbol.for("GetMovieDetailsUseCase"),
+
+  /* Watch Provider */
+  GetWatchProvidersUseCase: Symbol.for("GetWatchProvidersUseCase"),
 };
 
 export { TYPES };

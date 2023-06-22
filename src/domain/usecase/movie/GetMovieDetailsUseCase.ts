@@ -3,7 +3,7 @@ import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
 import type { MovieRepository } from "@/data/repository/interfaces/MovieRepository";
-import { GetMovieDetails } from "@/domain/useCase/movie/interfaces/GetMovieDetails";
+import { GetMovieDetails } from "@/domain/usecase/movie/interfaces/GetMovieDetails";
 
 @injectable()
 export class GetMovieDetailsUseCase implements GetMovieDetails {

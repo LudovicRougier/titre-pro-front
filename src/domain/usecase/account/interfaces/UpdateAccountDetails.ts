@@ -1,5 +1,5 @@
-import { UserInfo } from "@/data/datasource/interfaces/AccountDataSource";
+import { UserModel } from "@/domain/model/User";
 
 export interface UpdateAccountDetails {
-  invoke: (userInfo: UserInfo) => Promise<void>;
+  invoke: (userInfo: UserModel) => Promise<void>;
 }

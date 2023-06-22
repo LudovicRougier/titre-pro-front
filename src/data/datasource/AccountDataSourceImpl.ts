@@ -1,39 +1,31 @@
 import "reflect-metadata";
-import { inject, injectable } from "inversify";
-import { TYPES } from "@/container/types";
+import { injectable } from "inversify";
 import { GraphQLBaseService } from "@/data/GraphQLBaseService";
+import { AccountDataSource } from "@/data/datasource/interfaces/AccountDataSource";
+import { APIUser } from "@/domain/model/User";
 import {
-  AccountDataSource,
-  UserInfo,
-} from "@/data/datasource/interfaces/AccountDataSource";
-import { APIService } from "@/data/datasource/interfaces/APIService";
+  GET_ACCOUNT_DETAILS,
+  UPDATE_ACCOUNT_DETAILS,
+} from "@/lib/apollo/request/account";
 
 @injectable()
-export class AccountDataSourceImpl implements AccountDataSource {
-  private api;
-
-  public constructor(
-    @inject(TYPES.APIService) apiService: GraphQLBaseService | APIService
-  ) {
-    this.api = apiService.api;
-  }
-
+export class AccountDataSourceImpl
+  extends GraphQLBaseService
+  implements AccountDataSource
+{
   async getAccountDetails() {
-    // return {
-    //   id: "1",
-    //   age: "28",
-    //   name: "John Doe",
-    //   email: "john@doe.fr",
-    //   country: "FR",
-    //   description: "I'm a developer",
-    //   favoriteGenres: ["Action", "Comedy"],
-    // };
-    return null;
+    const res = await this.api.query({
+      query: GET_ACCOUNT_DETAILS.query,
+    });
+    return res.data[GET_ACCOUNT_DETAILS.queryName];
   }
 
-  async updateAccountDetails(userInfo: UserInfo) {
-    // eslint-disable-next-line no-console
-    console.log("[AccountDataSourceImpl] updateAccountDetails", userInfo);
+  async updateAccountDetails(userInfo: APIUser) {
+    const res = await this.api.mutate({
+      mutation: UPDATE_ACCOUNT_DETAILS.query,
+      variables: { input: userInfo },
+    });
+    return JSON.parse(res.data[UPDATE_ACCOUNT_DETAILS.queryName]);
   }
 
   async deleteAccount() {}

@@ -9,6 +9,8 @@ import { MovieDataSource } from "@/data/datasource/interfaces/MovieDataSource";
 import { MovieDataSourceImpl } from "@/data/datasource/MovieDataSourceImpl";
 import { AccountDataSource } from "@/data/datasource/interfaces/AccountDataSource";
 import { AccountDataSourceImpl } from "@/data/datasource/AccountDataSourceImpl";
+import { WatchProviderDataSource } from "@/data/datasource/interfaces/WatchProviderDataSource";
+import { WatchProviderDataSourceImpl } from "@/data/datasource/WatchProviderDataSourceImpl";
 
 import { AuthRepository } from "@/data/repository/interfaces/AuthRepository";
 import { AuthRepositoryImpl } from "@/data/repository/AuthRepositoryImpl";
@@ -18,19 +20,22 @@ import { MovieRepository } from "@/data/repository/interfaces/MovieRepository";
 import { MovieRepositoryImpl } from "@/data/repository/MovieRepositoryImpl";
 import { AccountRepository } from "@/data/repository/interfaces/AccountRepository";
 import { AcccountRepositoryImpl } from "@/data/repository/AccountRepositoryImpl";
+import { WatchProviderRepository } from "@/data/repository/interfaces/WatchProviderRepository";
+import { WatchProviderRepositoryImpl } from "@/data/repository/WatchProviderRepositoryImpl";
 
-import { LoginUseCase } from "@/domain/useCase/auth/LoginUseCase";
-import { LogoutUseCase } from "@/domain/useCase/auth/LogoutUseCase";
-import { GetAccountDetailsUseCase } from "@/domain/useCase/account/GetAccountDetailsUseCase";
-import { UpdateAccountDetailsUseCase } from "@/domain/useCase/account/UpdateAccountDetailsUseCase";
-import { DeleteAccountUseCase } from "@/domain/useCase/account/DeleteAccountUseCase";
-import { FetchMoodRecommendationsUseCase } from "@/domain/useCase/mood/FetchMoodRecommendationsUseCase";
-import { RetrieveMoodHistoryListUseCase } from "@/domain/useCase/mood/RetrieveMoodHistoryListUseCase";
-import { RemoveMoodHistoryEntryUseCase } from "@/domain/useCase/mood/RemoveMoodHistoryEntryUseCase";
-import { GetMoodDetailsUseCase } from "@/domain/useCase/mood/GetMoodDetailsUseCase";
-import { GetMovieDetailsUseCase } from "@/domain/useCase/movie/GetMovieDetailsUseCase";
+import { GetWatchProvidersUseCase } from "@/domain/usecase/watchProvider/GetWatchProvidersUseCase";
 import { AxiosBaseService } from "@/data/AxiosBaseService";
-import { RegisterUseCase } from "@/domain/useCase/auth/RegisterUseCase";
+import { DeleteAccountUseCase } from "@/domain/usecase/account/DeleteAccountUseCase";
+import { GetAccountDetailsUseCase } from "@/domain/usecase/account/GetAccountDetailsUseCase";
+import { UpdateAccountDetailsUseCase } from "@/domain/usecase/account/UpdateAccountDetailsUseCase";
+import { LoginUseCase } from "@/domain/usecase/auth/LoginUseCase";
+import { LogoutUseCase } from "@/domain/usecase/auth/LogoutUseCase";
+import { RegisterUseCase } from "@/domain/usecase/auth/RegisterUseCase";
+import { FetchMoodRecommendationsUseCase } from "@/domain/usecase/mood/FetchMoodRecommendationsUseCase";
+import { GetMoodDetailsUseCase } from "@/domain/usecase/mood/GetMoodDetailsUseCase";
+import { RemoveMoodHistoryEntryUseCase } from "@/domain/usecase/mood/RemoveMoodHistoryEntryUseCase";
+import { RetrieveMoodHistoryListUseCase } from "@/domain/usecase/mood/RetrieveMoodHistoryListUseCase";
+import { GetMovieDetailsUseCase } from "@/domain/usecase/movie/GetMovieDetailsUseCase";
 
 const container = new Container();
 
@@ -43,6 +48,9 @@ container.bind<MovieDataSource>(TYPES.MovieDataSource).to(MovieDataSourceImpl);
 container
   .bind<AccountDataSource>(TYPES.AccountDataSource)
   .to(AccountDataSourceImpl);
+container
+  .bind<WatchProviderDataSource>(TYPES.WatchProviderDataSource)
+  .to(WatchProviderDataSourceImpl);
 
 /* REPOSITORIES */
 container.bind<MoodRepository>(TYPES.MoodRepository).to(MoodRepositoryImpl);
@@ -51,6 +59,9 @@ container.bind<MovieRepository>(TYPES.MovieRepository).to(MovieRepositoryImpl);
 container
   .bind<AccountRepository>(TYPES.AccountRepository)
   .to(AcccountRepositoryImpl);
+container
+  .bind<WatchProviderRepository>(TYPES.WatchProviderRepository)
+  .to(WatchProviderRepositoryImpl);
 
 /* USE CASES */
 container.bind<LoginUseCase>(TYPES.LoginUseCase).to(LoginUseCase);
@@ -84,3 +95,7 @@ container
   .bind<GetMovieDetailsUseCase>(TYPES.GetMovieDetailsUseCase)
   .to(GetMovieDetailsUseCase);
 export { container, TYPES };
+
+container
+  .bind<GetWatchProvidersUseCase>(TYPES.GetWatchProvidersUseCase)
+  .to(GetWatchProvidersUseCase);

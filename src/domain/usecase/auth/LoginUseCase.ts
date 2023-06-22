@@ -3,7 +3,7 @@ import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
 import type { AuthRepository } from "@/data/repository/interfaces/AuthRepository";
-import { Login } from "@/domain/useCase/auth/interfaces/Login";
+import { Login } from "@/domain/usecase/auth/interfaces/Login";
 
 @injectable()
 export class LoginUseCase implements Login {

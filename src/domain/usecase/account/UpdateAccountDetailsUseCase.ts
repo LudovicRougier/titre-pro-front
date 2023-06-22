@@ -3,8 +3,8 @@ import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
 import type { AccountRepository } from "@/data/repository/interfaces/AccountRepository";
-import { UpdateAccountDetails } from "@/domain/useCase/account/interfaces/UpdateAccountDetails";
-import { UserInfo } from "@/data/datasource/interfaces/AccountDataSource";
+import { UpdateAccountDetails } from "@/domain/usecase/account/interfaces/UpdateAccountDetails";
+import { UserModel } from "@/domain/model/User";
 
 @injectable()
 export class UpdateAccountDetailsUseCase implements UpdateAccountDetails {
@@ -16,7 +16,7 @@ export class UpdateAccountDetailsUseCase implements UpdateAccountDetails {
     this.accountRepository = accountRepository;
   }
 
-  public async invoke(userInfo: UserInfo) {
+  public async invoke(userInfo: UserModel) {
     return this.accountRepository.updateAccountDetails(userInfo);
   }
 }

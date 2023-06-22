@@ -1,6 +1,8 @@
-import { UserInfo } from "@/data/datasource/interfaces/AccountDataSource";
+/* eslint-disable react/display-name */
+/* eslint-disable no-console */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { countries } from "@/data/static/countries";
-import { movieGenres } from "@/data/static/movieGenres";
+import { UserModel } from "@/domain/model/User";
 import { useViewModel } from "@/presentation/viewModel/profile";
 import {
   Text,
@@ -11,15 +13,44 @@ import {
   Select,
   TextInput,
   Group,
+  Avatar,
 } from "@mantine/core";
+import { forwardRef } from "react";
+
+interface ItemProps extends React.ComponentPropsWithoutRef<"div"> {
+  image: string;
+  label: string;
+}
+
+const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
+  ({ image, label, ...others }: ItemProps, ref) => (
+    <div ref={ref} {...others}>
+      <Group noWrap>
+        <Avatar src={image} />
+
+        <div>
+          <Text>{label}</Text>
+        </div>
+      </Group>
+    </div>
+  )
+);
 
 interface ProfileProps {
-  accountDetails: UserInfo;
+  accountDetails: UserModel;
 }
 
 export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
-  const { form, handleSubmit, isOnEdit, toggleEdit } =
-    useViewModel(accountDetails);
+  const {
+    form,
+    handleSubmit,
+    isOnEdit,
+    toggleEdit,
+    wantedGenres,
+    unwantedGenres,
+    watchProviderList,
+  } = useViewModel(accountDetails);
+
   return (
     <form onSubmit={handleSubmit}>
       <Group position="apart">
@@ -49,7 +80,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
       <Space h="xl" />
       <Space h="xl" />
       <TextInput
-        disabled={!isOnEdit}
+        readOnly={!isOnEdit}
         placeholder="Your name"
         label="Name"
         variant="filled"
@@ -59,7 +90,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
       <Space h="md" />
 
       <TextInput
-        disabled={!isOnEdit}
+        readOnly={!isOnEdit}
         placeholder="Your age"
         label="Age"
         variant="filled"
@@ -69,7 +100,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
       <Space h="md" />
 
       <Select
-        disabled={!isOnEdit}
+        readOnly={!isOnEdit}
         label="Country"
         placeholder="Pick one"
         variant="filled"
@@ -80,7 +111,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
       <Space h="md" />
 
       <Textarea
-        disabled={!isOnEdit}
+        readOnly={!isOnEdit}
         placeholder="Tell us more about you, we'll recommend better movies and tv-shows."
         label="Description"
         variant="filled"
@@ -89,29 +120,48 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
       />
 
       <Space h="md" />
+      <Text weight={600} size="xl" mt="md">
+        Personalize your experience
+      </Text>
+
+      <Space h="md" />
       <MultiSelect
-        disabled={!isOnEdit}
-        data={movieGenres}
+        readOnly={!isOnEdit}
+        data={wantedGenres}
         label="Favorite movie genres"
         placeholder="Pick all that you like"
         searchable
         variant="filled"
         nothingFound="Nothing found"
         radius="md"
-        {...form.getInputProps("favoriteGenres")}
+        {...form.getInputProps("wantedGenres")}
       />
 
       <Space h="md" />
       <MultiSelect
-        disabled={!isOnEdit}
-        data={movieGenres}
+        readOnly={!isOnEdit}
+        data={unwantedGenres}
         label="Excluded movie genres"
         placeholder="Pick all that you don't like"
         searchable
         variant="filled"
         nothingFound="Nothing found"
         radius="md"
-        {...form.getInputProps("excludedGenres")}
+        {...form.getInputProps("unwantedGenres")}
+      />
+
+      <Space h="md" />
+      <MultiSelect
+        readOnly={!isOnEdit}
+        itemComponent={SelectItem}
+        data={watchProviderList}
+        label="Streaming services that you have access to"
+        placeholder="Pick all the streaming services taht you want"
+        searchable
+        variant="filled"
+        nothingFound="Nothing found"
+        radius="md"
+        {...form.getInputProps("wantedWatchProviders")}
       />
 
       <Space h="xl" />

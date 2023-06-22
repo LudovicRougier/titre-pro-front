@@ -40,11 +40,7 @@ const AccountSettings: NextPage<AccountSettingsProps> = ({ user }) => {
         </Grid.Col>
         <Divider orientation="vertical" size="sm" />
         <Grid.Col span={7}>
-          <Settings
-            activeTab={tab}
-            session={user}
-            accountDetails={accountDetails}
-          />
+          <Settings activeTab={tab} accountDetails={accountDetails} />
         </Grid.Col>
       </Grid>
     </Container>
