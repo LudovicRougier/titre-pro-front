@@ -11,7 +11,7 @@ export const useViewModel = (userInfo: UserModel) => {
   const { updateAccountDetailsUseCase } = useAccountDependencies();
   const { show: isOnEdit, toggle: toggleEdit } = useShow(false);
   const watchProviderList = useAppSelector(
-    (state) => state.WATCH_PROVIDERS.watchProviders
+    (state) => state.WATCH_PROVIDER.watchProviders
   );
 
   const [wantedGenres, setWantedGenres] = useState<Genre[]>(movieGenres);

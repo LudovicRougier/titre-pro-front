@@ -10,7 +10,7 @@ export const store = configureStore({
   reducer: {
     MOVIE: movieSlice,
     MOOD: moodSlice,
-    WATCH_PROVIDERS: watchProviderSlice,
+    WATCH_PROVIDER: watchProviderSlice,
   },
   devTools: process.env.NODE_ENV !== "production",
 });
