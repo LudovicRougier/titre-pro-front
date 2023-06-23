@@ -1,3 +1,5 @@
+import { APIGenre, GenreModel } from "@/domain/model/Genre";
+
 export interface APIMovie {
   id: string;
   title: string;
@@ -7,7 +9,7 @@ export interface APIMovie {
   runtime: number;
   directors: { id: string; name: string; profile_picture: string }[];
   actors: { id: string; name: string; profile_picture: string }[];
-  genres: { id: string; name: string }[];
+  genres: APIGenre[];
 }
 
 export interface Movie {
@@ -19,7 +21,7 @@ export interface Movie {
   runtime: number;
   directors: { id: string; name: string; profilePicture: string }[];
   actors: { id: string; name: string; profilePicture: string }[];
-  genres: { id: string; name: string }[];
+  genres: GenreModel[];
 }
 
 export class MovieModel implements Movie {
@@ -39,7 +41,7 @@ export class MovieModel implements Movie {
 
   actors: { id: string; name: string; profilePicture: string }[];
 
-  genres: { id: string; name: string }[];
+  genres: GenreModel[];
 
   public constructor(movie: Movie) {
     this.id = movie.id;
@@ -71,16 +73,14 @@ export class MovieModel implements Movie {
       })),
       posterPath: movie.poster_path,
       backdropPath: movie.backdrop_path,
-      genres: movie.genres.map((genre) => ({
-        id: genre.id,
-        name: genre.name,
-      })),
+      genres: movie.genres.map((genre) => GenreModel.fromJSON(genre)),
     });
   }
 
   public toJSON() {
     return {
       ...this,
+      genres: this.genres.map((genre) => GenreModel.toJSON(genre)),
     };
   }
 }
