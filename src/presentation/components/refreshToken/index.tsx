@@ -1,6 +1,5 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-console */
 import { useAuthDependencies } from "@/shared/contexts/dependencies/auth";
+import { DecodedToken } from "@/shared/interfaces/general/decodedToken";
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect } from "react";
 
@@ -8,16 +7,6 @@ import { useCallback, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { Session } from "next-auth";
 import { useInterval } from "@mantine/hooks";
-
-interface DecodedToken {
-  exp: number;
-  iat: number;
-  iss: string;
-  jti: string;
-  nbf: number;
-  prv: string;
-  sub: string;
-}
 
 export const RefreshTokenHandler = () => {
   const { data: session, update } = useSession();
@@ -38,32 +27,15 @@ export const RefreshTokenHandler = () => {
 
       const decodedToken: DecodedToken = jwt_decode(session?.user.token);
 
-      console.log("[RefreshTokenHandler] decodedToken: ", decodedToken);
-
       if (decodedToken && decodedToken.exp) {
         const expirationDate = new Date(
           decodedToken.exp * 1000 - CHECK_INTERVAL
         );
         const currentDate = new Date();
 
-        console.log("[RefreshTokenHandler] expirationDate: ", expirationDate);
-        console.log(
-          "[RefreshTokenHandler] currentDate: ",
-          currentDate.toLocaleString()
-        );
-
         if (currentDate > expirationDate) {
-          console.log(
-            "[RefreshTokenHandler] La date d'expiration est passée. On refresh le token !!!"
-          );
           await refresh();
-        } else {
-          console.log("[RefreshTokenHandler] La date d'expiration est valide.");
         }
-      } else {
-        console.log(
-          '[RefreshTokenHandler] Impossible de décoder le token ou la propriété "exp" est absente.'
-        );
       }
     },
     [CHECK_INTERVAL, refresh]
@@ -75,7 +47,6 @@ export const RefreshTokenHandler = () => {
   );
 
   const interval = useInterval(checkToken, CHECK_INTERVAL);
-  console.log("[RefreshTokenHandler] session: ", session);
 
   useEffect(() => {
     interval.start();

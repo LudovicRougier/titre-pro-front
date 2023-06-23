@@ -27,8 +27,8 @@ export class GenreModel implements Genre {
 
   public static toJSON(genre: GenreModel) {
     return {
-      genre_id: genre.id,
-      genre_name: genre.name,
+      id: genre.id,
+      name: genre.name,
     };
   }
 }
