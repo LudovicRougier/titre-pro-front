@@ -4,9 +4,9 @@ import { ChildrenInterface } from "@/shared/interfaces/general/childrenNode";
 import { TYPES, container } from "@/container/container.config";
 
 import { MoodRepository } from "@/data/repository/interfaces/MoodRepository";
-import { FetchMoodRecommendationsUseCase } from "@/domain/useCase/mood/FetchMoodRecommendationsUseCase";
-import { GetMoodDetailsUseCase } from "@/domain/useCase/mood/GetMoodDetailsUseCase";
-import { RetrieveMoodHistoryListUseCase } from "@/domain/useCase/mood/RetrieveMoodHistoryListUseCase";
+import { FetchMoodRecommendationsUseCase } from "@/domain/usecase/mood/FetchMoodRecommendationsUseCase";
+import { GetMoodDetailsUseCase } from "@/domain/usecase/mood/GetMoodDetailsUseCase";
+import { RetrieveMoodHistoryListUseCase } from "@/domain/usecase/mood/RetrieveMoodHistoryListUseCase";
 
 export const MoodDependencyContext = createContext<{
   repository: MoodRepository;

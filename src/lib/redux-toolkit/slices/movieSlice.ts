@@ -16,7 +16,7 @@ const movieSlice = createSlice({
 
       moviesToAdd.forEach((movie) => {
         const existingMovie = state.movies.find(
-          (existing) => existing.title === movie.title
+          (existing) => existing.id === movie.id
         );
         if (!existingMovie) {
           state.movies.push(movie);

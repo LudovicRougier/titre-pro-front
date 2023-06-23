@@ -5,7 +5,7 @@ import MoviePoster from "@/presentation/components/moviePoster";
 import s from "./style.module.css";
 
 interface MovieCarouselProps {
-  movies: Movie[];
+  movies: Movie[] | undefined;
 }
 
 const MovieCarousel: React.FC<MovieCarouselProps> = ({ movies }) => {
@@ -20,9 +20,15 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ movies }) => {
       withControls={false}
       controlsOffset="xl"
     >
-      {movies.map((movie: Movie) => (
-        <MoviePoster key={movie.id} movie={movie} height={367.5} width={245} />
-      ))}
+      {movies &&
+        movies.map((movie: Movie) => (
+          <MoviePoster
+            key={movie.id}
+            movie={movie}
+            height={367.5}
+            width={245}
+          />
+        ))}
     </Carousel>
   );
 };

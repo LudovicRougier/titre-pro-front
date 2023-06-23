@@ -4,7 +4,7 @@ import { ChildrenInterface } from "@/shared/interfaces/general/childrenNode";
 import { TYPES, container } from "@/container/container.config";
 
 import { MovieRepository } from "@/data/repository/interfaces/MovieRepository";
-import { GetMovieDetailsUseCase } from "@/domain/useCase/movie/GetMovieDetailsUseCase";
+import { GetMovieDetailsUseCase } from "@/domain/usecase/movie/GetMovieDetailsUseCase";
 
 export const MovieDependencyContext = createContext<{
   repository: MovieRepository;

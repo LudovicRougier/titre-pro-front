@@ -2,20 +2,14 @@
 import React from "react";
 import type { NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/home";
-import {
-  Button,
-  Center,
-  Container,
-  Loader,
-  TextInput,
-  Text,
-} from "@mantine/core";
+import { Button, Center, Container, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
 import { motion } from "framer-motion";
 // import Blob from "@/presentation/components/blob";
 import { waitingSentences } from "@/data/static/waitingSentences";
 import { TypingAnimation } from "@/presentation/components/typeAnimation";
 import Suggestions from "@/presentation/components/suggestions";
+import { removeDuplicates } from "@/utils/removeDuplicates";
 import s from "./style.module.css";
 
 const Home: NextPage = () => {
@@ -90,10 +84,13 @@ const Home: NextPage = () => {
               }}
             >
               <Suggestions
-                movies={[
-                  ...recommandations.moviesRelatedToEmotions,
-                  ...recommandations.moviesRelatedToTopic,
-                ]}
+                movies={removeDuplicates(
+                  [
+                    ...recommandations.moviesRelatedToEmotions,
+                    ...recommandations.moviesRelatedToTopic,
+                  ],
+                  "id"
+                )}
                 mainEmotion={recommandations.mainEmotion}
                 subEmotion={recommandations.subEmotion}
               />

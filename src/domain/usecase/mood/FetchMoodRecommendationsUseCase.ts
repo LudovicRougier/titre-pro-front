@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
-import { FetchMoodRecommendations } from "@/domain/useCase/mood/interfaces/FetchMoodRecommendations";
+import { FetchMoodRecommendations } from "@/domain/usecase/mood/interfaces/FetchMoodRecommendations";
 import type { MoodRepository } from "@/data/repository/interfaces/MoodRepository";
 
 @injectable()

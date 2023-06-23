@@ -3,7 +3,7 @@ import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
 import type { MoodRepository } from "@/data/repository/interfaces/MoodRepository";
-import { RemoveMoodHistoryEntry } from "@/domain/useCase/mood/interfaces/RemoveMoodHistoryEntry";
+import { RemoveMoodHistoryEntry } from "@/domain/usecase/mood/interfaces/RemoveMoodHistoryEntry";
 
 @injectable()
 export class RemoveMoodHistoryEntryUseCase implements RemoveMoodHistoryEntry {

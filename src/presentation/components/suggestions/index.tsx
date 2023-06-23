@@ -10,7 +10,7 @@ type emotionType = {
 };
 
 interface SuggestionsProps {
-  movies: Movie[];
+  movies: Movie[] | undefined;
   mainEmotion: emotionType;
   subEmotion: emotionType | null;
 }

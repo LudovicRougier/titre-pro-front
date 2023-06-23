@@ -4,9 +4,9 @@ import { ChildrenInterface } from "@/shared/interfaces/general/childrenNode";
 import { TYPES, container } from "@/container/container.config";
 
 import { AccountRepository } from "@/data/repository/interfaces/AccountRepository";
-import { DeleteAccountUseCase } from "@/domain/useCase/account/DeleteAccountUseCase";
-import { GetAccountDetailsUseCase } from "@/domain/useCase/account/GetAccountDetailsUseCase";
-import { UpdateAccountDetailsUseCase } from "@/domain/useCase/account/UpdateAccountDetailsUseCase";
+import { DeleteAccountUseCase } from "@/domain/usecase/account/DeleteAccountUseCase";
+import { GetAccountDetailsUseCase } from "@/domain/usecase/account/GetAccountDetailsUseCase";
+import { UpdateAccountDetailsUseCase } from "@/domain/usecase/account/UpdateAccountDetailsUseCase";
 
 export const AccountDependencyContext = createContext<{
   repository: AccountRepository;

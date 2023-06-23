@@ -4,9 +4,9 @@ import { ChildrenInterface } from "@/shared/interfaces/general/childrenNode";
 import { TYPES, container } from "@/container/container.config";
 
 import { AuthRepository } from "@/data/repository/interfaces/AuthRepository";
-import { LoginUseCase } from "@/domain/useCase/auth/LoginUseCase";
-import { LogoutUseCase } from "@/domain/useCase/auth/LogoutUseCase";
-import { RegisterUseCase } from "@/domain/useCase/auth/RegisterUseCase";
+import { LoginUseCase } from "@/domain/usecase/auth/LoginUseCase";
+import { LogoutUseCase } from "@/domain/usecase/auth/LogoutUseCase";
+import { RegisterUseCase } from "@/domain/usecase/auth/RegisterUseCase";
 
 export const AuthDependencyContext = createContext<{
   repository: AuthRepository;
