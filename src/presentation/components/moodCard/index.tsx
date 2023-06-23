@@ -48,7 +48,11 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
       >
         <BackgroundImage
           radius="md"
-          src={movie?.backdropPath ?? ""}
+          src={
+            movie.backdropPath
+              ? `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}${movie.backdropPath}`
+              : ""
+          }
           onClick={handleClickMovie}
         >
           <Container

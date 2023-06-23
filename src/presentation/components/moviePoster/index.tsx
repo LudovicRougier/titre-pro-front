@@ -134,7 +134,7 @@ const MoviePosterTest: React.FC<MoviePosterProps> = ({
         <div
           className={s.movieCarouselSlideContentBackground}
           style={{
-            backgroundImage: `url(${movie.posterPath})`,
+            backgroundImage: `url(${process.env.NEXT_PUBLIC_TMDB_BASE_URL}${movie.posterPath})`,
           }}
         />
         <motion.div

@@ -35,7 +35,10 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
         right: 0,
       }}
     >
-      <BackgroundImage src={movie.backdropPath} className={s.card}>
+      <BackgroundImage
+        src={`${process.env.NEXT_PUBLIC_TMDB_BASE_URL}${movie.backdropPath}`}
+        className={s.card}
+      >
         <div className={s.cardInner}>
           <div className={s.cardBody}>
             <div className={s.cardTitle}>{movie.title}</div>
