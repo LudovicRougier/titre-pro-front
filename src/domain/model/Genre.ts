@@ -4,31 +4,31 @@ export interface APIGenre {
 }
 
 export interface Genre {
-  genreId: string;
-  genreName: string;
+  id: string;
+  name: string;
 }
 
 export class GenreModel implements Genre {
-  genreId: string;
+  id: string;
 
-  genreName: string;
+  name: string;
 
   constructor(genre: Genre) {
-    this.genreId = genre.genreId;
-    this.genreName = genre.genreName;
+    this.id = genre.id;
+    this.name = genre.name;
   }
 
   public static fromJSON(genre: APIGenre): Genre {
     return new GenreModel({
-      genreId: genre.id,
-      genreName: genre.name,
+      id: genre.id,
+      name: genre.name,
     });
   }
 
   public static toJSON(genre: GenreModel) {
     return {
-      genre_id: genre.genreId,
-      genre_name: genre.genreName,
+      genre_id: genre.id,
+      genre_name: genre.name,
     };
   }
 }

@@ -15,9 +15,9 @@ const genreSlice = createSlice({
         : [action.payload];
 
       genreToAdd.forEach((genre) => {
-        if (!genre.genreId) return;
+        if (!genre.id) return;
         const existingMood = state.genres.find(
-          (existing) => existing.genreId === genre.genreId
+          (existing) => existing.id === genre.id
         );
         if (!existingMood) {
           state.genres.push(genre);

@@ -25,8 +25,8 @@ export const useViewModel = (userInfo: UserModel) => {
       age: userInfo.age ?? 0,
       country: userInfo.country,
       description: userInfo.description ?? "",
-      wantedGenres: userInfo.wantedGenres?.map((genre) => genre.genreId),
-      unwantedGenres: userInfo.unwantedGenres?.map((genre) => genre.genreId),
+      wantedGenres: userInfo.wantedGenres?.map((genre) => genre.id),
+      unwantedGenres: userInfo.unwantedGenres?.map((genre) => genre.id),
       wantedWatchProviders: userInfo.wantedWatchProviders?.map(
         (watchProvider) => watchProvider.providerId
       ),
@@ -41,12 +41,12 @@ export const useViewModel = (userInfo: UserModel) => {
   });
 
   const handleSubmit = form.onSubmit(async (values) => {
-    const selectedWantedGenres = values.wantedGenres?.map((genreId) => {
-      const genre = genreList.find((genre) => genre.genreId === genreId);
+    const selectedWantedGenres = values.wantedGenres?.map((id) => {
+      const genre = genreList.find((genre) => genre.id === id);
       return genre || null;
     }) as movieGenres[];
-    const selectedUnwantedGenres = values.unwantedGenres?.map((genreId) => {
-      const genre = genreList.find((genre) => genre.genreId === genreId);
+    const selectedUnwantedGenres = values.unwantedGenres?.map((id) => {
+      const genre = genreList.find((genre) => genre.id === id);
       return genre || null;
     }) as movieGenres[];
     const selectedWantedWatchProviders = values.wantedWatchProviders?.map(
@@ -72,10 +72,10 @@ export const useViewModel = (userInfo: UserModel) => {
 
   useEffect(() => {
     const filteredWantedGenres: movieGenres[] = genreList.filter((genre) => {
-      return !form.values.unwantedGenres?.includes(genre.genreId);
+      return !form.values.unwantedGenres?.includes(genre.id);
     });
     const filteredUnwantedGenres: movieGenres[] = genreList.filter((genre) => {
-      return !form.values.wantedGenres?.includes(genre.genreId);
+      return !form.values.wantedGenres?.includes(genre.id);
     });
     setWantedGenres(filteredWantedGenres);
     setUnwantedGenres(filteredUnwantedGenres);
@@ -92,12 +92,12 @@ export const useViewModel = (userInfo: UserModel) => {
     isOnEdit,
     toggleEdit,
     wantedGenres: wantedGenres.map((genre) => ({
-      label: genre.genreName,
-      value: genre.genreId,
+      label: genre.name,
+      value: genre.id,
     })),
     unwantedGenres: unwantedGenres.map((genre) => ({
-      label: genre.genreName,
-      value: genre.genreId,
+      label: genre.name,
+      value: genre.id,
     })),
     watchProviderList: watchProviderList.map((watchProvider) => ({
       label: watchProvider.providerName,
