@@ -6,6 +6,7 @@ export const GET_MOOD_HISTORY = {
   query: gql`
     query Promts {
       prompts {
+          created_at
           custom_answer
           id
           is_positive
