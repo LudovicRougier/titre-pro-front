@@ -20,8 +20,7 @@ import Layout from "@/presentation/components/layout";
 import Link from "next/link";
 
 const SignIn = () => {
-  const { handleSubmit, handleUserInfoChange, handleClickCreateAccount } =
-    useViewModel();
+  const { form, handleSubmit, handleClickCreateAccount } = useViewModel();
 
   return (
     <Container size={420} my={40}>
@@ -52,18 +51,14 @@ const SignIn = () => {
               label="Email"
               placeholder="you@mantine.dev"
               required
-              onChange={({ target }) =>
-                handleUserInfoChange("email", target.value)
-              }
+              {...form.getInputProps("email")}
             />
             <PasswordInput
               label="Password"
               placeholder="Your password"
               required
               mt="md"
-              onChange={({ target }) =>
-                handleUserInfoChange("password", target.value)
-              }
+              {...form.getInputProps("password")}
             />
             <Group position="apart" mt="lg">
               <Checkbox label="Remember me" />

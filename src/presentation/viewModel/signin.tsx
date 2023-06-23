@@ -1,35 +1,39 @@
 import { Path } from "@/shared/enums/path";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { FormEventHandler, useRef } from "react";
+import { useForm } from "@mantine/form";
 
 export const useViewModel = () => {
-  const userInfo = useRef({ email: "", password: "" });
   const router = useRouter();
 
   const handleClickCreateAccount = () => {
     router.push(Path.REGISTER);
   };
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
+  const form = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+    },
 
+    validate: {
+      email: (value: string) =>
+        /^\S+@\S+$/.test(value) ? null : "Invalid email",
+    },
+  });
+
+  const handleSubmit = form.onSubmit((values) => {
     signIn("credentials", {
-      email: userInfo.current.email,
-      password: userInfo.current.password,
+      email: values.email,
+      password: values.password,
       redirect: true,
       callbackUrl: Path.INDEX,
     });
-  };
-
-  const handleUserInfoChange = (key: string, value: string) => {
-    userInfo.current = { ...userInfo.current, [key]: value };
-  };
+  });
 
   return {
-    handleUserInfoChange,
+    form,
     handleSubmit,
-    userInfo: userInfo.current,
     handleClickCreateAccount,
   };
 };
