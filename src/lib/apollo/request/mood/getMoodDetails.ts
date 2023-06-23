@@ -15,11 +15,13 @@ export const GET_MOOD_DETAILS = {
           name
           color
         }
+        main_emotion_translation
         subEmotion {
           id
           name
           color
         }
+        sub_emotion_translation
         movies_related_to_emotions {
           id
           title

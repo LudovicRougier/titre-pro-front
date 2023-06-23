@@ -58,19 +58,15 @@ export class MoodDataSourceImpl
   /**
    * Retrieves the history list of moods for a given ID.
    *
-   * @param {number} id - The ID for which to retrieve the mood history list.
    * @returns {Promise<APIMood[] | null>} A promise that resolves to the retrieved mood history list.
    */
-  async retrieveMoodHistoryList(id: number): Promise<APIMood[] | null> {
+  async retrieveMoodHistoryList(): Promise<APIMood[] | null> {
     const res = await this.api.query({
       query: GET_MOOD_HISTORY.query,
-      variables: {
-        id,
-      },
     });
 
     if (res.errors) return null;
-    return res.data[GET_MOOD_HISTORY.queryName].prompts;
+    return res.data[GET_MOOD_HISTORY.queryName];
   }
 
   /**

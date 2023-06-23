@@ -86,7 +86,7 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
                   deg: 35,
                 }}
               >
-                {mainEmotion?.name ?? ""}
+                {mainEmotion.translation ?? ""}
               </Badge>
             </Group>
 

@@ -3,12 +3,15 @@ import { APIMovie, MovieModel } from "@/domain/model/Movie";
 export type Emotion = {
   name: string;
   color: string;
+  translation: string;
 };
 
 export interface APIMood {
   id: string;
   user_input: string;
   custom_answer: string;
+  main_emotion_translation: string;
+  sub_emotion_translation: string;
   mainEmotion: Emotion;
   subEmotion: Emotion | null;
   movies_related_to_emotions: APIMovie[];
@@ -61,8 +64,16 @@ export class MoodModel implements Mood {
       date: mood.created_at,
       userInput: mood.user_input,
       message: mood.custom_answer,
-      mainEmotion: mood.mainEmotion,
-      subEmotion: mood.subEmotion,
+      mainEmotion: {
+        ...mood.mainEmotion,
+        translation: mood.main_emotion_translation,
+      },
+      subEmotion: mood.subEmotion
+        ? {
+            ...mood.subEmotion,
+            translation: mood.sub_emotion_translation,
+          }
+        : null,
       moviesRelatedToEmotions: mood.movies_related_to_emotions?.map((movie) =>
         MovieModel.fromJSON(movie)
       ),

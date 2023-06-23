@@ -5,8 +5,9 @@ import MovieCarousel from "@/presentation/components/movieCarousel";
 import s from "./style.module.css";
 
 type emotionType = {
-  color: string;
-  name: string;
+  translation?: string;
+  color?: string;
+  name?: string;
 };
 
 interface SuggestionsProps {
@@ -32,7 +33,7 @@ const Suggestions: React.FC<SuggestionsProps> = ({
             deg: 35,
           }}
         >
-          {mainEmotion.name}
+          {mainEmotion.translation}
         </Badge>
       </Container>
       <Container className={s.suggestionsMain}>

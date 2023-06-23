@@ -1,60 +1,47 @@
+/* eslint-disable prettier/prettier */
 import { gql } from "@apollo/client";
 
 export const GET_MOOD_HISTORY = {
-  queryName: "user",
+  queryName: "prompts",
   query: gql`
-    query User($id: ID!) {
-      user(id: $id) {
-        prompts {
-          id
-          user_input
+    query Promts {
+      prompts {
           custom_answer
-          created_at
-          mainEmotion {
-            id
-            name
-            color
-          }
-          subEmotion {
-            id
-            name
-            color
-          }
+          id
+          is_positive
+          main_emotion_translation
+          sub_emotion_translation
           movies_related_to_emotions {
-            id
-            title
-            overview
-            backdrop_path
-            poster_path
-            runtime
-            directors {
+            actors {
               id
               name
               profile_picture
             }
-            actors {
-              id
+            backdrop_path
+            directors {
               name
+              id
               profile_picture
             }
             genres {
               id
               name
             }
+            id
+            overview
+            poster_path
+            release_date
+            runtime
+            title
+            vote_average
           }
           movies_related_to_topic {
-            id
-            title
-            overview
-            backdrop_path
-            poster_path
-            runtime
-            directors {
+            actors {
               id
               name
               profile_picture
             }
-            actors {
+            directors {
               id
               name
               profile_picture
@@ -63,9 +50,28 @@ export const GET_MOOD_HISTORY = {
               id
               name
             }
+            id
+            overview
+            poster_path
+            release_date
+            runtime
+            title
+            vote_average
+          }
+          subEmotion {
+            color
+            id
+            is_positive
+            name
+          }
+          user_input
+          mainEmotion {
+            color
+            id
+            is_positive
+            name
           }
         }
       }
-    }
   `,
 };
