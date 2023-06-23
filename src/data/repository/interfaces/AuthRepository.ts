@@ -18,4 +18,5 @@ export interface AuthRepository {
     country: string;
     password: string;
   }) => Promise<APIRegisterResponse | null>;
+  refreshToken: () => Promise<string | null>;
 }

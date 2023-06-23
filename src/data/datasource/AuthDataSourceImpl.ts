@@ -2,7 +2,12 @@ import "reflect-metadata";
 import { injectable } from "inversify";
 import { AuthDataSource } from "@/data/datasource/interfaces/AuthDataSource";
 import { GraphQLBaseService } from "@/data/GraphQLBaseService";
-import { LOGIN, LOGOUT, REGISTER } from "@/lib/apollo/request/auth";
+import {
+  LOGIN,
+  LOGOUT,
+  REFRESH_TOKEN,
+  REGISTER,
+} from "@/lib/apollo/request/auth";
 
 /**
  * Implementation of the AuthDataSource interface.
@@ -69,5 +74,18 @@ export class AuthDataSourceImpl
       variables: data,
     });
     return JSON.parse(res.data[REGISTER.queryName]);
+  }
+
+  /**
+   * Refreshes the access token of the currently authenticated user.
+   *
+   * @async
+   * @returns {Promise<string>} A promise that resolves to the refreshToken response.
+   */
+  async refreshToken() {
+    const res = await this.api.mutate({
+      mutation: REFRESH_TOKEN.query,
+    });
+    return JSON.parse(res.data[REFRESH_TOKEN.queryName]).authorisation.token;
   }
 }

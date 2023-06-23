@@ -22,6 +22,7 @@ const TYPES = {
   LoginUseCase: Symbol.for("LoginUseCase"),
   LogoutUseCase: Symbol.for("LogoutUseCase"),
   RegisterUseCase: Symbol.for("RegisterUseCase"),
+  RefreshTokenUseCase: Symbol.for("RefreshTokenUseCase"),
 
   /* Account */
   GetAccountDetailsUseCase: Symbol.for("GetAccountDetailsUseCase"),

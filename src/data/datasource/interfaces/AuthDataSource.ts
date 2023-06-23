@@ -58,4 +58,5 @@ export interface AuthDataSource {
     country: string;
     password: string;
   }) => Promise<APIRegisterResponse>;
+  refreshToken: () => Promise<string>;
 }

@@ -12,6 +12,7 @@ import {
   Group,
   Button,
   Center,
+  Loader,
 } from "@mantine/core";
 import { useViewModel } from "@/presentation/viewModel/signin";
 import { getSession } from "next-auth/react";
@@ -20,7 +21,8 @@ import Layout from "@/presentation/components/layout";
 import Link from "next/link";
 
 const SignIn = () => {
-  const { form, handleSubmit, handleClickCreateAccount } = useViewModel();
+  const { form, handleSubmit, handleClickCreateAccount, hasSubmited } =
+    useViewModel();
 
   return (
     <Container size={420} my={40}>
@@ -66,9 +68,15 @@ const SignIn = () => {
                 Forgot password?
               </Anchor>
             </Group>
-            <Button fullWidth mt="xl" type="submit">
-              Sign in
-            </Button>
+            {hasSubmited ? (
+              <Center mt="xl">
+                <Loader size="sm" variant="bars" />
+              </Center>
+            ) : (
+              <Button fullWidth mt="xl" type="submit">
+                Sign in
+              </Button>
+            )}
           </Paper>
           <Text color="dimmed" size="sm" align="center" mt={24}>
             Do not have an account yet?{" "}

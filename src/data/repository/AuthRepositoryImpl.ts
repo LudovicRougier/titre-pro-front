@@ -55,4 +55,8 @@ export class AuthRepositoryImpl implements AuthRepository {
   }) {
     return this.authDataSource.register(data);
   }
+
+  public async refreshToken() {
+    return this.authDataSource.refreshToken();
+  }
 }

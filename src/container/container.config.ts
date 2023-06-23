@@ -41,6 +41,7 @@ import { GetMoodDetailsUseCase } from "@/domain/usecase/mood/GetMoodDetailsUseCa
 import { RemoveMoodHistoryEntryUseCase } from "@/domain/usecase/mood/RemoveMoodHistoryEntryUseCase";
 import { RetrieveMoodHistoryListUseCase } from "@/domain/usecase/mood/RetrieveMoodHistoryListUseCase";
 import { GetMovieDetailsUseCase } from "@/domain/usecase/movie/GetMovieDetailsUseCase";
+import { RefreshTokenUseCase } from "@/domain/usecase/auth/RefreshTokenUseCase";
 
 const container = new Container();
 
@@ -74,6 +75,9 @@ container.bind<GenreRepository>(TYPES.GenreRepository).to(GenreRepositoryImpl);
 container.bind<LoginUseCase>(TYPES.LoginUseCase).to(LoginUseCase);
 container.bind<LogoutUseCase>(TYPES.LogoutUseCase).to(LogoutUseCase);
 container.bind<RegisterUseCase>(TYPES.RegisterUseCase).to(RegisterUseCase);
+container
+  .bind<RefreshTokenUseCase>(TYPES.RefreshTokenUseCase)
+  .to(RefreshTokenUseCase);
 
 container
   .bind<GetAccountDetailsUseCase>(TYPES.GetAccountDetailsUseCase)

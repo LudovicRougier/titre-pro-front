@@ -7,12 +7,14 @@ import { AuthRepository } from "@/data/repository/interfaces/AuthRepository";
 import { LoginUseCase } from "@/domain/usecase/auth/LoginUseCase";
 import { LogoutUseCase } from "@/domain/usecase/auth/LogoutUseCase";
 import { RegisterUseCase } from "@/domain/usecase/auth/RegisterUseCase";
+import { RefreshTokenUseCase } from "@/domain/usecase/auth/RefreshTokenUseCase";
 
 export const AuthDependencyContext = createContext<{
   repository: AuthRepository;
   loginUseCase: LoginUseCase;
   logoutUseCase: LogoutUseCase;
   registerUseCase: RegisterUseCase;
+  refreshToken: RefreshTokenUseCase;
 } | null>(null);
 
 export const AuthDependencyProvider: React.FC<ChildrenInterface> = ({
@@ -24,6 +26,9 @@ export const AuthDependencyProvider: React.FC<ChildrenInterface> = ({
       loginUseCase: container.get<LoginUseCase>(TYPES.LoginUseCase),
       logoutUseCase: container.get<LogoutUseCase>(TYPES.LogoutUseCase),
       registerUseCase: container.get<RegisterUseCase>(TYPES.RegisterUseCase),
+      refreshToken: container.get<RefreshTokenUseCase>(
+        TYPES.RefreshTokenUseCase
+      ),
     };
   }, []);
 

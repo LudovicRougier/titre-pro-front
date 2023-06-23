@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
 import { MantineProvider } from "@mantine/core";
+import { RefreshTokenHandler } from "@/presentation/components/refreshToken";
 
 import LayoutMaster from "@/presentation/components/layoutMaster";
 import GlobalContext from "@/shared/contexts/globalContext";
@@ -28,6 +29,7 @@ const MyApp = ({
   return (
     <GlobalContext>
       <SessionProvider session={session}>
+        <RefreshTokenHandler />
         <Head>
           <title>Emotion Pictures</title>
           <meta charSet="UTF-8" key="charset" />
