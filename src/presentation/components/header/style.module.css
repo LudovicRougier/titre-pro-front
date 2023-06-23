@@ -1,8 +1,14 @@
 /* Header CSS */
 
 .header {
-  background: transparent;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 10%,  rgba(0, 0, 0, 0.6) 65%, transparent 100%);
   border: none;
+}
+
+@media (min-width: 50em) {
+  .header {
+    background: transparent;
+  }
 }
 
 .headerWrapper {

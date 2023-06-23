@@ -25,9 +25,18 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
   const duration = convertDurationToString(movie.runtime);
 
   return (
-    <Center style={{ height: "100%" }}>
+    <div
+      style={{
+        height: "100%",
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }}
+    >
       <BackgroundImage src={movie.backdropPath} className={s.card}>
-        <Container className={s.cardInner}>
+        <div className={s.cardInner}>
           <div className={s.cardBody}>
             <div className={s.cardTitle}>{movie.title}</div>
             <div className={s.cardDirector}>{directors}</div>
@@ -47,23 +56,23 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
                 </li>
               </ul>
             </div>
-            <div className={s.cardSlug}>{movie.overview}</div>
-            <Group className={s.cardActors}>
-              <span>{actors}</span>
-            </Group>
             <div>
-              <Group>
+              <Group className={s.cardGenres}>
                 {movie.genres.map((genre) => (
-                  <Badge color="gray" key={genre.id}>
+                  <Badge color="gray" variant="outline" key={genre.id}>
                     {genre.name}
                   </Badge>
                 ))}
               </Group>
             </div>
+            <div className={s.cardSlug}>{movie.overview}</div>
+            <Group className={s.cardActors}>
+              <span>{actors}</span>
+            </Group>
           </div>
-        </Container>
+        </div>
       </BackgroundImage>
-    </Center>
+    </div>
   );
 };
 
