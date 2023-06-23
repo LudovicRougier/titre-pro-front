@@ -86,6 +86,12 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         variant="filled"
         radius="md"
         {...form.getInputProps("name")}
+        onClick={(event) => {
+          if (!isOnEdit) {
+            event.preventDefault();
+            toggleEdit();
+          }
+        }}
       />
       <Space h="md" />
 
@@ -96,6 +102,12 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         variant="filled"
         radius="md"
         {...form.getInputProps("age")}
+        onClick={(event) => {
+          if (!isOnEdit) {
+            event.preventDefault();
+            toggleEdit();
+          }
+        }}
       />
       <Space h="md" />
 
@@ -107,6 +119,12 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         radius="md"
         data={countries}
         {...form.getInputProps("country")}
+        onClick={(event) => {
+          if (!isOnEdit) {
+            event.preventDefault();
+            toggleEdit();
+          }
+        }}
       />
       <Space h="md" />
 
@@ -117,6 +135,12 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         variant="filled"
         radius="md"
         {...form.getInputProps("description")}
+        onClick={(event) => {
+          if (!isOnEdit) {
+            event.preventDefault();
+            toggleEdit();
+          }
+        }}
       />
 
       <Space h="md" />
@@ -135,6 +159,12 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         nothingFound="Nothing found"
         radius="md"
         {...form.getInputProps("wantedGenres")}
+        onClick={(event) => {
+          if (!isOnEdit) {
+            event.preventDefault();
+            toggleEdit();
+          }
+        }}
       />
 
       <Space h="md" />
@@ -148,6 +178,12 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         nothingFound="Nothing found"
         radius="md"
         {...form.getInputProps("unwantedGenres")}
+        onClick={(event) => {
+          if (!isOnEdit) {
+            event.preventDefault();
+            toggleEdit();
+          }
+        }}
       />
 
       <Space h="md" />
@@ -162,6 +198,12 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         nothingFound="Nothing found"
         radius="md"
         {...form.getInputProps("wantedWatchProviders")}
+        onClick={(event) => {
+          if (!isOnEdit) {
+            event.preventDefault();
+            toggleEdit();
+          }
+        }}
       />
 
       <Space h="xl" />

@@ -7,6 +7,7 @@ const TYPES = {
   MovieDataSource: Symbol.for("MovieDataSource"),
   AccountDataSource: Symbol.for("AccountDataSource"),
   WatchProviderDataSource: Symbol.for("WatchProviderDataSource"),
+  GenreDataSource: Symbol.for("GenreDataSource"),
 
   /* REPOSITORIES */
   AuthRepository: Symbol.for("AuthRepository"),
@@ -14,6 +15,7 @@ const TYPES = {
   MovieRepository: Symbol.for("MovieRepository"),
   AccountRepository: Symbol.for("AccountRepository"),
   WatchProviderRepository: Symbol.for("WatchProviderRepository"),
+  GenreRepository: Symbol.for("GenreRepository"),
 
   /* USE CASES */
   /* Auth */
@@ -39,6 +41,9 @@ const TYPES = {
 
   /* Watch Provider */
   GetWatchProvidersUseCase: Symbol.for("GetWatchProvidersUseCase"),
+
+  /* Genre */
+  GetGenresUseCase: Symbol.for("GetGenresUseCase"),
 };
 
 export { TYPES };

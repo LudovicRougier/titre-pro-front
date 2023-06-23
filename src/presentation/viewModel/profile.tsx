@@ -1,6 +1,6 @@
-import { movieGenres } from "@/data/static/movieGenres";
-import { Genre, UserModel } from "@/domain/model/User";
+import { UserModel } from "@/domain/model/User";
 import { WatchProvider } from "@/domain/model/WatchProvider";
+import { Genre as movieGenres } from "@/domain/model/Genre";
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { useAccountDependencies } from "@/shared/contexts/dependencies/account";
 import { useShow } from "@/shared/hooks/useShow";
@@ -13,9 +13,11 @@ export const useViewModel = (userInfo: UserModel) => {
   const watchProviderList = useAppSelector(
     (state) => state.WATCH_PROVIDER.watchProviders
   );
+  const genreList = useAppSelector((state) => state.GENRE.genres);
 
-  const [wantedGenres, setWantedGenres] = useState<Genre[]>(movieGenres);
-  const [unwantedGenres, setUnwantedGenres] = useState<Genre[]>(movieGenres);
+  const [wantedGenres, setWantedGenres] = useState<movieGenres[]>(genreList);
+  const [unwantedGenres, setUnwantedGenres] =
+    useState<movieGenres[]>(genreList);
 
   const form = useForm({
     initialValues: {
@@ -23,8 +25,8 @@ export const useViewModel = (userInfo: UserModel) => {
       age: userInfo.age ?? 0,
       country: userInfo.country,
       description: userInfo.description ?? "",
-      wantedGenres: userInfo.wantedGenres?.map((genre) => genre.id),
-      unwantedGenres: userInfo.unwantedGenres?.map((genre) => genre.id),
+      wantedGenres: userInfo.wantedGenres?.map((genre) => genre.genreId),
+      unwantedGenres: userInfo.unwantedGenres?.map((genre) => genre.genreId),
       wantedWatchProviders: userInfo.wantedWatchProviders?.map(
         (watchProvider) => watchProvider.providerId
       ),
@@ -40,13 +42,13 @@ export const useViewModel = (userInfo: UserModel) => {
 
   const handleSubmit = form.onSubmit(async (values) => {
     const selectedWantedGenres = values.wantedGenres?.map((genreId) => {
-      const genre = movieGenres.find((genre) => genre.id === genreId);
+      const genre = genreList.find((genre) => genre.genreId === genreId);
       return genre || null;
-    }) as Genre[];
+    }) as movieGenres[];
     const selectedUnwantedGenres = values.unwantedGenres?.map((genreId) => {
-      const genre = movieGenres.find((genre) => genre.id === genreId);
+      const genre = genreList.find((genre) => genre.genreId === genreId);
       return genre || null;
-    }) as Genre[];
+    }) as movieGenres[];
     const selectedWantedWatchProviders = values.wantedWatchProviders?.map(
       (providerId) => {
         const watchProvider = watchProviderList.find(
@@ -69,15 +71,20 @@ export const useViewModel = (userInfo: UserModel) => {
   });
 
   useEffect(() => {
-    const filteredWantedGenres: Genre[] = movieGenres.filter((genre) => {
-      return !form.values.unwantedGenres?.includes(genre.id);
+    const filteredWantedGenres: movieGenres[] = genreList.filter((genre) => {
+      return !form.values.unwantedGenres?.includes(genre.genreId);
     });
-    const filteredUnwantedGenres: Genre[] = movieGenres.filter((genre) => {
-      return !form.values.wantedGenres?.includes(genre.id);
+    const filteredUnwantedGenres: movieGenres[] = genreList.filter((genre) => {
+      return !form.values.wantedGenres?.includes(genre.genreId);
     });
     setWantedGenres(filteredWantedGenres);
     setUnwantedGenres(filteredUnwantedGenres);
-  }, [form.values.unwantedGenres, form.values.wantedGenres]);
+  }, [form.values.unwantedGenres, form.values.wantedGenres, genreList]);
+
+  useEffect(() => {
+    setWantedGenres(genreList);
+    setUnwantedGenres(genreList);
+  }, [genreList]);
 
   return {
     form,
@@ -85,12 +92,12 @@ export const useViewModel = (userInfo: UserModel) => {
     isOnEdit,
     toggleEdit,
     wantedGenres: wantedGenres.map((genre) => ({
-      label: genre.name,
-      value: genre.id,
+      label: genre.genreName,
+      value: genre.genreId,
     })),
     unwantedGenres: unwantedGenres.map((genre) => ({
-      label: genre.name,
-      value: genre.id,
+      label: genre.genreName,
+      value: genre.genreId,
     })),
     watchProviderList: watchProviderList.map((watchProvider) => ({
       label: watchProvider.providerName,

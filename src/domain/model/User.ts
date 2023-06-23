@@ -1,4 +1,5 @@
 import { WatchProviderModel } from "@/domain/model/WatchProvider";
+import { Genre as movieGenre } from "@/domain/model/Genre";
 
 export interface Genre {
   id: string;
@@ -28,8 +29,8 @@ export interface APIUser {
   email?: string;
   current_password?: string | null;
   new_password?: string | null;
-  wanted_genres?: Genre[] | null;
-  unwanted_genres?: Genre[] | null;
+  wanted_genres?: movieGenre[] | null;
+  unwanted_genres?: movieGenre[] | null;
   wanted_watch_providers?: APIWatchProvider[] | null;
   prompts?: number[] | null;
 }
@@ -44,8 +45,8 @@ export interface User {
   email?: string;
   currentPassword?: string | null;
   newPassword?: string | null;
-  wantedGenres?: Genre[] | null;
-  unwantedGenres?: Genre[] | null;
+  wantedGenres?: movieGenre[] | null;
+  unwantedGenres?: movieGenre[] | null;
   wantedWatchProviders?: WatchProvider[] | null;
   prompts?: number[] | null;
 }
@@ -69,9 +70,9 @@ export class UserModel implements User {
 
   newPassword?: string | null;
 
-  wantedGenres?: Genre[] | null;
+  wantedGenres?: movieGenre[] | null;
 
-  unwantedGenres?: Genre[] | null;
+  unwantedGenres?: movieGenre[] | null;
 
   wantedWatchProviders?: WatchProvider[] | null;
 

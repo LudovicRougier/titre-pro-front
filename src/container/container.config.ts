@@ -11,6 +11,8 @@ import { AccountDataSource } from "@/data/datasource/interfaces/AccountDataSourc
 import { AccountDataSourceImpl } from "@/data/datasource/AccountDataSourceImpl";
 import { WatchProviderDataSource } from "@/data/datasource/interfaces/WatchProviderDataSource";
 import { WatchProviderDataSourceImpl } from "@/data/datasource/WatchProviderDataSourceImpl";
+import { GenreDataSource } from "@/data/datasource/interfaces/GenreDataSource";
+import { GenreDataSourceImpl } from "@/data/datasource/GenreDataSourceImpl";
 
 import { AuthRepository } from "@/data/repository/interfaces/AuthRepository";
 import { AuthRepositoryImpl } from "@/data/repository/AuthRepositoryImpl";
@@ -22,8 +24,11 @@ import { AccountRepository } from "@/data/repository/interfaces/AccountRepositor
 import { AcccountRepositoryImpl } from "@/data/repository/AccountRepositoryImpl";
 import { WatchProviderRepository } from "@/data/repository/interfaces/WatchProviderRepository";
 import { WatchProviderRepositoryImpl } from "@/data/repository/WatchProviderRepositoryImpl";
+import { GenreRepository } from "@/data/repository/interfaces/GenreRepository";
+import { GenreRepositoryImpl } from "@/data/repository/GenreRepositoryImpl";
 
 import { GetWatchProvidersUseCase } from "@/domain/usecase/watchProvider/GetWatchProvidersUseCase";
+import { GetGenresUseCase } from "@/domain/usecase/genre/GetGenresUseCase";
 import { AxiosBaseService } from "@/data/AxiosBaseService";
 import { DeleteAccountUseCase } from "@/domain/usecase/account/DeleteAccountUseCase";
 import { GetAccountDetailsUseCase } from "@/domain/usecase/account/GetAccountDetailsUseCase";
@@ -51,6 +56,7 @@ container
 container
   .bind<WatchProviderDataSource>(TYPES.WatchProviderDataSource)
   .to(WatchProviderDataSourceImpl);
+container.bind<GenreDataSource>(TYPES.GenreDataSource).to(GenreDataSourceImpl);
 
 /* REPOSITORIES */
 container.bind<MoodRepository>(TYPES.MoodRepository).to(MoodRepositoryImpl);
@@ -62,6 +68,7 @@ container
 container
   .bind<WatchProviderRepository>(TYPES.WatchProviderRepository)
   .to(WatchProviderRepositoryImpl);
+container.bind<GenreRepository>(TYPES.GenreRepository).to(GenreRepositoryImpl);
 
 /* USE CASES */
 container.bind<LoginUseCase>(TYPES.LoginUseCase).to(LoginUseCase);
@@ -99,3 +106,5 @@ export { container, TYPES };
 container
   .bind<GetWatchProvidersUseCase>(TYPES.GetWatchProvidersUseCase)
   .to(GetWatchProvidersUseCase);
+
+container.bind<GetGenresUseCase>(TYPES.GetGenresUseCase).to(GetGenresUseCase);
