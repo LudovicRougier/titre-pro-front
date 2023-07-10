@@ -1,8 +1,8 @@
 import React from "react";
 import { convertDurationToString } from "@/utils/convertDurationToString";
-import { BackgroundImage, Badge, Group } from "@mantine/core";
+import { BackgroundImage, Badge, Group, Rating, Tooltip } from "@mantine/core";
 import { MovieModel } from "@/domain/model/Movie";
-import { Star1, Calendar, Clock } from "iconsax-react";
+import { Calendar, Clock } from "iconsax-react";
 
 import s from "./style.module.css";
 
@@ -16,6 +16,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
   const directors = movie.directors.map((director) => director.name).join(", ");
   const actors = movie.actors.map((actor) => actor.name).join(", ");
   const duration = convertDurationToString(movie.runtime);
+  const rating = parseFloat((movie.rating / 2).toFixed(1));
 
   return (
     <div
@@ -39,16 +40,21 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
             <div>
               <ul className={s.cardIcons}>
                 <li className={s.cardIconPair}>
-                  <Star1 size={16} />
-                  <span className={s.cardSubText}>4.8</span>
-                </li>
-                <li className={s.cardIconPair}>
                   <Calendar size={16} />
                   <span className={s.cardSubText}>2013</span>
                 </li>
                 <li className={s.cardIconPair}>
                   <Clock size={16} />
                   <span className={s.cardSubText}>{duration}</span>
+                </li>
+                <li className={s.cardIconPair}>
+                  <Tooltip
+                    label={`${rating.toString()}`}
+                    position="top"
+                    color="gray"
+                  >
+                    <Rating value={rating} fractions={10} readOnly />
+                  </Tooltip>
                 </li>
               </ul>
             </div>

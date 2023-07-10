@@ -35,6 +35,7 @@ export const GET_RECOMMANDATIONS = {
           backdrop_path
           poster_path
           runtime
+          vote_average
           directors {
             id
             name
@@ -57,6 +58,7 @@ export const GET_RECOMMANDATIONS = {
           backdrop_path
           poster_path
           runtime
+          vote_average
           directors {
             id
             name

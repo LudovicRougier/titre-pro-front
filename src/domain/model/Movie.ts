@@ -7,6 +7,7 @@ export interface APIMovie {
   backdrop_path: string;
   poster_path: string;
   runtime: number;
+  vote_average: number;
   directors: { id: string; name: string; profile_picture: string }[];
   actors: { id: string; name: string; profile_picture: string }[];
   genres: APIGenre[];
@@ -19,6 +20,7 @@ export interface Movie {
   backdropPath: string;
   posterPath: string;
   runtime: number;
+  rating: number;
   directors: { id: string; name: string; profilePicture: string }[];
   actors: { id: string; name: string; profilePicture: string }[];
   genres: GenreModel[];
@@ -37,6 +39,8 @@ export class MovieModel implements Movie {
 
   runtime: number;
 
+  rating: number;
+
   directors: { id: string; name: string; profilePicture: string }[];
 
   actors: { id: string; name: string; profilePicture: string }[];
@@ -50,6 +54,7 @@ export class MovieModel implements Movie {
     this.backdropPath = movie.backdropPath;
     this.posterPath = movie.posterPath;
     this.runtime = movie.runtime;
+    this.rating = movie.rating;
     this.directors = movie.directors;
     this.actors = movie.actors;
     this.genres = movie.genres;
@@ -61,6 +66,7 @@ export class MovieModel implements Movie {
       title: movie.title,
       overview: movie.overview,
       runtime: movie.runtime,
+      rating: movie.vote_average,
       directors: movie.directors.map((director) => ({
         id: director.id,
         name: director.name,

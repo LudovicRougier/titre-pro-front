@@ -29,6 +29,7 @@ export const GET_MOOD_DETAILS = {
           backdrop_path
           poster_path
           runtime
+          vote_average
           directors {
             id
             name
@@ -51,6 +52,7 @@ export const GET_MOOD_DETAILS = {
           backdrop_path
           poster_path
           runtime
+          vote_average
           directors {
             id
             name
