@@ -60,11 +60,10 @@ export class MoodRepositoryImpl implements MoodRepository {
   /**
    * Retrieves the history list of moods for a given ID.
    *
-   * @param {number} id - The ID for which to retrieve the mood history list.
    * @returns {Promise<?MoodModel[]>} A promise that resolves to the retrieved mood history list.
    */
-  async retrieveMoodHistoryList(id: number): Promise<MoodModel[] | null> {
-    const res = await this.moodDataSource.retrieveMoodHistoryList(id);
+  async retrieveMoodHistoryList(): Promise<MoodModel[] | null> {
+    const res = await this.moodDataSource.retrieveMoodHistoryList();
     if (res === null) return null;
 
     const moods = res.map((mood) => MoodModel.fromJSON(mood));
