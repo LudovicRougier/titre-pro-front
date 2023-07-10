@@ -3,8 +3,9 @@
 .suggestions {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 0;
+  width: 90%;
+  padding: 2rem;
+  margin: 0;
 }
 
 .suggestionsTop {

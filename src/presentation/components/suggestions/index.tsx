@@ -18,17 +18,17 @@ interface SuggestionsProps {
 
 const Suggestions: React.FC<SuggestionsProps> = ({ movies, mainEmotion }) => {
   return (
-    <Container className={s.suggestions}>
-      <Container className={s.suggestionsTop}>
+    <div className={s.suggestions}>
+      <div className={s.suggestionsTop}>
         <Text className={s.suggestionsTopTitle}>Suggestions :</Text>
         <Badge variant="light" color="gray">
           {mainEmotion.translation}
         </Badge>
-      </Container>
-      <Container className={s.suggestionsMain}>
+      </div>
+      <div className={s.suggestionsMain}>
         <MovieCarousel movies={movies} />
-      </Container>
-    </Container>
+      </div>
+    </div>
   );
 };
 

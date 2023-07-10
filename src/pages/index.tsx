@@ -27,23 +27,8 @@ const Home: NextPage = () => {
     textInputRef,
   } = useViewModel();
 
-  const { height, width } = useViewportSize();
-
-  const elements = [
-    { id: 1, color: "red", width: 400, height: 400, opacity: 0.5, blur: 100 },
-    {
-      id: 2,
-      color: "yellow",
-      width: 350,
-      height: 350,
-      opacity: 0.5,
-      blur: 100,
-    },
-    { id: 3, color: "pink", width: 600, height: 600, opacity: 0.5, blur: 100 },
-  ];
-
   return (
-    <Container className={s.homepage}>
+    <div className={s.homepage}>
       <Center className={s.homepageContent}>
         {!recommandations && (
           <motion.div
@@ -58,14 +43,6 @@ const Home: NextPage = () => {
             <Blob blur={0} opacity={1} size={200} emotionColor="#ffffff" />
           </motion.div>
         )}
-        {elements.map((element) => (
-          <LightAnimation
-            key={element.id}
-            element={element}
-            containerHeight={height}
-            containerWidth={width}
-          />
-        ))}
         <motion.div
           className={s.emotionTextInputMotion}
           layout
@@ -157,7 +134,7 @@ const Home: NextPage = () => {
           </Button>
         )}
       </Center>
-    </Container>
+    </div>
   );
 };
 
