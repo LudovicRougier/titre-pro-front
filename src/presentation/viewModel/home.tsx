@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useAppMutation } from "@/lib/react-query/hooks";
 import { useMoodDependencies } from "@/shared/contexts/dependencies/mood";
 import { MoodModel } from "@/domain/model/Mood";
@@ -9,10 +8,15 @@ export const useViewModel = () => {
   const { fetchMoodRecommandations } = useMoodDependencies();
   const [userInput, setUserInput] = useDebouncedState("", 200);
   const [error, setError] = useState<boolean>(false);
+  const textInputRef = useRef<HTMLInputElement>(null);
 
   const resetInput = () => {
     setError(false);
     setUserInput("");
+    if (textInputRef.current) {
+      textInputRef.current.value = "";
+      textInputRef.current.focus();
+    }
   };
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,5 +47,6 @@ export const useViewModel = () => {
     error,
     userInput,
     resetInput,
+    textInputRef,
   };
 };

@@ -5,9 +5,13 @@ import { TypeAnimation } from "react-type-animation";
 
 interface TypingAnimationProps {
   sentences: string[];
+  color?: string | undefined;
 }
 
-export const TypingAnimation: FC<TypingAnimationProps> = ({ sentences }) => {
+export const TypingAnimation: FC<TypingAnimationProps> = ({
+  sentences,
+  color = "#C1C2C5",
+}) => {
   const preparedSentences = addNumberAfterSubstring(sentences, 1000);
 
   return (
@@ -23,7 +27,12 @@ export const TypingAnimation: FC<TypingAnimationProps> = ({ sentences }) => {
         display: "inline-block",
         marginTop: "1em",
         textAlign: "center",
+        color,
       }}
     />
   );
+};
+
+TypingAnimation.defaultProps = {
+  color: "#C1C2C5",
 };

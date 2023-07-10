@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import Blob from "@/presentation/components/blob";
 import LightAnimation from "@/presentation/components/animatedLight";
 import { waitingSentences } from "@/data/static/waitingSentences";
+import { errorSentences } from "@/data/static/errorSentences";
 import { TypingAnimation } from "@/presentation/components/typeAnimation";
 import Suggestions from "@/presentation/components/suggestions";
 import { removeDuplicates } from "@/utils/removeDuplicates";
@@ -23,6 +24,7 @@ const Home: NextPage = () => {
     isLoading,
     error,
     resetInput,
+    textInputRef,
   } = useViewModel();
 
   const { height, width } = useViewportSize();
@@ -74,6 +76,7 @@ const Home: NextPage = () => {
           }}
         >
           <TextInput
+            ref={textInputRef}
             placeholder="How do you feel today ?"
             variant="filled"
             error={error}
@@ -92,6 +95,16 @@ const Home: NextPage = () => {
           />
         </motion.div>
         {isLoading && <TypingAnimation sentences={waitingSentences.en} />}
+        {error && (
+          <TypingAnimation
+            sentences={[
+              errorSentences.en[
+                Math.floor(Math.random() * (errorSentences.en.length - 1))
+              ],
+            ]}
+            color="#DC0800"
+          />
+        )}
         {recommandations && (
           <>
             <motion.div
