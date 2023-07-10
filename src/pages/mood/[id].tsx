@@ -6,9 +6,8 @@ import { useViewModel } from "@/presentation/viewModel/moodDetails";
 import { Center, Container, Text, Blockquote } from "@mantine/core";
 import { motion } from "framer-motion";
 import { removeDuplicates } from "@/utils/removeDuplicates";
-import LightAnimation from "@/presentation/components/animatedLight";
-import { useViewportSize } from "@mantine/hooks";
 
+import LightAnimationGroup from "@/presentation/components/animatedLightGroup";
 import s from "./style.module.css";
 
 interface MoodDetailsProps {
@@ -18,42 +17,12 @@ interface MoodDetailsProps {
 const MoodDetails: NextPage<MoodDetailsProps> = ({ moodId }) => {
   const { moodDetails } = useViewModel(moodId);
 
-  const { height, width } = useViewportSize();
-
   if (!moodDetails) return null;
-
-  const elements = [
-    {
-      id: 1,
-      color: "purple",
-      width: 400,
-      height: 400,
-      opacity: 0.25,
-      blur: 100,
-    },
-    {
-      id: 2,
-      color: "purple",
-      width: 350,
-      height: 350,
-      opacity: 0.25,
-      blur: 100,
-    },
-    { id: 3, color: "blue", width: 600, height: 600, opacity: 0.25, blur: 100 },
-  ];
 
   return (
     <Container className={s.mood}>
       <Center className={s.moodContent}>
-        {elements.map((element) => (
-          <LightAnimation
-            key={element.id}
-            element={element}
-            containerHeight={height}
-            containerWidth={width}
-          />
-        ))}
-
+        <LightAnimationGroup recommendations={moodDetails} />
         <motion.div
           layout
           initial={{ opacity: 0, y: 325 }}

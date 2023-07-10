@@ -1,8 +1,17 @@
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 
+type Light = {
+  id: number;
+  color: string;
+  width: number;
+  height: number;
+  opacity: number;
+  blur: number;
+};
+
 interface LightAnimationProps {
-  element: any;
+  light: Light;
   containerWidth: number;
   containerHeight: number;
 }
@@ -10,32 +19,31 @@ interface LightAnimationProps {
 const LightAnimation: React.FC<LightAnimationProps> = ({
   containerWidth,
   containerHeight,
-  element,
+  light,
 }) => {
   const controls = useAnimation();
   useEffect(() => {
     const interval = setInterval(() => {
-      const newX = Math.random() * (containerWidth - element.width);
-      const newY = Math.random() * (containerHeight - element.height);
-
+      const newX = Math.random() * (containerWidth - light.width);
+      const newY = Math.random() * (containerHeight - light.height);
       const adjustedX = Math.max(
         0,
-        Math.min(newX, containerWidth - element.width)
+        Math.min(newX, containerWidth - light.width)
       );
       const adjustedY = Math.max(
         0,
-        Math.min(newY, containerHeight - element.height)
+        Math.min(newY, containerHeight - light.height)
       );
 
       controls.start({
         x: adjustedX,
         y: adjustedY,
-        transition: { duration: 10 }, // Adjust the duration of the animation (in seconds) according to your preference
+        transition: { duration: 10 },
       });
-    }, 10000); // Adjust the interval time (in milliseconds) according to your preference
+    }, 10000);
 
     return () => clearInterval(interval);
-  }, [element, containerWidth, containerHeight, controls]);
+  }, [light, containerWidth, containerHeight, controls]);
 
   return (
     <motion.div
@@ -43,11 +51,11 @@ const LightAnimation: React.FC<LightAnimationProps> = ({
         position: "absolute",
         top: 0,
         left: 0,
-        width: `${element.width}px`,
-        height: `${element.height}px`,
-        opacity: element.opacity,
-        filter: `blur(${element.blur}px)`,
-        backgroundColor: element.color,
+        width: `${light.width}px`,
+        height: `${light.height}px`,
+        opacity: light.opacity,
+        filter: `blur(${light.blur}px)`,
+        backgroundColor: light.color,
         borderRadius: "100%",
       }}
       animate={controls}

@@ -6,14 +6,13 @@ import { Button, Center, Container, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
 import { motion } from "framer-motion";
 import Blob from "@/presentation/components/blob";
-import LightAnimation from "@/presentation/components/animatedLight";
 import { waitingSentences } from "@/data/static/waitingSentences";
 import { errorSentences } from "@/data/static/errorSentences";
 import { TypingAnimation } from "@/presentation/components/typeAnimation";
 import Suggestions from "@/presentation/components/suggestions";
 import { removeDuplicates } from "@/utils/removeDuplicates";
-import { useViewportSize } from "@mantine/hooks";
 
+import LightAnimationGroup from "@/presentation/components/animatedLightGroup";
 import s from "./style.module.css";
 
 const Home: NextPage = () => {
@@ -84,6 +83,7 @@ const Home: NextPage = () => {
         )}
         {recommandations && (
           <>
+            <LightAnimationGroup recommendations={recommandations} />
             <motion.div
               layout
               initial={{ opacity: 0, y: 325 }}
