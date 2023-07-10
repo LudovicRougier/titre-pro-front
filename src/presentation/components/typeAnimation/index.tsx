@@ -18,7 +18,12 @@ export const TypingAnimation: FC<TypingAnimationProps> = ({ sentences }) => {
       wrapper="span"
       cursor
       repeat={Infinity}
-      style={{ fontSize: "1em", display: "inline-block", marginTop: "1em" }}
+      style={{
+        fontSize: "1em",
+        display: "inline-block",
+        marginTop: "1em",
+        textAlign: "center",
+      }}
     />
   );
 };

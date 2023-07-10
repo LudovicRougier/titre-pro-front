@@ -5,11 +5,14 @@ import { useViewModel } from "@/presentation/viewModel/home";
 import { Button, Center, Container, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
 import { motion } from "framer-motion";
-// import Blob from "@/presentation/components/blob";
+import Blob from "@/presentation/components/blob";
+import LightAnimation from "@/presentation/components/animatedLight";
 import { waitingSentences } from "@/data/static/waitingSentences";
 import { TypingAnimation } from "@/presentation/components/typeAnimation";
 import Suggestions from "@/presentation/components/suggestions";
 import { removeDuplicates } from "@/utils/removeDuplicates";
+import { useViewportSize } from "@mantine/hooks";
+
 import s from "./style.module.css";
 
 const Home: NextPage = () => {
@@ -22,12 +25,45 @@ const Home: NextPage = () => {
     resetInput,
   } = useViewModel();
 
+  const { height, width } = useViewportSize();
+
+  const elements = [
+    { id: 1, color: "red", width: 400, height: 400, opacity: 0.5, blur: 100 },
+    {
+      id: 2,
+      color: "yellow",
+      width: 350,
+      height: 350,
+      opacity: 0.5,
+      blur: 100,
+    },
+    { id: 3, color: "pink", width: 600, height: 600, opacity: 0.5, blur: 100 },
+  ];
+
   return (
     <Container className={s.homepage}>
       <Center className={s.homepageContent}>
-        {/* <Container style={{ position: "absolute", top: "25%" }}> */}
-        {/* <Blob /> */}
-        {/* </Container> */}
+        {!recommandations && (
+          <motion.div
+            layout
+            exit={{ opacity: 0 }}
+            transition={{
+              opacity: { duration: 1 },
+              layout: { duration: 1 },
+            }}
+            style={{ position: "absolute", top: "20%" }}
+          >
+            <Blob blur={0} opacity={1} size={200} emotionColor="#ffffff" />
+          </motion.div>
+        )}
+        {elements.map((element) => (
+          <LightAnimation
+            key={element.id}
+            element={element}
+            containerHeight={height}
+            containerWidth={width}
+          />
+        ))}
         <motion.div
           className={s.emotionTextInputMotion}
           layout
@@ -35,7 +71,6 @@ const Home: NextPage = () => {
           animate={{ opacity: 1 }}
           transition={{
             opacity: { duration: 1 },
-            layout: { duration: 1 },
           }}
         >
           <TextInput
@@ -56,7 +91,7 @@ const Home: NextPage = () => {
             }}
           />
         </motion.div>
-        {isLoading && <TypingAnimation sentences={waitingSentences.fr} />}
+        {isLoading && <TypingAnimation sentences={waitingSentences.en} />}
         {recommandations && (
           <>
             <motion.div
@@ -70,7 +105,6 @@ const Home: NextPage = () => {
               }}
             >
               <TypingAnimation sentences={[recommandations.message]} />
-              {/* <Text>{recommandations.message}</Text> */}
             </motion.div>
             <motion.div
               layout

@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
-import { Badge, Container, Title } from "@mantine/core";
 import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { Carousel } from "@mantine/carousel";
 import { Movie } from "@/domain/model/Movie";
-import { Star1 } from "iconsax-react";
 import { interpolate } from "@popmotion/popcorn";
 
 import s from "./style.module.css";
@@ -15,20 +13,16 @@ interface MoviePosterProps {
   width: number;
 }
 
-const MoviePosterTest: React.FC<MoviePosterProps> = ({
-  movie,
-  height,
-  width,
-}) => {
+const MoviePoster: React.FC<MoviePosterProps> = ({ movie, height, width }) => {
   const [hover, setHover] = useState(false);
   const [tapped, setTapped] = useState(false);
 
   // middle point in 2d space [150, 250]
-  const centerPoint = [width / 2, height / 2];
+  const centerPoint = useMemo(() => [width / 2, height / 2], [width, height]);
   const xy = useMotionValue(centerPoint);
 
   // how much should we rotate?
-  const tx = 0.0125;
+  const tx = 0.02;
 
   // get rotateY
   const transformX = interpolate([0, width], [width * tx, width * tx * -1]);
@@ -77,14 +71,15 @@ const MoviePosterTest: React.FC<MoviePosterProps> = ({
   const gradientOpacitySpring = useSpring(gradientOpacity, config);
 
   const gradient = useTransform(gradientOpacitySpring, (opacity) => {
-    // eslint-disable-next-line prefer-const
-    let [x, y] = xy.get();
+    const [x, y] = xy.get();
 
-    if (y === centerPoint[1]) {
-      y = centerPoint[1] + 1;
+    let newY = y;
+
+    if (newY === centerPoint[1]) {
+      newY = centerPoint[1] + 1;
     }
 
-    const angle = Math.atan2(y - centerPoint[1], x - centerPoint[0]);
+    const angle = Math.atan2(newY - centerPoint[1], x - centerPoint[0]);
     const degree =
       ((angle > 0 ? angle : 2 * Math.PI + angle) * 360) / (2 * Math.PI) - 90;
     return `linear-gradient(${degree}deg, rgba(255,255,255,${opacity}), rgba(255,255,255,0) 80%)`;
@@ -129,7 +124,6 @@ const MoviePosterTest: React.FC<MoviePosterProps> = ({
         onHoverEnd={hoverEnd}
         onMouseMove={onMouseOver}
       >
-        {/* // eslint-disable-next-line react/no-unknown-property */}
         <div className={s.movieCarouselSlideContentShadow} />
         <div
           className={s.movieCarouselSlideContentBackground}
@@ -137,36 +131,23 @@ const MoviePosterTest: React.FC<MoviePosterProps> = ({
             backgroundImage: `url(${process.env.NEXT_PUBLIC_TMDB_BASE_URL}${movie.posterPath})`,
           }}
         />
+
         <motion.div
           style={{
             background: gradient,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            opacity: hover ? 0.4 : 0,
+            transition: "all 0.5s ease",
+            borderRadius: "10px",
           }}
         />
-        <Container className={s.movieCarouselSlideContentDetails}>
-          <Title className={s.movieCarouselSlideContentDetailsTitle}>
-            {movie.title}
-          </Title>
-          <Title className={s.movieCarouselSlideContentDetailsDirector}>
-            {movie.directors.map((director) => director.name)}
-          </Title>
-          <Container className={s.movieCarouselSlideContentDetailsRating}>
-            <Star1 size={12} color="#d9e3f0" />
-            <span className={s.movieCarouselSlideContentDetailsRatingNumber}>
-              {/* Back doesn't give movie rating yet */}
-              {/* {movie.rating} */}
-            </span>
-          </Container>
-          <Container className={s.movieCarouselSlideContentDetailsGenres}>
-            {movie.genres?.map((genre) => (
-              <Badge key={genre.id} size="xs" mr="xs">
-                {genre.name}
-              </Badge>
-            ))}
-          </Container>
-        </Container>
       </motion.div>
     </Carousel.Slide>
   );
 };
 
-export default MoviePosterTest;
+export default MoviePoster;

@@ -1,13 +1,6 @@
 import React from "react";
 import { convertDurationToString } from "@/utils/convertDurationToString";
-import {
-  BackgroundImage,
-  Badge,
-  Center,
-  Container,
-  Group,
-} from "@mantine/core";
-
+import { BackgroundImage, Badge, Group } from "@mantine/core";
 import { MovieModel } from "@/domain/model/Movie";
 import { Star1, Calendar, Clock } from "iconsax-react";
 

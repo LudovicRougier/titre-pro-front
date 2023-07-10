@@ -5,8 +5,11 @@ import Suggestions from "@/presentation/components/suggestions";
 import { useViewModel } from "@/presentation/viewModel/moodDetails";
 import { Center, Container, Text, Blockquote } from "@mantine/core";
 import { motion } from "framer-motion";
+import { removeDuplicates } from "@/utils/removeDuplicates";
+import LightAnimation from "@/presentation/components/animatedLight";
+import { useViewportSize } from "@mantine/hooks";
 
-import s from "../style.module.css";
+import s from "./style.module.css";
 
 interface MoodDetailsProps {
   moodId: string;
@@ -15,63 +18,92 @@ interface MoodDetailsProps {
 const MoodDetails: NextPage<MoodDetailsProps> = ({ moodId }) => {
   const { moodDetails } = useViewModel(moodId);
 
+  const { height, width } = useViewportSize();
+
   if (!moodDetails) return null;
 
+  const elements = [
+    {
+      id: 1,
+      color: "purple",
+      width: 400,
+      height: 400,
+      opacity: 0.25,
+      blur: 100,
+    },
+    {
+      id: 2,
+      color: "purple",
+      width: 350,
+      height: 350,
+      opacity: 0.25,
+      blur: 100,
+    },
+    { id: 3, color: "blue", width: 600, height: 600, opacity: 0.25, blur: 100 },
+  ];
+
   return (
-    <Container className={s.homepage}>
-      <Center className={s.homepageContent}>
-        {/* <Container style={{ position: "absolute", top: "25%" }}> */}
-        {/* <Blob /> */}
-        {/* </Container> */}
+    <Container className={s.mood}>
+      <Center className={s.moodContent}>
+        {elements.map((element) => (
+          <LightAnimation
+            key={element.id}
+            element={element}
+            containerHeight={height}
+            containerWidth={width}
+          />
+        ))}
+
         <motion.div
-          className={s.emotionTextInputMotion}
           layout
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 325 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{
+            y: { duration: 1 },
             opacity: { duration: 1 },
             layout: { duration: 1 },
           }}
         >
-          <Blockquote cite="">
+          <Blockquote cite={`${moodDetails.date}`}>
             {moodDetails.userInput ??
               "Life is like an npm install – you never know what you are going to get."}
           </Blockquote>
         </motion.div>
-        <>
-          <motion.div
-            layout
-            initial={{ opacity: 0, y: 325 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              y: { duration: 1 },
-              opacity: { duration: 1 },
-              layout: { duration: 1 },
-            }}
-          >
-            <Text>{moodDetails.message}</Text>
-          </motion.div>
-          <motion.div
-            layout
-            initial={{ opacity: 0, y: 325 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={s.emotionSuggestionstMotion}
-            transition={{
-              y: { duration: 1 },
-              opacity: { duration: 1 },
-              layout: { duration: 1 },
-            }}
-          >
-            <Suggestions
-              movies={[
+        <motion.div
+          layout
+          initial={{ opacity: 0, y: 325 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            y: { duration: 1 },
+            opacity: { duration: 1 },
+            layout: { duration: 1 },
+          }}
+        >
+          <Text>{moodDetails.message}</Text>
+        </motion.div>
+        <motion.div
+          layout
+          initial={{ opacity: 0, y: 325 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={s.moodContentSuggestion}
+          transition={{
+            y: { duration: 1 },
+            opacity: { duration: 1 },
+            layout: { duration: 1 },
+          }}
+        >
+          <Suggestions
+            movies={removeDuplicates(
+              [
                 ...moodDetails.moviesRelatedToEmotions,
                 ...moodDetails.moviesRelatedToTopic,
-              ]}
-              mainEmotion={moodDetails.mainEmotion}
-              subEmotion={moodDetails.subEmotion}
-            />
-          </motion.div>
-        </>
+              ],
+              "id"
+            )}
+            mainEmotion={moodDetails.mainEmotion}
+            subEmotion={moodDetails.subEmotion}
+          />
+        </motion.div>
       </Center>
     </Container>
   );

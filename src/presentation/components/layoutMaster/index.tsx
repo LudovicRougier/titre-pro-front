@@ -9,6 +9,7 @@ import s from "./style.module.css";
 const LayoutMaster: React.FC<ChildrenInterface> = ({ children }) => {
   return (
     <AppShell
+      className={s.layoutMaster}
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       header={<Header />}

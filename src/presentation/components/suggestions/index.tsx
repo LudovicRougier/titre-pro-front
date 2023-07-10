@@ -16,23 +16,12 @@ interface SuggestionsProps {
   subEmotion: emotionType | null;
 }
 
-const Suggestions: React.FC<SuggestionsProps> = ({
-  movies,
-  mainEmotion,
-  subEmotion,
-}) => {
+const Suggestions: React.FC<SuggestionsProps> = ({ movies, mainEmotion }) => {
   return (
     <Container className={s.suggestions}>
       <Container className={s.suggestionsTop}>
         <Text className={s.suggestionsTopTitle}>Suggestions :</Text>
-        <Badge
-          variant="gradient"
-          gradient={{
-            from: `${mainEmotion.color}`,
-            to: `${subEmotion?.color}`,
-            deg: 35,
-          }}
-        >
+        <Badge variant="light" color="gray">
           {mainEmotion.translation}
         </Badge>
       </Container>
