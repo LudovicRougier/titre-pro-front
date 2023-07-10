@@ -2,6 +2,7 @@ import React from "react";
 import { AppShell } from "@mantine/core";
 import { ChildrenInterface } from "@/shared/interfaces/general/childrenNode";
 import { motion } from "framer-motion";
+import Footer from "@/presentation/components/footer";
 import Header from "@/presentation/components/header";
 
 import s from "./style.module.css";
@@ -13,6 +14,7 @@ const LayoutMaster: React.FC<ChildrenInterface> = ({ children }) => {
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       header={<Header />}
+      footer={<Footer />}
     >
       <div className={s.layoutMasterContainer}>
         <motion.div
