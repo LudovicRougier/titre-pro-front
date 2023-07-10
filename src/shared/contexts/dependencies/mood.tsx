@@ -7,12 +7,14 @@ import { MoodRepository } from "@/data/repository/interfaces/MoodRepository";
 import { FetchMoodRecommendationsUseCase } from "@/domain/usecase/mood/FetchMoodRecommendationsUseCase";
 import { GetMoodDetailsUseCase } from "@/domain/usecase/mood/GetMoodDetailsUseCase";
 import { RetrieveMoodHistoryListUseCase } from "@/domain/usecase/mood/RetrieveMoodHistoryListUseCase";
+import { RemoveMoodHistoryEntryUseCase } from "@/domain/usecase/mood/RemoveMoodHistoryEntryUseCase";
 
 export const MoodDependencyContext = createContext<{
   repository: MoodRepository;
   fetchMoodRecommandations: FetchMoodRecommendationsUseCase;
   getMoodDetails: GetMoodDetailsUseCase;
   retrieveMoodHistoryList: RetrieveMoodHistoryListUseCase;
+  removeMoodHistoryEntry: RemoveMoodHistoryEntryUseCase;
 } | null>(null);
 
 export const MoodDependencyProvider: React.FC<ChildrenInterface> = ({
@@ -29,6 +31,9 @@ export const MoodDependencyProvider: React.FC<ChildrenInterface> = ({
       ),
       retrieveMoodHistoryList: container.get<RetrieveMoodHistoryListUseCase>(
         TYPES.RetrieveMoodHistoryListUseCase
+      ),
+      removeMoodHistoryEntry: container.get<RemoveMoodHistoryEntryUseCase>(
+        TYPES.RemoveMoodHistoryEntryUseCase
       ),
     };
   }, []);

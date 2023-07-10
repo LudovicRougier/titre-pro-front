@@ -4,7 +4,7 @@ import { TYPES } from "@/container/types";
 
 import { store } from "@/lib/redux-toolkit/store";
 import { ADD_MOVIE } from "@/lib/redux-toolkit/slices/movieSlice";
-import { ADD_MOOD } from "@/lib/redux-toolkit/slices/moodSlice";
+import { ADD_MOOD, REMOVE_MOOD } from "@/lib/redux-toolkit/slices/moodSlice";
 
 import type { MoodDataSource } from "@/data/datasource/interfaces/MoodDataSource";
 import { MoodRepository } from "@/data/repository/interfaces/MoodRepository";
@@ -77,8 +77,9 @@ export class MoodRepositoryImpl implements MoodRepository {
    *
    * @returns {Promise<void>} A promise that resolves when the mood history entry is removed.
    */
-  async removeMoodHistoryEntry(): Promise<void> {
-    return this.moodDataSource.removeMoodHistoryEntry();
+  async removeMoodHistoryEntry(id: string): Promise<void | null> {
+    const res = await this.moodDataSource.removeMoodHistoryEntry(id);
+    if (res !== null) this.removeMoodFromStore(id);
   }
 
   /**
@@ -115,5 +116,15 @@ export class MoodRepositoryImpl implements MoodRepository {
    */
   private updateMoodList(moodModel: MoodModel) {
     store.dispatch(ADD_MOOD(moodModel.toJSON()));
+  }
+
+  /**
+   * Updates the mood list in the store with a mood id.
+   *
+   * @param {id} string - The mood id to remove from the mood list.
+   * @private
+   */
+  private removeMoodFromStore(id: string) {
+    store.dispatch(REMOVE_MOOD(id));
   }
 }

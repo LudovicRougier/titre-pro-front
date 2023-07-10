@@ -6,6 +6,7 @@ import {
   GET_MOOD_DETAILS,
   GET_RECOMMANDATIONS,
   GET_MOOD_HISTORY,
+  DELETE_PROMPT,
 } from "@/lib/apollo/request/mood";
 
 /**
@@ -72,7 +73,17 @@ export class MoodDataSourceImpl
   /**
    * Removes a mood history entry.
    *
-   * @returns {Promise<void>} A promise that resolves when the mood history entry is removed.
+   * @param {number} id - The ID of the mood.
+   * @returns {Promise<APIMood | null>} A promise that resolves when the mood history entry is removed.
    */
-  async removeMoodHistoryEntry(): Promise<void> {}
+  async removeMoodHistoryEntry(id: string): Promise<void | null> {
+    const res = await this.api.mutate({
+      mutation: DELETE_PROMPT.query,
+      variables: {
+        id,
+      },
+    });
+
+    if (res.errors) return null;
+  }
 }

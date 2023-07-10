@@ -15,7 +15,7 @@ export class RemoveMoodHistoryEntryUseCase implements RemoveMoodHistoryEntry {
     this.moodRepository = moodRepository;
   }
 
-  public async invoke() {
-    return this.moodRepository.removeMoodHistoryEntry();
+  public async invoke(id: string) {
+    return this.moodRepository.removeMoodHistoryEntry(id);
   }
 }

@@ -1,3 +1,3 @@
 export interface RemoveMoodHistoryEntry {
-  invoke: () => Promise<void>;
+  invoke: (id: string) => Promise<void | null>;
 }

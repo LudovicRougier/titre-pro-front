@@ -24,8 +24,14 @@ const moodSlice = createSlice({
         }
       });
     },
+    REMOVE_MOOD(state, action) {
+      const id = action.payload;
+      const moodToRemove = state.moods.find((mood) => mood.id === id);
+      if (moodToRemove)
+        state.moods = state.moods.filter((mood) => mood.id !== id);
+    },
   },
 });
 
-export const { ADD_MOOD } = moodSlice.actions;
+export const { ADD_MOOD, REMOVE_MOOD } = moodSlice.actions;
 export default moodSlice.reducer;

@@ -4,5 +4,5 @@ export interface MoodRepository {
   fetchMoodRecommendations: (userInput: string) => Promise<MoodModel | null>;
   getMoodDetails: (id: string) => Promise<MoodModel | null>;
   retrieveMoodHistoryList: (id: number) => Promise<MoodModel[] | null>;
-  removeMoodHistoryEntry: () => Promise<void>;
+  removeMoodHistoryEntry: (id: string) => Promise<void | null>;
 }
