@@ -13,15 +13,17 @@ import {
   Button,
   Center,
   Loader,
+  Alert,
 } from "@mantine/core";
 import { useViewModel } from "@/presentation/viewModel/signin";
 import { getSession } from "next-auth/react";
 import { Path } from "@/shared/enums/path";
 import Layout from "@/presentation/components/layout";
 import Link from "next/link";
+import { IconAlertCircle } from "@tabler/icons-react";
 
 const SignIn = () => {
-  const { form, handleSubmit, handleClickCreateAccount, hasSubmited } =
+  const { form, handleSubmit, handleClickCreateAccount, hasSubmited, error } =
     useViewModel();
 
   return (
@@ -49,6 +51,16 @@ const SignIn = () => {
           </Title>
 
           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+            {error && (
+              <Alert
+                icon={<IconAlertCircle size="1rem" />}
+                title="Bummer!"
+                color="red"
+                mb="md"
+              >
+                Error: {error}
+              </Alert>
+            )}
             <TextInput
               label="Email"
               placeholder="you@mantine.dev"
