@@ -1,5 +1,6 @@
 import { MoodModel } from "@/domain/model/Mood";
 import { useMoodDependencies } from "@/shared/contexts/dependencies/mood";
+import { LOCALE } from "@/shared/enums/locale";
 import { useShow } from "@/shared/hooks/useShow";
 import {
   Badge,
@@ -148,13 +149,13 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
                     onClick={handleClickDetails}
                     className="emotion-card-options-details"
                   >
-                    View details
+                    {LOCALE.VIEW_DETAILS}
                   </Menu.Item>
                   <Menu.Item
                     onClick={handleShowDeleteModal}
                     className="emotion-card-options-delete"
                   >
-                    Delete
+                    {LOCALE.DELETE}
                   </Menu.Item>
                 </Menu.Dropdown>
               </Menu>
@@ -169,12 +170,12 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
       <Modal
         opened={showDeleteModal}
         onClose={handleCloseDeleteModal}
-        title="Confirm delete"
+        title={LOCALE.CONFIRM_DELETE}
         data-test="emotion-card-modal-delete"
       >
-        <Text>Are you sure you want to delete this mood?</Text>
+        <Text>{LOCALE.DELETE_MOOD_CONFIRMATION}</Text>
 
-        <Group mt="xl">
+        <Group mt="xl" position="apart" grow>
           <Button
             variant="light"
             color="gray"
@@ -186,7 +187,7 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
             }}
             style={{ transition: "0.5s" }}
           >
-            Cancel
+            {LOCALE.CANCEL}
           </Button>
           <Button
             variant="light"
@@ -199,7 +200,7 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
             }}
             style={{ transition: "0.5s" }}
           >
-            Delete
+            {LOCALE.DELETE}
           </Button>
         </Group>
       </Modal>

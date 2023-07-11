@@ -1,4 +1,4 @@
-import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
+import { LOCALE } from "@/shared/enums/locale";
 import { Footer as FooterMantine, Center, Text } from "@mantine/core";
 import { useRouter } from "next/router";
 import { Path } from "@/shared/enums/path";
@@ -13,7 +13,7 @@ const Footer = () => {
     <FooterMantine height={25} className={s.footer}>
       <Center className={s.footerContent}>
         <Text fw={300} fz="sm" className={s.footerContentText}>
-          {FR_LOCALE.MADE_WITH_LOVE_BY}
+          {LOCALE.MADE_WITH_LOVE_BY}
         </Text>
         <Text
           fw={800}

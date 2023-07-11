@@ -2,7 +2,7 @@
 import { countries } from "@/data/static/countries";
 import { UserModel } from "@/domain/model/User";
 import { useViewModel } from "@/presentation/viewModel/profile";
-import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
+import { LOCALE } from "@/shared/enums/locale";
 import {
   Text,
   Space,
@@ -54,11 +54,11 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
     <form onSubmit={handleSubmit}>
       <Group position="apart">
         <Text weight={600} size="xl">
-          {FR_LOCALE.PUBLIC_PROFILE}
+          {LOCALE.PUBLIC_PROFILE}
         </Text>
         {isOnEdit ? (
           <Button type="submit" variant="light" radius="md" mt="md">
-            {FR_LOCALE.SAVE}
+            {LOCALE.SAVE}
           </Button>
         ) : (
           <Button
@@ -71,7 +71,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
               toggleEdit();
             }}
           >
-            {FR_LOCALE.EDIT}
+            {LOCALE.EDIT}
           </Button>
         )}
       </Group>
@@ -80,8 +80,8 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
       <Space h="xl" />
       <TextInput
         readOnly={!isOnEdit}
-        placeholder={FR_LOCALE.YOUR_NAME}
-        label={FR_LOCALE.NAME}
+        placeholder={LOCALE.YOUR_NAME}
+        label={LOCALE.NAME}
         variant="filled"
         radius="md"
         {...form.getInputProps("name")}
@@ -96,8 +96,8 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
 
       <TextInput
         readOnly={!isOnEdit}
-        placeholder={FR_LOCALE.YOUR_AGE}
-        label={FR_LOCALE.AGE}
+        placeholder={LOCALE.YOUR_AGE}
+        label={LOCALE.AGE}
         variant="filled"
         radius="md"
         {...form.getInputProps("age")}
@@ -112,8 +112,8 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
 
       <Select
         readOnly={!isOnEdit}
-        label={FR_LOCALE.COUNTRY}
-        placeholder={FR_LOCALE.PICK_ONE}
+        label={LOCALE.COUNTRY}
+        placeholder={LOCALE.PICK_ONE}
         variant="filled"
         radius="md"
         data={countries}
@@ -129,8 +129,8 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
 
       <Textarea
         readOnly={!isOnEdit}
-        placeholder={FR_LOCALE.DESCRIPTION_PLACEHOLDER}
-        label={FR_LOCALE.DESCRIPTION}
+        placeholder={LOCALE.DESCRIPTION_PLACEHOLDER}
+        label={LOCALE.DESCRIPTION}
         variant="filled"
         radius="md"
         {...form.getInputProps("description")}
@@ -144,18 +144,18 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
 
       <Space h="md" />
       <Text weight={600} size="xl" mt="md">
-        {FR_LOCALE.PERSONALIZE_YOUR_EXPERIENCE}
+        {LOCALE.PERSONALIZE_YOUR_EXPERIENCE}
       </Text>
 
       <Space h="md" />
       <MultiSelect
         readOnly={!isOnEdit}
         data={wantedGenres}
-        label={FR_LOCALE.WANTED_GENRES}
-        placeholder={FR_LOCALE.PICK_MANY}
+        label={LOCALE.WANTED_GENRES}
+        placeholder={LOCALE.PICK_MANY}
         searchable
         variant="filled"
-        nothingFound={FR_LOCALE.NOTHING_FOUND}
+        nothingFound={LOCALE.NOTHING_FOUND}
         radius="md"
         {...form.getInputProps("wantedGenres")}
         onClick={(event) => {
@@ -170,11 +170,11 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
       <MultiSelect
         readOnly={!isOnEdit}
         data={unwantedGenres}
-        label={FR_LOCALE.UNWANTED_GENRES}
-        placeholder={FR_LOCALE.PICK_MANY}
+        label={LOCALE.UNWANTED_GENRES}
+        placeholder={LOCALE.PICK_MANY}
         searchable
         variant="filled"
-        nothingFound={FR_LOCALE.NOTHING_FOUND}
+        nothingFound={LOCALE.NOTHING_FOUND}
         radius="md"
         {...form.getInputProps("unwantedGenres")}
         onClick={(event) => {
@@ -190,11 +190,11 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         readOnly={!isOnEdit}
         itemComponent={SelectItem}
         data={watchProviderList}
-        label={FR_LOCALE.WANTED_WATCH_PROVIDERS}
-        placeholder={FR_LOCALE.PICK_MANY}
+        label={LOCALE.WANTED_WATCH_PROVIDERS}
+        placeholder={LOCALE.PICK_MANY}
         searchable
         variant="filled"
-        nothingFound={FR_LOCALE.NOTHING_FOUND}
+        nothingFound={LOCALE.NOTHING_FOUND}
         radius="md"
         {...form.getInputProps("wantedWatchProviders")}
         onClick={(event) => {

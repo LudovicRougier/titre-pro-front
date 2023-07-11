@@ -5,7 +5,7 @@ import { MoodCard } from "@/presentation/components/moodCard";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { Session, getServerSession } from "next-auth";
 import { useViewModel } from "@/presentation/viewModel/moodHistory";
-import { UiMessages } from "@/utils/enums/UiMessages.enum";
+import { LOCALE } from "@/shared/enums/locale";
 
 interface MoodHistoryProps {
   user: Session | null;
@@ -18,7 +18,7 @@ const MoodHistory: NextPage<MoodHistoryProps> = ({ user }) => {
     <Container>
       {moodHistory.length === 0 && !isLoading ? (
         <Center>
-          <h2>{UiMessages.NO_HISTORY}</h2>
+          <h2>{LOCALE.NO_HISTORY}</h2>
         </Center>
       ) : null}
       {isLoading && (

@@ -21,7 +21,7 @@ import {
   Loader,
   Alert,
 } from "@mantine/core";
-import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
+import { LOCALE } from "@/shared/enums/locale";
 import { getSession } from "next-auth/react";
 import { Path } from "@/shared/enums/path";
 import { countries } from "@/data/static/countries";
@@ -70,7 +70,7 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           <Center mb="md">
             <Link href={Path.INDEX}>
-              <Image src="/logo.png" alt="" width={75} height={75} />
+              <Image src="/logo.png" alt="" width={75} height={75} priority />
             </Link>
           </Center>
           <Title
@@ -80,19 +80,19 @@ const Register = () => {
               fontWeight: 600,
             })}
           >
-            {FR_LOCALE.REGISTER}
+            {LOCALE.REGISTER}
           </Title>
 
           <Paper withBorder shadow="md" p="xl" mt={30} radius="md">
             <TextInput
-              label={FR_LOCALE.NAME}
+              label={LOCALE.NAME}
               placeholder="David"
               mt="md"
               withAsterisk
               {...form.getInputProps("name")}
             />
             <TextInput
-              label={FR_LOCALE.EMAIL}
+              label={LOCALE.EMAIL}
               placeholder="you@emotion.dev"
               mt="md"
               withAsterisk
@@ -100,8 +100,8 @@ const Register = () => {
             />
             <Group position="apart" grow>
               <Select
-                label={FR_LOCALE.COUNTRY}
-                placeholder={FR_LOCALE.PICK_ONE}
+                label={LOCALE.COUNTRY}
+                placeholder={LOCALE.PICK_ONE}
                 data={countries}
                 mt="md"
                 withAsterisk
@@ -109,8 +109,8 @@ const Register = () => {
                 {...form.getInputProps("country")}
               />
               <TextInput
-                label={FR_LOCALE.AGE}
-                placeholder={FR_LOCALE.YOUR_AGE}
+                label={LOCALE.AGE}
+                placeholder={LOCALE.YOUR_AGE}
                 mt="md"
                 withAsterisk
                 {...form.getInputProps("age")}
@@ -129,8 +129,8 @@ const Register = () => {
                   onBlurCapture={() => setPopoverOpened(false)}
                 >
                   <PasswordInput
-                    label={FR_LOCALE.PASSWORD}
-                    placeholder={FR_LOCALE.YOUR_PASSWORD}
+                    label={LOCALE.PASSWORD}
+                    placeholder={LOCALE.YOUR_PASSWORD}
                     mt="md"
                     withAsterisk
                     {...form.getInputProps("password")}
@@ -148,8 +148,8 @@ const Register = () => {
             </Popover>
 
             <PasswordInput
-              label={FR_LOCALE.CONFIRM_PASSWORD}
-              placeholder={FR_LOCALE.YOUR_PASSWORD}
+              label={LOCALE.CONFIRM_PASSWORD}
+              placeholder={LOCALE.YOUR_PASSWORD}
               mt="md"
               withAsterisk
               {...form.getInputProps("confirmPassword")}
@@ -157,7 +157,7 @@ const Register = () => {
 
             <Group position="apart" mt="lg">
               <Checkbox
-                label={FR_LOCALE.AUTOMATICALLY_SIGN_IN}
+                label={LOCALE.AUTOMATICALLY_SIGN_IN}
                 {...form.getInputProps("autoSignIn")}
               />
             </Group>
@@ -167,14 +167,14 @@ const Register = () => {
                 label={
                   <Group className={s.termsWrapper}>
                     <Text size="sm" color="dimmed">
-                      {FR_LOCALE.I_AGREE_WITH_THE}{" "}
+                      {LOCALE.I_AGREE_WITH_THE}{" "}
                     </Text>
                     <Anchor
                       component="button"
                       size="sm"
                       onClick={handleShowModal}
                     >
-                      {FR_LOCALE.TERMS_AND_CONDITIONS}
+                      {LOCALE.TERMS_AND_CONDITIONS}
                     </Anchor>
                   </Group>
                 }
@@ -206,15 +206,15 @@ const Register = () => {
             ) : (
               <Button fullWidth mt="xl" type="submit">
                 {form.values.autoSignIn
-                  ? FR_LOCALE.REGISTER_AND_SIGN_IN
-                  : FR_LOCALE.REGISTER}
+                  ? LOCALE.REGISTER_AND_SIGN_IN
+                  : LOCALE.REGISTER}
               </Button>
             )}
           </Paper>
           <Text color="dimmed" size="sm" align="center" mt={24}>
-            {FR_LOCALE.ALREADY_HAVE_AN_ACCOUNT}
+            {LOCALE.ALREADY_HAVE_AN_ACCOUNT}
             <Anchor size="sm" component="button" onClick={handleClickSignIn}>
-              {FR_LOCALE.SIGN_IN}
+              {LOCALE.SIGN_IN}
             </Anchor>
           </Text>
         </form>
@@ -223,7 +223,7 @@ const Register = () => {
           opened={showModal}
           onClose={handleCloseModal}
           size="80%"
-          title={FR_LOCALE.TERMS_AND_CONDITIONS}
+          title={LOCALE.TERMS_AND_CONDITIONS}
           transitionProps={{ transition: "fade", duration: 200 }}
         >
           {TERMS_OF_SERVICE.split("<br>").map((line) => (

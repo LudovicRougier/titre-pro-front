@@ -12,7 +12,7 @@ import {
   Modal,
   Text,
 } from "@mantine/core";
-import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
+import { LOCALE } from "@/shared/enums/locale";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Menu from "@/presentation/components/menu";
 import { Logout, Setting2 } from "iconsax-react";
@@ -43,13 +43,13 @@ const Header: React.FC = () => {
   const menuItems = [
     {
       id: 1,
-      label: FR_LOCALE.SETTINGS,
+      label: LOCALE.SETTINGS,
       icon: <Setting2 size={14} />,
       onClick: () => router.push(Path.ACCOUNT_SETTINGS),
     },
     {
       id: 2,
-      label: FR_LOCALE.SIGN_OUT,
+      label: LOCALE.SIGN_OUT,
       icon: <Logout size={14} />,
       onClick: handleLogout,
     },
@@ -60,7 +60,7 @@ const Header: React.FC = () => {
       <HeaderMantine height={{ base: 50, md: 50 }} p="md" className={s.header}>
         <div className={s.headerWrapper}>
           <Link href={Path.INDEX}>
-            <Image src="/logo.png" alt="" width={50} height={50} />
+            <Image src="/logo.png" alt="" width={50} height={50} priority />
           </Link>
           <Container>
             <Grid gutter={5} gutterXs="md" gutterMd="xl" gutterXl={50}>
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
                   className={s.headerNavLink}
                   data-test="navbar-history"
                 >
-                  {FR_LOCALE.HOME}
+                  {LOCALE.HOME}
                 </Text>
               </Grid.Col>
               <Grid.Col span={6}>
@@ -83,7 +83,7 @@ const Header: React.FC = () => {
                     color={IS_HISTORY ? "white" : "light gray"}
                     className={s.headerNavLink}
                   >
-                    {FR_LOCALE.HISTORY}
+                    {LOCALE.HISTORY}
                   </Text>
                 )}
               </Grid.Col>
@@ -92,7 +92,7 @@ const Header: React.FC = () => {
           {status !== "loading" &&
             (status === "authenticated" ? (
               <Menu
-                label={`${FR_LOCALE.SIGNED_AS} ${session?.user.email}`}
+                label={`${LOCALE.SIGNED_AS} ${session?.user.email}`}
                 items={menuItems}
                 position="bottom-end"
                 data-test="authenticated"
@@ -106,7 +106,7 @@ const Header: React.FC = () => {
               />
             ) : (
               <Button color="gray" radius="md" onClick={handleLogin}>
-                {FR_LOCALE.SIGN_IN}
+                {LOCALE.SIGN_IN}
               </Button>
             ))}
         </div>
@@ -118,13 +118,13 @@ const Header: React.FC = () => {
         withCloseButton={false}
         closeOnClickOutside={false}
         closeOnEscape={false}
-        title="Please wait"
+        title={LOCALE.PLEASE_WAIT}
         overlayProps={{
           opacity: 0.55,
           blur: 3,
         }}
       >
-        {FR_LOCALE.LOGGING_OUT}
+        {LOCALE.LOGGING_OUT}
         <Center mt="xl">
           <Loader size="sm" variant="bars" />
         </Center>

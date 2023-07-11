@@ -1,6 +1,6 @@
 import { UserModel } from "@/domain/model/User";
 import { useViewModel } from "@/presentation/viewModel/accountSettings";
-import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
+import { LOCALE } from "@/shared/enums/locale";
 import {
   Anchor,
   Button,
@@ -40,17 +40,17 @@ export const Account: React.FC<AccountProps> = ({ accountDetails }) => {
   return (
     <>
       <Text weight={600} size="xl">
-        Account Settings
+        {LOCALE.ACCOUNT_SETTINGS}
       </Text>
 
       <Space h="xl" />
       <Space h="xl" />
       <form onSubmit={handleSubmitUpdateMail}>
-        <Text size="lg">{FR_LOCALE.EMAIL}</Text>
+        <Text size="lg">{LOCALE.EMAIL}</Text>
         <Group position="apart">
           <TextInput
             disabled={!isOnEditMail}
-            placeholder={FR_LOCALE.YOUR_EMAIL}
+            placeholder={LOCALE.YOUR_EMAIL}
             label=""
             variant="filled"
             mt="md"
@@ -81,12 +81,12 @@ export const Account: React.FC<AccountProps> = ({ accountDetails }) => {
       <Divider size="sm" mt={36} />
       <Space h="xl" />
 
-      <Text size="lg">{FR_LOCALE.PASSWORD}</Text>
+      <Text size="lg">{LOCALE.PASSWORD}</Text>
 
       <form onSubmit={handleSubmitUpdatePassword}>
         <Group position="apart" grow>
           <PasswordInput
-            label={FR_LOCALE.NEW_PASSWORD}
+            label={LOCALE.NEW_PASSWORD}
             variant="filled"
             size="md"
             radius="md"
@@ -95,7 +95,7 @@ export const Account: React.FC<AccountProps> = ({ accountDetails }) => {
           />
 
           <PasswordInput
-            label={FR_LOCALE.CURRENT_PASSWORD}
+            label={LOCALE.CURRENT_PASSWORD}
             variant="filled"
             size="md"
             radius="md"
@@ -107,26 +107,25 @@ export const Account: React.FC<AccountProps> = ({ accountDetails }) => {
         <Space h="xl" />
 
         <Text color="dimmed" size="sm">
-          {FR_LOCALE.CANT_REMEMBER_PASSWORD}{" "}
+          {LOCALE.CANT_REMEMBER_PASSWORD}{" "}
           <Anchor size="sm" component="button">
-            {FR_LOCALE.RESET_PASSWORD}
+            {LOCALE.RESET_PASSWORD}
           </Anchor>
         </Text>
 
         <Button type="submit" variant="light" radius="md" mt="md">
-          {FR_LOCALE.SAVE_PASSWORD}
+          {LOCALE.SAVE_PASSWORD}
         </Button>
       </form>
 
       <Divider size="sm" mt={36} />
       <Space h="xl" />
 
-      <Text size="lg">{FR_LOCALE.DELETE_ACCOUNT}</Text>
+      <Text size="lg">{LOCALE.DELETE_ACCOUNT}</Text>
       <Text mt="md">
-        {FR_LOCALE.WOULD_YOU_LIKE_TO_DELETE_YOUR_ACCOUNT}{" "}
-        {FR_LOCALE.THIS_ACCOUNT_HAS} <strong>{promptsCount}</strong>{" "}
-        {FR_LOCALE.MOODS_ASSOCIATED} <br />
-        {FR_LOCALE.WARNING_MOOD_DELETE}
+        {LOCALE.WOULD_YOU_LIKE_TO_DELETE_YOUR_ACCOUNT} {LOCALE.THIS_ACCOUNT_HAS}{" "}
+        <strong>{promptsCount}</strong> {LOCALE.MOODS_ASSOCIATED} <br />
+        {LOCALE.WARNING_MOOD_DELETE}
       </Text>
       <Text size="sm" mt="md">
         <Anchor
@@ -135,21 +134,21 @@ export const Account: React.FC<AccountProps> = ({ accountDetails }) => {
           color="red"
           onClick={deleteModal.handleShow}
         >
-          {FR_LOCALE.I_WANT_TO_DELETE_MY_ACCOUNT}
+          {LOCALE.I_WANT_TO_DELETE_MY_ACCOUNT}
         </Anchor>
       </Text>
 
       <Modal
         opened={deleteModal.show}
         onClose={deleteModal.handleClose}
-        title={FR_LOCALE.CONFIRM_DELETE}
+        title={LOCALE.CONFIRM_DELETE}
       >
-        <Text>{FR_LOCALE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_YOUR_ACCOUNT}</Text>
-        <Text mt="md">{FR_LOCALE.DELETE_CONFIRMATION_DESCRIPTION}</Text>
-        <Text mt="md">{FR_LOCALE.ASK_ADMIN_FOR_INFORMATION}</Text>
+        <Text>{LOCALE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_YOUR_ACCOUNT}</Text>
+        <Text mt="md">{LOCALE.DELETE_CONFIRMATION_DESCRIPTION}</Text>
+        <Text mt="md">{LOCALE.ASK_ADMIN_FOR_INFORMATION}</Text>
 
         <PasswordInput
-          label={FR_LOCALE.CURRENT_PASSWORD}
+          label={LOCALE.CURRENT_PASSWORD}
           variant="filled"
           size="md"
           radius="md"

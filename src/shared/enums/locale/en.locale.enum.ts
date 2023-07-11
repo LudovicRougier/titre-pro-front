@@ -1,4 +1,4 @@
-export enum FR_LOCALE {
+export enum EN_LOCALE {
   SOMETHING_WENT_WRONG = "Oh sorry, something went wrong with current action!",
   RESOURCE_NOT_FOUND = "Resource not found!",
   SOME_PARAMETERS_ARE_MISSING = "Some parameters are missing :  {{missingParams}}.",
@@ -72,5 +72,11 @@ export enum FR_LOCALE {
   WANTED_WATCH_PROVIDERS = "Streaming services that you have access to",
   NOTHING_FOUND = "Nothing found",
   MADE_WITH_LOVE_BY = "Made with ❤️ by",
-  LOGGING_OUT = "Please wait while signing out...",
+  LOGGING_OUT = "Please wait while signing out.",
+  VIEW_DETAILS = "View details",
+  DELETE = "Delete",
+  DELETE_MOOD_CONFIRMATION = "Are you sure you want to delete this mood?",
+  CANCEL = "Cancel",
+  NO_HISTORY = "You have no mood history yet.",
+  PLEASE_WAIT = "Please wait",
 }
