@@ -3,7 +3,6 @@
 .suggestions {
   display: flex;
   flex-direction: column;
-  width: 90%;
   padding: 2rem;
   margin: 0;
   justify-content: center;

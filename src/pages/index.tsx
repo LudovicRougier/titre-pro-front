@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
-import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
 import { useViewModel } from "@/presentation/viewModel/home";
+import { LOCALE } from "@/shared/enums/locale";
 import { Button, Center, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
 import { motion } from "framer-motion";
@@ -53,7 +53,7 @@ const Home: NextPage = () => {
         >
           <TextInput
             ref={textInputRef}
-            placeholder={FR_LOCALE.HOME_INPUT_PLACEHOLDER}
+            placeholder={LOCALE.HOME_INPUT_PLACEHOLDER}
             variant="filled"
             error={error}
             size="md"
@@ -94,6 +94,10 @@ const Home: NextPage = () => {
                 y: { duration: 1 },
                 opacity: { duration: 1 },
                 layout: { duration: 1 },
+              }}
+              style={{
+                display: "flex",
+                justifyContent: "center",
               }}
             >
               <TypingAnimation
