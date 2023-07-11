@@ -21,6 +21,7 @@ import { Path } from "@/shared/enums/path";
 import Layout from "@/presentation/components/layout";
 import Link from "next/link";
 import { IconAlertCircle } from "@tabler/icons-react";
+import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
 
 const SignIn = () => {
   const { form, handleSubmit, handleClickCreateAccount, hasSubmited, error } =
@@ -47,7 +48,7 @@ const SignIn = () => {
               fontWeight: 600,
             })}
           >
-            Login
+            {FR_LOCALE.LOGIN}
           </Title>
 
           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
@@ -58,28 +59,28 @@ const SignIn = () => {
                 color="red"
                 mb="md"
               >
-                Error: {error}
+                {FR_LOCALE.ERROR}: {error}
               </Alert>
             )}
             <TextInput
-              label="Email"
+              label={FR_LOCALE.EMAIL}
               placeholder="you@mantine.dev"
               required
               {...form.getInputProps("email")}
               data-test="auth-email"
             />
             <PasswordInput
-              label="Password"
-              placeholder="Your password"
+              label={FR_LOCALE.PASSWORD}
+              placeholder={FR_LOCALE.YOUR_PASSWORD}
               required
               mt="md"
               {...form.getInputProps("password")}
               data-test="auth-password"
             />
             <Group position="apart" mt="lg">
-              <Checkbox label="Remember me" />
+              <Checkbox label={FR_LOCALE.REMEMBER_ME} />
               <Anchor component="button" size="sm">
-                Forgot password?
+                {FR_LOCALE.FORGOT_PASSWORD}
               </Anchor>
             </Group>
             {hasSubmited ? (
@@ -87,19 +88,19 @@ const SignIn = () => {
                 <Loader size="sm" variant="bars" />
               </Center>
             ) : (
-              <Button fullWidth mt="xl" type="submit" data-test="auth-submit">
-                Sign in
+              <Button fullWidth mt="xl" type="submit">
+                {FR_LOCALE.SIGN_IN}
               </Button>
             )}
           </Paper>
           <Text color="dimmed" size="sm" align="center" mt={24}>
-            Do not have an account yet?{" "}
+            {FR_LOCALE.DONT_HAVE_AN_ACCOUNT}{" "}
             <Anchor
               size="sm"
               component="button"
               onClick={handleClickCreateAccount}
             >
-              Create account
+              {FR_LOCALE.CREATE_ACCOUNT}
             </Anchor>
           </Text>
         </form>

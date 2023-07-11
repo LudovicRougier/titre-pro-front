@@ -21,6 +21,7 @@ import {
   Loader,
   Alert,
 } from "@mantine/core";
+import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
 import { getSession } from "next-auth/react";
 import { Path } from "@/shared/enums/path";
 import { countries } from "@/data/static/countries";
@@ -79,19 +80,19 @@ const Register = () => {
               fontWeight: 600,
             })}
           >
-            Register
+            {FR_LOCALE.REGISTER}
           </Title>
 
           <Paper withBorder shadow="md" p="xl" mt={30} radius="md">
             <TextInput
-              label="Name"
+              label={FR_LOCALE.NAME}
               placeholder="David"
               mt="md"
               withAsterisk
               {...form.getInputProps("name")}
             />
             <TextInput
-              label="Email"
+              label={FR_LOCALE.EMAIL}
               placeholder="you@emotion.dev"
               mt="md"
               withAsterisk
@@ -99,8 +100,8 @@ const Register = () => {
             />
             <Group position="apart" grow>
               <Select
-                label="Country"
-                placeholder="Pick one"
+                label={FR_LOCALE.COUNTRY}
+                placeholder={FR_LOCALE.PICK_ONE}
                 data={countries}
                 mt="md"
                 withAsterisk
@@ -108,8 +109,8 @@ const Register = () => {
                 {...form.getInputProps("country")}
               />
               <TextInput
-                label="Age"
-                placeholder="Your age"
+                label={FR_LOCALE.AGE}
+                placeholder={FR_LOCALE.YOUR_AGE}
                 mt="md"
                 withAsterisk
                 {...form.getInputProps("age")}
@@ -128,8 +129,8 @@ const Register = () => {
                   onBlurCapture={() => setPopoverOpened(false)}
                 >
                   <PasswordInput
-                    label="Password"
-                    placeholder="Your password"
+                    label={FR_LOCALE.PASSWORD}
+                    placeholder={FR_LOCALE.YOUR_PASSWORD}
                     mt="md"
                     withAsterisk
                     {...form.getInputProps("password")}
@@ -147,8 +148,8 @@ const Register = () => {
             </Popover>
 
             <PasswordInput
-              label="Confirm password"
-              placeholder="Your password"
+              label={FR_LOCALE.CONFIRM_PASSWORD}
+              placeholder={FR_LOCALE.YOUR_PASSWORD}
               mt="md"
               withAsterisk
               {...form.getInputProps("confirmPassword")}
@@ -156,7 +157,7 @@ const Register = () => {
 
             <Group position="apart" mt="lg">
               <Checkbox
-                label="Automatically sign in after registration"
+                label={FR_LOCALE.AUTOMATICALLY_SIGN_IN}
                 {...form.getInputProps("autoSignIn")}
               />
             </Group>
@@ -166,14 +167,14 @@ const Register = () => {
                 label={
                   <Group className={s.termsWrapper}>
                     <Text size="sm" color="dimmed">
-                      I agree to the
+                      {FR_LOCALE.I_AGREE_WITH_THE}{" "}
                     </Text>
                     <Anchor
                       component="button"
                       size="sm"
                       onClick={handleShowModal}
                     >
-                      Terms and conditions
+                      {FR_LOCALE.TERMS_AND_CONDITIONS}
                     </Anchor>
                   </Group>
                 }
@@ -204,14 +205,16 @@ const Register = () => {
               </Center>
             ) : (
               <Button fullWidth mt="xl" type="submit">
-                {form.values.autoSignIn ? "Register and sign in" : "Register"}
+                {form.values.autoSignIn
+                  ? FR_LOCALE.REGISTER_AND_SIGN_IN
+                  : FR_LOCALE.REGISTER}
               </Button>
             )}
           </Paper>
           <Text color="dimmed" size="sm" align="center" mt={24}>
-            Already have an account?{" "}
+            {FR_LOCALE.ALREADY_HAVE_AN_ACCOUNT}
             <Anchor size="sm" component="button" onClick={handleClickSignIn}>
-              Sign in
+              {FR_LOCALE.SIGN_IN}
             </Anchor>
           </Text>
         </form>
@@ -220,7 +223,7 @@ const Register = () => {
           opened={showModal}
           onClose={handleCloseModal}
           size="80%"
-          title="Terms and conditions"
+          title={FR_LOCALE.TERMS_AND_CONDITIONS}
           transitionProps={{ transition: "fade", duration: 200 }}
         >
           {TERMS_OF_SERVICE.split("<br>").map((line) => (

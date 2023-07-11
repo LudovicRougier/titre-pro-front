@@ -12,6 +12,7 @@ import {
   Modal,
   Text,
 } from "@mantine/core";
+import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Menu from "@/presentation/components/menu";
 import { Logout, Setting2 } from "iconsax-react";
@@ -42,13 +43,13 @@ const Header: React.FC = () => {
   const menuItems = [
     {
       id: 1,
-      label: "Settings",
+      label: FR_LOCALE.SETTINGS,
       icon: <Setting2 size={14} />,
       onClick: () => router.push(Path.ACCOUNT_SETTINGS),
     },
     {
       id: 2,
-      label: "Logout",
+      label: FR_LOCALE.SIGN_OUT,
       icon: <Logout size={14} />,
       onClick: handleLogout,
     },
@@ -71,7 +72,7 @@ const Header: React.FC = () => {
                   className={s.headerNavLink}
                   data-test="navbar-history"
                 >
-                  Home
+                  {FR_LOCALE.HOME}
                 </Text>
               </Grid.Col>
               <Grid.Col span={6}>
@@ -82,7 +83,7 @@ const Header: React.FC = () => {
                     color={IS_HISTORY ? "white" : "light gray"}
                     className={s.headerNavLink}
                   >
-                    History
+                    {FR_LOCALE.HISTORY}
                   </Text>
                 )}
               </Grid.Col>
@@ -91,7 +92,7 @@ const Header: React.FC = () => {
           {status !== "loading" &&
             (status === "authenticated" ? (
               <Menu
-                label={`Signed in as ${session?.user.email}`}
+                label={`${FR_LOCALE.SIGNED_AS} ${session?.user.email}`}
                 items={menuItems}
                 position="bottom-end"
                 data-test="authenticated"
@@ -104,13 +105,8 @@ const Header: React.FC = () => {
                 }
               />
             ) : (
-              <Button
-                color="gray"
-                radius="md"
-                onClick={handleLogin}
-                data-test="sign-in"
-              >
-                Sign in
+              <Button color="gray" radius="md" onClick={handleLogin}>
+                {FR_LOCALE.SIGN_IN}
               </Button>
             ))}
         </div>
@@ -128,7 +124,7 @@ const Header: React.FC = () => {
           blur: 3,
         }}
       >
-        Please wait while we log you out...
+        {FR_LOCALE.LOGGING_OUT}
         <Center mt="xl">
           <Loader size="sm" variant="bars" />
         </Center>

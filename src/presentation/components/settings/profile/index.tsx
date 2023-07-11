@@ -1,9 +1,8 @@
 /* eslint-disable react/display-name */
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
 import { countries } from "@/data/static/countries";
 import { UserModel } from "@/domain/model/User";
 import { useViewModel } from "@/presentation/viewModel/profile";
+import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
 import {
   Text,
   Space,
@@ -55,11 +54,11 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
     <form onSubmit={handleSubmit}>
       <Group position="apart">
         <Text weight={600} size="xl">
-          Public profile
+          {FR_LOCALE.PUBLIC_PROFILE}
         </Text>
         {isOnEdit ? (
           <Button type="submit" variant="light" radius="md" mt="md">
-            Save
+            {FR_LOCALE.SAVE}
           </Button>
         ) : (
           <Button
@@ -72,7 +71,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
               toggleEdit();
             }}
           >
-            Edit
+            {FR_LOCALE.EDIT}
           </Button>
         )}
       </Group>
@@ -81,8 +80,8 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
       <Space h="xl" />
       <TextInput
         readOnly={!isOnEdit}
-        placeholder="Your name"
-        label="Name"
+        placeholder={FR_LOCALE.YOUR_NAME}
+        label={FR_LOCALE.NAME}
         variant="filled"
         radius="md"
         {...form.getInputProps("name")}
@@ -97,8 +96,8 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
 
       <TextInput
         readOnly={!isOnEdit}
-        placeholder="Your age"
-        label="Age"
+        placeholder={FR_LOCALE.YOUR_AGE}
+        label={FR_LOCALE.AGE}
         variant="filled"
         radius="md"
         {...form.getInputProps("age")}
@@ -113,8 +112,8 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
 
       <Select
         readOnly={!isOnEdit}
-        label="Country"
-        placeholder="Pick one"
+        label={FR_LOCALE.COUNTRY}
+        placeholder={FR_LOCALE.PICK_ONE}
         variant="filled"
         radius="md"
         data={countries}
@@ -130,8 +129,8 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
 
       <Textarea
         readOnly={!isOnEdit}
-        placeholder="Tell us more about you, we'll recommend better movies and tv-shows."
-        label="Description"
+        placeholder={FR_LOCALE.DESCRIPTION_PLACEHOLDER}
+        label={FR_LOCALE.DESCRIPTION}
         variant="filled"
         radius="md"
         {...form.getInputProps("description")}
@@ -145,18 +144,18 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
 
       <Space h="md" />
       <Text weight={600} size="xl" mt="md">
-        Personalize your experience
+        {FR_LOCALE.PERSONALIZE_YOUR_EXPERIENCE}
       </Text>
 
       <Space h="md" />
       <MultiSelect
         readOnly={!isOnEdit}
         data={wantedGenres}
-        label="Favorite movie genres"
-        placeholder="Pick all that you like"
+        label={FR_LOCALE.WANTED_GENRES}
+        placeholder={FR_LOCALE.PICK_MANY}
         searchable
         variant="filled"
-        nothingFound="Nothing found"
+        nothingFound={FR_LOCALE.NOTHING_FOUND}
         radius="md"
         {...form.getInputProps("wantedGenres")}
         onClick={(event) => {
@@ -171,11 +170,11 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
       <MultiSelect
         readOnly={!isOnEdit}
         data={unwantedGenres}
-        label="Excluded movie genres"
-        placeholder="Pick all that you don't like"
+        label={FR_LOCALE.UNWANTED_GENRES}
+        placeholder={FR_LOCALE.PICK_MANY}
         searchable
         variant="filled"
-        nothingFound="Nothing found"
+        nothingFound={FR_LOCALE.NOTHING_FOUND}
         radius="md"
         {...form.getInputProps("unwantedGenres")}
         onClick={(event) => {
@@ -191,11 +190,11 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         readOnly={!isOnEdit}
         itemComponent={SelectItem}
         data={watchProviderList}
-        label="Streaming services that you have access to"
-        placeholder="Pick all the streaming services taht you want"
+        label={FR_LOCALE.WANTED_WATCH_PROVIDERS}
+        placeholder={FR_LOCALE.PICK_MANY}
         searchable
         variant="filled"
-        nothingFound="Nothing found"
+        nothingFound={FR_LOCALE.NOTHING_FOUND}
         radius="md"
         {...form.getInputProps("wantedWatchProviders")}
         onClick={(event) => {

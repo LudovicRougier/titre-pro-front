@@ -14,6 +14,7 @@ import { Settings } from "@/presentation/components/settings";
 import { Session, getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { useViewModel } from "@/presentation/viewModel/settings";
+import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
 
 const ACCOUNT_SETTINGS = "accountSettings";
 const PUBLIC_PROFILE = "profile";
@@ -40,16 +41,16 @@ const AccountSettings: NextPage<AccountSettingsProps> = ({ user }) => {
       <Grid>
         <Grid.Col xs={2} sm={4} md={4} lg={4}>
           <Text weight={600} size="xl">
-            Settings
+            {FR_LOCALE.SETTINGS}
           </Text>
           <Space h="xl" />
           <NavLink
-            label="Account settings"
+            label={FR_LOCALE.ACCOUNT_SETTINGS}
             active={tab === ACCOUNT_SETTINGS}
             onClick={() => setTab(ACCOUNT_SETTINGS)}
           />
           <NavLink
-            label="Profile"
+            label={FR_LOCALE.PUBLIC_PROFILE}
             active={tab === PUBLIC_PROFILE}
             onClick={() => setTab(PUBLIC_PROFILE)}
           />

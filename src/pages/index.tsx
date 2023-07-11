@@ -1,5 +1,6 @@
 import React from "react";
 import type { NextPage } from "next";
+import { FR_LOCALE } from "@/shared/enums/fr.locale.enum";
 import { useViewModel } from "@/presentation/viewModel/home";
 import { Button, Center, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
@@ -52,7 +53,7 @@ const Home: NextPage = () => {
         >
           <TextInput
             ref={textInputRef}
-            placeholder="How do you feel today ?"
+            placeholder={FR_LOCALE.HOME_INPUT_PLACEHOLDER}
             variant="filled"
             error={error}
             size="md"
@@ -70,17 +71,12 @@ const Home: NextPage = () => {
             }}
           />
         </motion.div>
-        {isLoading && (
-          <TypingAnimation
-            sentences={waitingSentences.en}
-            data-test="emotion-typing-animation"
-          />
-        )}
+        {isLoading && <TypingAnimation sentences={waitingSentences.fr} />}
         {error && (
           <TypingAnimation
             sentences={[
               errorSentences.en[
-                Math.floor(Math.random() * (errorSentences.en.length - 1))
+                Math.floor(Math.random() * (errorSentences.fr.length - 1))
               ],
             ]}
             color="#DC0800"
