@@ -1,0 +1,24 @@
+/* Footer CSS */
+
+.footer {
+  background: transparent;
+  border: none;
+}
+
+.footerContent {
+  display: flex;
+  gap: 5px;
+}
+
+.footerContentText {
+  font-size: 0.65rem;
+}
+
+.footerContentLink {
+  cursor: pointer;
+  font-size: 0.65rem;
+}
+
+.footerContentLink:hover {
+  text-decoration: underline;
+}

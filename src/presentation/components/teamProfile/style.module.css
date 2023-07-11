@@ -1,0 +1,24 @@
+.teamContentDev {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.teamContentDevText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teamContentDevImg {
+  border-radius: 100%;
+  cursor: pointer;
+  transition: 0.2s;
+
+}
+
+.teamContentDevImg:hover {
+  transform: scale(1.025);
+  transition: 0.2s ease-in-out;
+}

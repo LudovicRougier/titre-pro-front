@@ -6,4 +6,5 @@ export enum Path {
   MOVIE_DETAILS = "/movie/:id",
   MOOD_HISTORY = "/mood/history",
   MOOD_DETAILS = "/mood/:id",
+  TEAM = "/team",
 }
