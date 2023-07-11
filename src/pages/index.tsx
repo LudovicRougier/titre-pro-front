@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import type { NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/home";

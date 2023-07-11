@@ -8,7 +8,7 @@ import s from "./style.module.css";
 const Layout: React.FC<ChildrenInterface> = ({ children }) => {
   return (
     <AppShell navbarOffsetBreakpoint="sm" asideOffsetBreakpoint="sm">
-      <Container fluid className="bg">
+      <Container fluid className={s.bg}>
         <motion.div
           className={s.layoutContainerMotion}
           initial={{ opacity: 0 }}

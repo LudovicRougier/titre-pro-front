@@ -31,6 +31,7 @@ import { TERMS_OF_SERVICE } from "@/data/static/termsOfService";
 import { IconX, IconCheck, IconAlertCircle } from "@tabler/icons-react";
 import { useState } from "react";
 import Link from "next/link";
+import s from "./style.module.css";
 
 const Register = () => {
   const {
@@ -64,12 +65,7 @@ const Register = () => {
 
   return (
     <Container size={420} my={40}>
-      <Center
-        style={{
-          height: "100vh",
-          marginTop: "-10vh",
-        }}
-      >
+      <Center>
         <form onSubmit={handleSubmit}>
           <Center mb="md">
             <Link href={Path.INDEX}>
@@ -87,22 +83,20 @@ const Register = () => {
           </Title>
 
           <Paper withBorder shadow="md" p="xl" mt={30} radius="md">
-            <Group position="apart" grow>
-              <TextInput
-                label="Name"
-                placeholder="David"
-                mt="md"
-                withAsterisk
-                {...form.getInputProps("name")}
-              />
-              <TextInput
-                label="Email"
-                placeholder="you@emotion.dev"
-                mt="md"
-                withAsterisk
-                {...form.getInputProps("email")}
-              />
-            </Group>
+            <TextInput
+              label="Name"
+              placeholder="David"
+              mt="md"
+              withAsterisk
+              {...form.getInputProps("name")}
+            />
+            <TextInput
+              label="Email"
+              placeholder="you@emotion.dev"
+              mt="md"
+              withAsterisk
+              {...form.getInputProps("email")}
+            />
             <Group position="apart" grow>
               <Select
                 label="Country"
@@ -167,10 +161,10 @@ const Register = () => {
               />
             </Group>
 
-            <Group position="apart" mt="lg">
+            <Group mt="lg">
               <Checkbox
                 label={
-                  <Group>
+                  <Group className={s.termsWrapper}>
                     <Text size="sm" color="dimmed">
                       I agree to the
                     </Text>

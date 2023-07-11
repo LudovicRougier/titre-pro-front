@@ -1,0 +1,8 @@
+.termsWrapper {
+    display: flex;
+    gap: 0;
+}
+
+.termsWrapper > div {
+    padding-right: 0.2rem;
+}

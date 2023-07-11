@@ -27,6 +27,7 @@ export const TypingAnimation: FC<TypingAnimationProps> = ({
         display: "inline-block",
         marginTop: "1em",
         textAlign: "center",
+        maxWidth: "75%",
         color,
       }}
     />

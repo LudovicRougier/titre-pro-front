@@ -17,9 +17,7 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ movies }) => {
       slideSize="245"
       align="start"
       slidesToScroll={1}
-      withControls={false}
-      controlsOffset="xl"
-      withIndicators
+      loop
     >
       {movies &&
         movies.map((movie: Movie) => (
