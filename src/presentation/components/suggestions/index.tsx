@@ -1,4 +1,4 @@
-import { Badge, Container, Text } from "@mantine/core";
+import { Badge, Text } from "@mantine/core";
 import { Movie } from "@/domain/model/Movie";
 import MovieCarousel from "@/presentation/components/movieCarousel";
 

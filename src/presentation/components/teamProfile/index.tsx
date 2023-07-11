@@ -39,7 +39,7 @@ const TeamProfile: React.FC<teamProfileProps> = ({
         </Text>
       </div>
       <Text size="xs" italic>
-        "{quote}"
+        &quot;{quote}&quot;
       </Text>
     </div>
   );

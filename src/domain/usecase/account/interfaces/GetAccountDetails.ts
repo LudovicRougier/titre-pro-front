@@ -1,3 +1,5 @@
+import { UserModel } from "@/domain/model/User";
+
 export interface GetAccountDetails {
-  invoke: () => Promise<void>;
+  invoke: () => Promise<UserModel | null>;
 }

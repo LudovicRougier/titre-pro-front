@@ -3,7 +3,7 @@ import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
 import type { AccountRepository } from "@/data/repository/interfaces/AccountRepository";
-import { GetAccountDetails } from "@/domain/useCase/account/interfaces/GetAccountDetails";
+import { GetAccountDetails } from "@/domain/usecase/account/interfaces/GetAccountDetails";
 
 @injectable()
 export class GetAccountDetailsUseCase implements GetAccountDetails {

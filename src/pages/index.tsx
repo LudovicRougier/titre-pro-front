@@ -2,7 +2,7 @@
 import React from "react";
 import type { NextPage } from "next";
 import { useViewModel } from "@/presentation/viewModel/home";
-import { Button, Center, Container, Loader, TextInput } from "@mantine/core";
+import { Button, Center, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
 import { motion } from "framer-motion";
 import Blob from "@/presentation/components/blob";

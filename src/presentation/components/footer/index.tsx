@@ -20,7 +20,7 @@ const Footer = () => {
           onClick={handleClickTeam}
           className={s.footerContentLink}
         >
-          O'Clock Students
+          O&apos;Clock Students
         </Text>
       </Center>
     </FooterMantine>

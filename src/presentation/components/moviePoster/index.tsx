@@ -44,6 +44,7 @@ const MoviePoster: React.FC<MoviePosterProps> = ({ movie, height, width }) => {
   const springX = useSpring(rotateX, config);
   const springY = useSpring(rotateY, config);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function onMouseOver(e: any) {
     if (tapped) return;
     const rect = e.target.getBoundingClientRect();
