@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import type { GetServerSideProps, NextPage } from "next";
-import { Container, Grid, Text, Divider, Space, NavLink } from "@mantine/core";
+import {
+  Container,
+  Grid,
+  Text,
+  Divider,
+  Space,
+  NavLink,
+  Center,
+  Loader,
+} from "@mantine/core";
 import { Settings } from "@/presentation/components/settings";
 import { Session, getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
@@ -15,9 +24,16 @@ interface AccountSettingsProps {
 
 const AccountSettings: NextPage<AccountSettingsProps> = ({ user }) => {
   const [tab, setTab] = useState(ACCOUNT_SETTINGS);
-  const { accountDetails } = useViewModel();
+  const { accountDetails, isAccountDetailsLoading } = useViewModel();
 
-  if (!user || !accountDetails) return null;
+  if (!user) return null;
+
+  if (isAccountDetailsLoading || !accountDetails)
+    return (
+      <Center mt="xl">
+        <Loader size="sm" variant="bars" />
+      </Center>
+    );
 
   return (
     <Container mt="xl" w="80vw">
