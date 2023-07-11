@@ -3,10 +3,11 @@ import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
 import type { AccountRepository } from "@/data/repository/interfaces/AccountRepository";
-import { DeleteAccount } from "@/domain/usecase/account/interfaces/DeleteAccount";
+import { CreateAccount } from "@/domain/usecase/account/interfaces/CreateAccount";
+import { CreateUserInfo } from "@/data/datasource/interfaces/AccountDataSource";
 
 @injectable()
-export class DeleteAccountUseCase implements DeleteAccount {
+export class CreateAccountUseCase implements CreateAccount {
   private accountRepository: AccountRepository;
 
   public constructor(
@@ -15,7 +16,7 @@ export class DeleteAccountUseCase implements DeleteAccount {
     this.accountRepository = accountRepository;
   }
 
-  public async invoke(currentPassword: string) {
-    return this.accountRepository.deleteAccount(currentPassword);
+  public async invoke(data: CreateUserInfo) {
+    return this.accountRepository.createAccount(data);
   }
 }

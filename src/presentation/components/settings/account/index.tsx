@@ -5,6 +5,7 @@ import {
   Button,
   Divider,
   Group,
+  Modal,
   PasswordInput,
   Space,
   Text,
@@ -19,10 +20,13 @@ export const Account: React.FC<AccountProps> = ({ accountDetails }) => {
   const {
     formMail,
     formPassword,
+    formDeleteAccount,
     handleSubmitUpdateMail,
     handleSubmitUpdatePassword,
+    handleSubmitDeleteAccount,
     isOnEditMail,
     toggleEditMail,
+    deleteModal,
   } = useViewModel(accountDetails);
 
   // eslint-disable-next-line no-nested-ternary
@@ -124,10 +128,69 @@ export const Account: React.FC<AccountProps> = ({ accountDetails }) => {
         undone.
       </Text>
       <Text size="sm" mt="md">
-        <Anchor size="sm" component="button" color="red">
+        <Anchor
+          size="sm"
+          component="button"
+          color="red"
+          onClick={deleteModal.handleShow}
+        >
           I want to delete my account
         </Anchor>
       </Text>
+
+      <Modal
+        opened={deleteModal.show}
+        onClose={deleteModal.handleClose}
+        title="Confirm delete"
+      >
+        <Text>Are you sure you want to delete your account?</Text>
+        <Text mt="md">
+          This action cannot be undone. All of your moods will be deleted. You
+          can still query the admin for your user data.
+        </Text>
+
+        <Text mt="md">
+          Please ask contact@emotionpictures.com for more information.
+        </Text>
+
+        <PasswordInput
+          label="Current Password"
+          variant="filled"
+          size="md"
+          radius="md"
+          mt="md"
+          {...formDeleteAccount.getInputProps("currentPassword")}
+        />
+
+        <Group mt="xl" position="apart" grow>
+          <Button
+            variant="light"
+            color="gray"
+            mt="md"
+            radius="md"
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteModal.handleClose();
+            }}
+            style={{ transition: "0.5s" }}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="light"
+            color="red"
+            mt="md"
+            radius="md"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleSubmitDeleteAccount();
+            }}
+            style={{ transition: "0.5s" }}
+          >
+            Delete
+          </Button>
+        </Group>
+      </Modal>
     </>
   );
 };

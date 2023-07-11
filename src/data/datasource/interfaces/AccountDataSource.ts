@@ -44,8 +44,19 @@ export interface UserInfo {
   wantedWatchProviders: string[] | null;
 }
 
+export interface CreateUserInfo {
+  name: string;
+  email: string;
+  country: string;
+  age: number;
+  password: string;
+}
+
 export interface AccountDataSource {
   getAccountDetails: () => Promise<APIUser | null>;
   updateAccountDetails: (userInfo: APIUser) => Promise<void>;
-  deleteAccount: () => Promise<void>;
+  deleteAccount: (
+    currentPassword: string
+  ) => Promise<{ status: string; success: boolean; errors?: string[] } | null>;
+  createAccount: (userData: CreateUserInfo) => Promise<void | null>;
 }

@@ -13,6 +13,7 @@ export type LogoutResponse = {
 export type RegisterResponse = {
   message: string;
   success: boolean;
+  errors?: string[];
 };
 
 export interface APILoginResponse {
@@ -43,6 +44,7 @@ export interface APILogoutResponse {
 export interface APIRegisterResponse {
   message: string;
   success: boolean;
+  errors?: string[];
 }
 
 export interface AuthDataSource {

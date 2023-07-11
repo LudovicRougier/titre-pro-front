@@ -2,10 +2,13 @@ import { UserModel } from "@/domain/model/User";
 import { useAccountDependencies } from "@/shared/contexts/dependencies/account";
 import { useShow } from "@/shared/hooks/useShow";
 import { useForm } from "@mantine/form";
+import { signOut } from "next-auth/react";
 
 export const useViewModel = (userInfo: UserModel) => {
-  const { updateAccountDetailsUseCase } = useAccountDependencies();
+  const { updateAccountDetailsUseCase, deleteAccountUseCase } =
+    useAccountDependencies();
   const { show: isOnEditMail, toggle: toggleEditMail } = useShow(false);
+  const deleteModal = useShow(false);
 
   const formMail = useForm({
     initialValues: {
@@ -30,6 +33,12 @@ export const useViewModel = (userInfo: UserModel) => {
     },
   });
 
+  const formDeleteAccount = useForm({
+    initialValues: {
+      currentPassword: "",
+    },
+  });
+
   const handleSubmitUpdateMail = formMail.onSubmit(async (values) => {
     const updatedUserInfo = new UserModel({
       email: values.email,
@@ -46,12 +55,23 @@ export const useViewModel = (userInfo: UserModel) => {
     updateAccountDetailsUseCase.invoke(updatedUserInfo);
   });
 
+  const handleSubmitDeleteAccount = formDeleteAccount.onSubmit(
+    async (values) => {
+      const { currentPassword } = values;
+      const res = await deleteAccountUseCase.invoke(currentPassword);
+      if (res?.success) signOut();
+    }
+  );
+
   return {
     formMail,
     formPassword,
+    formDeleteAccount,
     handleSubmitUpdateMail,
     handleSubmitUpdatePassword,
+    handleSubmitDeleteAccount,
     isOnEditMail,
     toggleEditMail,
+    deleteModal,
   };
 };

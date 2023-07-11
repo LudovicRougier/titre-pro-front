@@ -18,6 +18,8 @@ import {
   Popover,
   Progress,
   Select,
+  Loader,
+  Alert,
 } from "@mantine/core";
 import { getSession } from "next-auth/react";
 import { Path } from "@/shared/enums/path";
@@ -26,12 +28,19 @@ import Layout from "@/presentation/components/layout";
 import { useViewModel } from "@/presentation/viewModel/register";
 import { useShow } from "@/shared/hooks/useShow";
 import { TERMS_OF_SERVICE } from "@/data/static/termsOfService";
-import { IconX, IconCheck } from "@tabler/icons-react";
+import { IconX, IconCheck, IconAlertCircle } from "@tabler/icons-react";
 import { useState } from "react";
 import Link from "next/link";
 
 const Register = () => {
-  const { form, handleSubmit, handleClickSignIn } = useViewModel();
+  const {
+    form,
+    handleSubmit,
+    handleClickSignIn,
+    hasSubmited,
+    errors,
+    handleDismissError,
+  } = useViewModel();
 
   const [popoverOpened, setPopoverOpened] = useState(false);
   const checks = requirements.map((requirement, index) => (
@@ -78,35 +87,40 @@ const Register = () => {
           </Title>
 
           <Paper withBorder shadow="md" p="xl" mt={30} radius="md">
-            <TextInput
-              label="Name"
-              placeholder="David"
-              mt="md"
-              withAsterisk
-              {...form.getInputProps("name")}
-            />
-            <TextInput
-              label="Email"
-              placeholder="you@emotion.dev"
-              mt="md"
-              withAsterisk
-              {...form.getInputProps("email")}
-            />
-            <Select
-              label="Country"
-              placeholder="Pick one"
-              data={countries}
-              mt="md"
-              withAsterisk
-              {...form.getInputProps("country")}
-            />
-            <TextInput
-              label="Age"
-              placeholder="Your age"
-              mt="md"
-              withAsterisk
-              {...form.getInputProps("age")}
-            />
+            <Group position="apart" grow>
+              <TextInput
+                label="Name"
+                placeholder="David"
+                mt="md"
+                withAsterisk
+                {...form.getInputProps("name")}
+              />
+              <TextInput
+                label="Email"
+                placeholder="you@emotion.dev"
+                mt="md"
+                withAsterisk
+                {...form.getInputProps("email")}
+              />
+            </Group>
+            <Group position="apart" grow>
+              <Select
+                label="Country"
+                placeholder="Pick one"
+                data={countries}
+                mt="md"
+                withAsterisk
+                searchable
+                {...form.getInputProps("country")}
+              />
+              <TextInput
+                label="Age"
+                placeholder="Your age"
+                mt="md"
+                withAsterisk
+                {...form.getInputProps("age")}
+              />
+            </Group>
 
             <Popover
               opened={popoverOpened}
@@ -148,16 +162,57 @@ const Register = () => {
 
             <Group position="apart" mt="lg">
               <Checkbox
-                label="I agree to the terms and conditions"
+                label="Automatically sign in after registration"
+                {...form.getInputProps("autoSignIn")}
+              />
+            </Group>
+
+            <Group position="apart" mt="lg">
+              <Checkbox
+                label={
+                  <Group>
+                    <Text size="sm" color="dimmed">
+                      I agree to the
+                    </Text>
+                    <Anchor
+                      component="button"
+                      size="sm"
+                      onClick={handleShowModal}
+                    >
+                      Terms and conditions
+                    </Anchor>
+                  </Group>
+                }
                 {...form.getInputProps("termsOfService")}
               />
-              <Anchor component="button" size="sm" onClick={handleShowModal}>
-                Terms and conditions
-              </Anchor>
             </Group>
-            <Button fullWidth mt="xl" type="submit">
-              Register
-            </Button>
+
+            {errors &&
+              errors.map((error: string, index: number) => (
+                <Alert
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  icon={<IconAlertCircle size="1rem" />}
+                  title="Error!"
+                  color="red"
+                  mb="md"
+                  mt="md"
+                  withCloseButton
+                  onClose={() => handleDismissError(index)}
+                >
+                  {error}
+                </Alert>
+              ))}
+
+            {hasSubmited ? (
+              <Center mt="xl">
+                <Loader size="sm" variant="bars" />
+              </Center>
+            ) : (
+              <Button fullWidth mt="xl" type="submit">
+                {form.values.autoSignIn ? "Register and sign in" : "Register"}
+              </Button>
+            )}
           </Paper>
           <Text color="dimmed" size="sm" align="center" mt={24}>
             Already have an account?{" "}

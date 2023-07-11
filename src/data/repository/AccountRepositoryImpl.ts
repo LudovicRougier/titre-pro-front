@@ -2,7 +2,10 @@ import "reflect-metadata";
 import { injectable, inject } from "inversify";
 import { TYPES } from "@/container/types";
 
-import type { AccountDataSource } from "@/data/datasource/interfaces/AccountDataSource";
+import type {
+  AccountDataSource,
+  CreateUserInfo,
+} from "@/data/datasource/interfaces/AccountDataSource";
 import { AccountRepository } from "@/data/repository/interfaces/AccountRepository";
 import { UserModel } from "@/domain/model/User";
 import { removeUndefinedKeys } from "@/utils/removeUndefinedKeys";
@@ -29,7 +32,14 @@ export class AcccountRepositoryImpl implements AccountRepository {
     return this.accountDataSource.updateAccountDetails(userInfo);
   }
 
-  async deleteAccount() {
-    return this.accountDataSource.deleteAccount();
+  async deleteAccount(currentPassword: string) {
+    const res = await this.accountDataSource.deleteAccount(currentPassword);
+    if (!res) return null;
+    return res;
+  }
+
+  async createAccount(data: CreateUserInfo) {
+    const res = await this.accountDataSource.createAccount(data);
+    if (!res) return null;
   }
 }

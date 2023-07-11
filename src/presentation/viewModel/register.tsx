@@ -2,10 +2,16 @@ import { useRouter } from "next/router";
 import { Path } from "@/shared/enums/path";
 import { useAuthDependencies } from "@/shared/contexts/dependencies/auth";
 import { useForm } from "@mantine/form";
+import { signIn } from "next-auth/react";
+import { HTTP_STATUS } from "@/shared/enums/httpStatus.enum";
+import { useEffect, useState } from "react";
 
 export const useViewModel = () => {
   const router = useRouter();
   const { registerUseCase } = useAuthDependencies();
+
+  const [hasSubmited, setHasSubmited] = useState<boolean>(false);
+  const [errors, setErrors] = useState<null | string[]>(null);
 
   const form = useForm({
     initialValues: {
@@ -16,6 +22,7 @@ export const useViewModel = () => {
       password: "",
       confirmPassword: "",
       termsOfService: false,
+      autoSignIn: false,
     },
 
     validate: {
@@ -35,11 +42,52 @@ export const useViewModel = () => {
   });
 
   const handleSubmit = form.onSubmit(async (values) => {
+    setHasSubmited(true);
     const res = await registerUseCase.invoke(values);
-    if (res?.success) router.push(Path.SIGNIN);
+    if (!res) setErrors(["Something went wrong"]);
+
+    if (res?.success && values.autoSignIn) {
+      const options = {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+        callbackUrl: Path.INDEX,
+      };
+
+      return signIn("credentials", options).then((res) => {
+        if (res?.status === HTTP_STATUS.SUCCESS) return router.push(Path.INDEX);
+      });
+    }
+
+    if (res?.success && !values.autoSignIn) return router.push(Path.SIGNIN);
+
+    if (res?.errors) {
+      setErrors(Object.values(res?.errors));
+      setHasSubmited(false);
+    }
   });
 
   const handleClickSignIn = () => router.push(Path.SIGNIN);
 
-  return { form, handleSubmit, handleClickSignIn };
+  const handleDismissError = (index: number) => {
+    if (!errors) return;
+    const newErrors = [...errors];
+    // eslint-disable-next-line security/detect-object-injection
+    const updatedErrors = newErrors.filter((error) => error !== errors[index]);
+    setErrors(updatedErrors);
+  };
+
+  useEffect(() => {
+    if (form.isTouched() && errors) setErrors(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.isTouched]);
+
+  return {
+    form,
+    handleSubmit,
+    handleClickSignIn,
+    hasSubmited,
+    errors,
+    handleDismissError,
+  };
 };
