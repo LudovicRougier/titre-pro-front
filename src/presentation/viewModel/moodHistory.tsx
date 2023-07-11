@@ -14,12 +14,16 @@ export const useViewModel = (userId: number) => {
     [retrieveMoodHistoryList, userId]
   );
 
-  useAppQuery<MoodModel[] | null>(["mood-history", userId], queryFn, {
-    staleTime: 1000 * 60 * 3,
-    refetchOnWindowFocus: false,
-    enabled: !!userId,
-    retry: 1,
-  });
+  const { isLoading } = useAppQuery<MoodModel[] | null>(
+    ["mood-history", userId],
+    queryFn,
+    {
+      staleTime: 1000 * 60 * 3,
+      refetchOnWindowFocus: false,
+      enabled: !!userId,
+      retry: 1,
+    }
+  );
 
-  return { moodHistory };
+  return { moodHistory, isLoading };
 };

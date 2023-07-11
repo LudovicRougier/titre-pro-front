@@ -1,6 +1,6 @@
 import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
-import { Timeline, Container, Center } from "@mantine/core";
+import { Timeline, Container, Center, Loader } from "@mantine/core";
 import { MoodCard } from "@/presentation/components/moodCard";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { Session, getServerSession } from "next-auth";
@@ -12,15 +12,20 @@ interface MoodHistoryProps {
 }
 
 const MoodHistory: NextPage<MoodHistoryProps> = ({ user }) => {
-  const { moodHistory } = useViewModel(user?.user.id ?? 0);
+  const { moodHistory, isLoading } = useViewModel(user?.user.id ?? 0);
 
   return (
     <Container>
-      {moodHistory.length === 0 ? (
+      {moodHistory.length === 0 && !isLoading ? (
         <Center>
           <h2>{UiMessages.NO_HISTORY}</h2>
         </Center>
       ) : null}
+      {isLoading && (
+        <Center mt="xl">
+          <Loader size="sm" variant="bars" />
+        </Center>
+      )}
       <Timeline active={4} bulletSize={12} lineWidth={2} color="gray">
         {moodHistory &&
           moodHistory.map((mood) => {
