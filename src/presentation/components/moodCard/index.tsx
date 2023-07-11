@@ -70,6 +70,7 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
         onPointerEnter={handleHoverEnter}
         onPointerLeave={handleHoverLeave}
         style={{ cursor: "pointer" }}
+        data-test="emotion-card"
       >
         <BackgroundImage
           radius="md"
@@ -137,15 +138,24 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
                     radius="md"
                     onClick={(e) => e.stopPropagation()}
                     style={{ transition: "0.5s" }}
+                    data-test="emotion-card-options"
                   >
                     ...
                   </Button>
                 </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Item onClick={handleClickDetails}>
+                <Menu.Dropdown data-test="emotion-card-dropdown">
+                  <Menu.Item
+                    onClick={handleClickDetails}
+                    className="emotion-card-options-details"
+                  >
                     View details
                   </Menu.Item>
-                  <Menu.Item onClick={handleShowDeleteModal}>Delete</Menu.Item>
+                  <Menu.Item
+                    onClick={handleShowDeleteModal}
+                    className="emotion-card-options-delete"
+                  >
+                    Delete
+                  </Menu.Item>
                 </Menu.Dropdown>
               </Menu>
             </Group>
@@ -160,6 +170,7 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
         opened={showDeleteModal}
         onClose={handleCloseDeleteModal}
         title="Confirm delete"
+        data-test="emotion-card-modal-delete"
       >
         <Text>Are you sure you want to delete this mood?</Text>
 

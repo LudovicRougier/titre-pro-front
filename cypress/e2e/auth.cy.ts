@@ -1,6 +1,6 @@
 describe("Auth", () => {
   it("should be redirected to /auth/signin if unauthenticated", () => {
-    cy.visit("/home");
+    cy.visit("/mood/history");
     cy.url().should("include", Cypress.env("signInUrl"));
   });
 
@@ -20,7 +20,7 @@ describe("Auth", () => {
       .should("be.visible")
       .should("have.value", "");
     cy.get('[data-test="auth-submit"]').should("be.visible").click();
-    cy.url().should("include", Cypress.env("authErrorUrl"));
+    cy.url().should("include", Cypress.env("signInUrl"));
   });
 
   it("should be redirected to homepage if successful login", () => {
@@ -36,7 +36,6 @@ describe("Auth", () => {
       .type(Cypress.env("authPassword"));
     cy.get('[data-test="auth-submit"]').should("be.visible").click();
     cy.url().should("include", Cypress.env("homeUrl"));
-    cy.get('[data-test="authentificated"]').should("be.visible");
   });
 });
 

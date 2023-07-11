@@ -59,6 +59,7 @@ const Home: NextPage = () => {
             radius="md"
             onChange={handleChangeInput}
             className={s.emotionInput}
+            data-test="emotion-input"
             rightSection={
               isLoading ? <Loader size="xs" /> : !error && <ArrowRight2 />
             }
@@ -69,7 +70,12 @@ const Home: NextPage = () => {
             }}
           />
         </motion.div>
-        {isLoading && <TypingAnimation sentences={waitingSentences.en} />}
+        {isLoading && (
+          <TypingAnimation
+            sentences={waitingSentences.en}
+            data-test="emotion-typing-animation"
+          />
+        )}
         {error && (
           <TypingAnimation
             sentences={[
@@ -78,6 +84,7 @@ const Home: NextPage = () => {
               ],
             ]}
             color="#DC0800"
+            data-test="emotion-typing-animation"
           />
         )}
         {recommandations && (
@@ -93,7 +100,10 @@ const Home: NextPage = () => {
                 layout: { duration: 1 },
               }}
             >
-              <TypingAnimation sentences={[recommandations.message]} />
+              <TypingAnimation
+                sentences={[recommandations.message]}
+                data-test="emotion-recommendations-message"
+              />
             </motion.div>
             <motion.div
               layout
@@ -128,6 +138,7 @@ const Home: NextPage = () => {
             ml={12}
             onClick={resetInput}
             color="gray"
+            data-test="emotion-refresh"
           >
             <Refresh size={18} />
           </Button>

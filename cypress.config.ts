@@ -5,8 +5,9 @@ export default defineConfig({
     homeUrl: "/",
     signInUrl: "auth/signin",
     authErrorUrl: "auth/error",
-    authEmail: "test@test.com",
+    authEmail: "philemon@test.com",
     authPassword: "MyPassword1!",
+    apiUrlGraph: "http://rxgwmcva4r.laravel-sail.site:8080/graphql"
   },
   component: {
     specPattern: "src/**/*.component.cy.{js,jsx,ts,tsx}",
@@ -18,6 +19,7 @@ export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:3000/",
     specPattern: "cypress/e2e/*.cy.ts",
+    testIsolation: false,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },

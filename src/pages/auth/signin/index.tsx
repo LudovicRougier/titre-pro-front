@@ -66,6 +66,7 @@ const SignIn = () => {
               placeholder="you@mantine.dev"
               required
               {...form.getInputProps("email")}
+              data-test="auth-email"
             />
             <PasswordInput
               label="Password"
@@ -73,6 +74,7 @@ const SignIn = () => {
               required
               mt="md"
               {...form.getInputProps("password")}
+              data-test="auth-password"
             />
             <Group position="apart" mt="lg">
               <Checkbox label="Remember me" />
@@ -85,7 +87,7 @@ const SignIn = () => {
                 <Loader size="sm" variant="bars" />
               </Center>
             ) : (
-              <Button fullWidth mt="xl" type="submit">
+              <Button fullWidth mt="xl" type="submit" data-test="auth-submit">
                 Sign in
               </Button>
             )}

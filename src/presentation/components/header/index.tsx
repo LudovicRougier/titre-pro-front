@@ -69,6 +69,7 @@ const Header: React.FC = () => {
                   variant="subtle"
                   color={IS_HOME ? "white" : "light gray"}
                   className={s.headerNavLink}
+                  data-test="navbar-history"
                 >
                   Home
                 </Text>
@@ -93,6 +94,7 @@ const Header: React.FC = () => {
                 label={`Signed in as ${session?.user.email}`}
                 items={menuItems}
                 position="bottom-end"
+                data-test="authenticated"
                 target={
                   <Avatar
                     variant="filled"
@@ -102,7 +104,12 @@ const Header: React.FC = () => {
                 }
               />
             ) : (
-              <Button color="gray" radius="md" onClick={handleLogin}>
+              <Button
+                color="gray"
+                radius="md"
+                onClick={handleLogin}
+                data-test="sign-in"
+              >
                 Sign in
               </Button>
             ))}

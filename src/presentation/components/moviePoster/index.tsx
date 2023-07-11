@@ -124,6 +124,7 @@ const MoviePoster: React.FC<MoviePosterProps> = ({ movie, height, width }) => {
         onHoverStart={hoverStart}
         onHoverEnd={hoverEnd}
         onMouseMove={onMouseOver}
+        data-test="emotion-movie-poster"
       >
         <div className={s.movieCarouselSlideContentShadow} />
         <div

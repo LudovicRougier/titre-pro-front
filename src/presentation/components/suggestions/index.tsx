@@ -18,7 +18,7 @@ interface SuggestionsProps {
 
 const Suggestions: React.FC<SuggestionsProps> = ({ movies, mainEmotion }) => {
   return (
-    <div className={s.suggestions}>
+    <div className={s.suggestions} data-test="emotion-suggestions">
       <div className={s.suggestionsTop}>
         <Text className={s.suggestionsTopTitle}>Suggestions :</Text>
         <Badge variant="light" color="gray">
