@@ -25,21 +25,10 @@
   height: 100%;
   background: linear-gradient(
     to top,
-    rgba(15, 15, 15, 1) 65%,
+    rgba(15, 15, 15, 1) 50%,
     rgba(15, 15, 15, 0.5) 85%,
     rgba(15, 15, 15, 0.2) 100%
   );
-}
-
-@media (min-width: 50em) {
-  .card::after {
-    background: linear-gradient(
-      to right,
-      rgba(15, 15, 15, 1) 45%,
-      rgba(15, 15, 15, 0.8) 60%,
-      rgba(15, 15, 15, 0.2) 100%
-    );
-  }
 }
 
 .cardInner {
@@ -54,24 +43,10 @@
   align-items: flex-end;
 }
 
-@media (min-width: 50em) {
-  .cardInner {
-    align-items: center;
-    width: 50%;
-  }
-}
-
 .cardBody {
   width: 95%;
   height: 100%;
-  overflow-y: scroll;
-}
-
-@media (min-width: 50em) {
-  .cardBody {
-    width: 85%;
-    height: auto;
-  }
+  overflow-y: auto;
 }
 
 .cardTitle {
@@ -83,24 +58,11 @@
   margin-top: 4rem;
 }
 
-@media (min-width: 50em) {
-  .cardTitle {
-    align-items: center;
-    width: 50%;
-  }
-}
-
 .cardDirector {
   font-size: 1.25rem;
   font-style: italic;
   font-weight: 300;
   margin-bottom: 1rem;
-}
-
-@media (min-width: 50em) {
-  .cardDirector {
-    margin-bottom: 2rem;
-  }
 }
 
 .cardIcons {
@@ -128,12 +90,6 @@
   max-width: 100%;
 }
 
-@media (min-width: 50em) {
-  .cardSlug {
-    margin-bottom: 2rem;
-  }
-}
-
 .cardActors {
   font-style: italic;
   font-weight: 200;
@@ -143,16 +99,43 @@
   max-width: 100%;
 }
 
-@media (min-width: 50em) {
-  .cardSlug {
-    margin-bottom: 2rem;
-  }
-}
-
 .cardGenres {
   margin-bottom: 1.5rem;
 }
 
 .cardWatchProviders {
   margin-bottom: 3rem;
+}
+
+@media (min-width: 800px) {
+  .card::after {
+    background: linear-gradient(
+      to right,
+      rgba(15, 15, 15, 1) 25%,
+      rgba(15, 15, 15, 0.8) 60%,
+      rgba(15, 15, 15, 0.2) 100%
+    );
+  }
+
+  .cardBody {
+    width: 85%;
+    height: auto;
+  }
+
+  .cardInner {
+    align-items: center;
+    width: 50%;
+  }
+
+  .cardTitle {
+    align-items: center;
+  }
+
+  .cardDirector {
+    margin-bottom: 2rem;
+  }
+
+  .cardSlug {
+    margin-bottom: 2rem;
+  }
 }

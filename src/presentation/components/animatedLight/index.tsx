@@ -22,8 +22,9 @@ const LightAnimation: React.FC<LightAnimationProps> = ({
   light,
 }) => {
   const controls = useAnimation();
+
   useEffect(() => {
-    const interval = setInterval(() => {
+    const animation = () => {
       const newX = Math.random() * (containerWidth - light.width);
       const newY = Math.random() * (containerHeight - light.height);
       const adjustedX = Math.max(
@@ -40,10 +41,11 @@ const LightAnimation: React.FC<LightAnimationProps> = ({
         y: adjustedY,
         transition: { duration: 10 },
       });
-    }, 10000);
-
+    };
+    animation();
+    const interval = setInterval(animation, 15000);
     return () => clearInterval(interval);
-  }, [light, containerWidth, containerHeight, controls]);
+  }, [containerHeight, containerWidth, controls, light.height, light.width]);
 
   return (
     <motion.div
