@@ -63,11 +63,14 @@
 
 .cardBody {
   width: 95%;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 @media (min-width: 50em) {
   .cardBody {
     width: 85%;
+    height: auto;
   }
 }
 
@@ -77,6 +80,7 @@
   text-transform: uppercase;
   line-height: 1.2;
   margin-bottom: 0.5rem;
+  margin-top: 4rem;
 }
 
 @media (min-width: 50em) {
@@ -135,7 +139,7 @@
   font-weight: 200;
   font-size: 0.9rem;
   gap: 0.5rem;
-  margin-bottom: 5.5rem;
+  margin-bottom: 2rem;
   max-width: 100%;
 }
 
@@ -147,4 +151,8 @@
 
 .cardGenres {
   margin-bottom: 1.5rem;
+}
+
+.cardWatchProviders {
+  margin-bottom: 3rem;
 }

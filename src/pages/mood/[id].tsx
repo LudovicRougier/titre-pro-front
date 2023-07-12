@@ -20,7 +20,7 @@ const MoodDetails: NextPage<MoodDetailsProps> = ({ moodId }) => {
   if (!moodDetails) return null;
 
   return (
-    <Container className={s.mood}>
+    <div className={s.mood}>
       <Center className={s.moodContent}>
         <LightAnimationGroup recommendations={moodDetails} />
         <motion.div
@@ -74,7 +74,7 @@ const MoodDetails: NextPage<MoodDetailsProps> = ({ moodId }) => {
           />
         </motion.div>
       </Center>
-    </Container>
+    </div>
   );
 };
 

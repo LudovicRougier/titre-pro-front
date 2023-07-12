@@ -50,6 +50,26 @@ export const GET_RECOMMANDATIONS = {
             id
             name
           }
+          watch_providers {
+            buy {
+              display_priority
+              logo_path
+              provider_id
+              provider_name
+            }
+            flatrate {
+              provider_name
+              logo_path
+              provider_id
+              display_priority
+            }
+            rent {
+              display_priority
+              logo_path
+              provider_id
+              provider_name
+            }
+          }
         }
         movies_related_to_topic {
           id
@@ -72,6 +92,26 @@ export const GET_RECOMMANDATIONS = {
           genres {
             id
             name
+          }
+          watch_providers {
+            buy {
+              display_priority
+              logo_path
+              provider_id
+              provider_name
+            }
+            flatrate {
+              provider_name
+              logo_path
+              provider_id
+              display_priority
+            }
+            rent {
+              display_priority
+              logo_path
+              provider_id
+              provider_name
+            }
           }
         }
       }

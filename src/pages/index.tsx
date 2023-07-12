@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
-import { useViewModel } from "@/presentation/viewModel/home";
 import { LOCALE } from "@/shared/enums/locale";
+import { useViewModel } from "@/presentation/viewModel/home";
 import { Button, Center, Loader, TextInput } from "@mantine/core";
 import { ArrowRight2, Refresh } from "iconsax-react";
 import { motion } from "framer-motion";

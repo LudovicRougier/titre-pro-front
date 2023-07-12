@@ -44,6 +44,26 @@ export const GET_MOOD_DETAILS = {
             id
             name
           }
+          watch_providers {
+            buy {
+              display_priority
+              logo_path
+              provider_id
+              provider_name
+            }
+            flatrate {
+              provider_name
+              logo_path
+              provider_id
+              display_priority
+            }
+            rent {
+              display_priority
+              logo_path
+              provider_id
+              provider_name
+            }
+          }
         }
         movies_related_to_topic {
           id
@@ -66,6 +86,26 @@ export const GET_MOOD_DETAILS = {
           genres {
             id
             name
+          }
+          watch_providers {
+            buy {
+              display_priority
+              logo_path
+              provider_id
+              provider_name
+            }
+            flatrate {
+              provider_name
+              logo_path
+              provider_id
+              display_priority
+            }
+            rent {
+              display_priority
+              logo_path
+              provider_id
+              provider_name
+            }
           }
         }
       }

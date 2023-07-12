@@ -1,6 +1,13 @@
 import React from "react";
 import { convertDurationToString } from "@/utils/convertDurationToString";
-import { BackgroundImage, Badge, Group, Rating, Tooltip } from "@mantine/core";
+import {
+  Avatar,
+  BackgroundImage,
+  Badge,
+  Group,
+  Rating,
+  Tooltip,
+} from "@mantine/core";
 import { MovieModel } from "@/domain/model/Movie";
 import { Calendar, Clock } from "iconsax-react";
 
@@ -17,18 +24,12 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
   const actors = movie.actors.map((actor) => actor.name).join(", ");
   const duration = convertDurationToString(movie.runtime);
   const rating = parseFloat((movie.rating / 2).toFixed(1));
+  const flatrateWatchProviders = movie.watchProviders.flatrate;
+  const rentWatchProviders = movie.watchProviders.rent;
+  const buyWatchProviders = movie.watchProviders.buy;
 
   return (
-    <div
-      style={{
-        height: "100%",
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-      }}
-    >
+    <div className={s.movieDetails}>
       <BackgroundImage
         src={`${process.env.NEXT_PUBLIC_TMDB_BASE_URL}${movie.backdropPath}`}
         className={s.card}
@@ -61,7 +62,11 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
             <div>
               <Group className={s.cardGenres}>
                 {movie.genres.map((genre) => (
-                  <Badge color="gray" variant="outline" key={genre.id}>
+                  <Badge
+                    key={genre.id}
+                    color="gray"
+                    // variant="outline"
+                  >
                     {genre.name}
                   </Badge>
                 ))}
@@ -70,6 +75,71 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
             <div className={s.cardSlug}>{movie.overview}</div>
             <Group className={s.cardActors}>
               <span>{actors}</span>
+            </Group>
+            {/* BUY WATCH PROVIDERS */}
+            <Group mb="md">
+              {buyWatchProviders &&
+                buyWatchProviders.map((provider) => (
+                  <Badge
+                    key={provider.providerId}
+                    pl={0}
+                    size="md"
+                    color="gray"
+                    radius="md"
+                    leftSection={
+                      <Avatar
+                        src={`${process.env.NEXT_PUBLIC_TMDB_BASE_URL}${provider.logoPath}`}
+                        alt="it's me"
+                      />
+                    }
+                  >
+                    Buy on {provider.providerName}
+                  </Badge>
+                ))}
+            </Group>
+
+            {/* RENT WATCH PROVIDERS */}
+            <Group mb="md">
+              {rentWatchProviders &&
+                rentWatchProviders.map((provider) => (
+                  <Badge
+                    key={provider.providerId}
+                    pl={0}
+                    size="md"
+                    color="gray"
+                    radius="md"
+                    leftSection={
+                      <Avatar
+                        src={`${process.env.NEXT_PUBLIC_TMDB_BASE_URL}${provider.logoPath}`}
+                        alt="it's me"
+                      />
+                    }
+                  >
+                    Rent on {provider.providerName}
+                  </Badge>
+                ))}
+            </Group>
+
+            {/* STREAM WATCH PROVIDERS */}
+            <Group className={s.cardWatchProviders}>
+              {flatrateWatchProviders &&
+                flatrateWatchProviders.map((provider) => (
+                  <Badge
+                    key={provider.providerId}
+                    pl={0}
+                    size="md"
+                    color="gray"
+                    radius="md"
+                    leftSection={
+                      <Avatar
+                        src={`${process.env.NEXT_PUBLIC_TMDB_BASE_URL}${provider.logoPath}`}
+                        alt="it's me"
+                      />
+                    }
+                  >
+                    Stream on {provider.providerName}
+                  </Badge>
+                ))}
             </Group>
           </div>
         </div>

@@ -1,5 +1,7 @@
 /* Movie Carousel */
 
 .movieCarousel {
+  max-width: 1700px;
+  margin: auto;
   width: 100%;
 }
