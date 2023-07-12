@@ -24,9 +24,10 @@ const LightAnimation: React.FC<LightAnimationProps> = ({
   const controls = useAnimation();
 
   useEffect(() => {
-    const animation = () => {
-      const newX = Math.random() * (containerWidth - light.width);
-      const newY = Math.random() * (containerHeight - light.height);
+    const getRandomPosition = () => {
+      const newX = Math.random() * (containerWidth - light.width * 1.5);
+      const newY = Math.random() * (containerHeight - light.height * 1.5);
+
       const adjustedX = Math.max(
         0,
         Math.min(newX, containerWidth - light.width)
@@ -35,24 +36,36 @@ const LightAnimation: React.FC<LightAnimationProps> = ({
         0,
         Math.min(newY, containerHeight - light.height)
       );
+      const adjustedScale =
+        Math.floor(Math.random() * (120 - 80 + 1) + 80) / 100;
 
       controls.start({
-        x: adjustedX,
-        y: adjustedY,
-        transition: { duration: 10 },
+        scale: adjustedScale,
+        x:
+          adjustedX > (containerWidth - light.width) / 2
+            ? -adjustedX + light.width / 2
+            : adjustedX,
+        y:
+          adjustedY > (containerHeight - light.height) / 2
+            ? -adjustedY - light.height / 2
+            : adjustedY,
+        transition: { duration: 12, ease: "easeInOut" },
       });
     };
-    animation();
-    const interval = setInterval(animation, 15000);
+
+    getRandomPosition();
+
+    const interval = setInterval(getRandomPosition, light.id * 2000);
+
     return () => clearInterval(interval);
-  }, [containerHeight, containerWidth, controls, light.height, light.width]);
+  }, [containerHeight, containerWidth, controls, light]);
 
   return (
     <motion.div
       style={{
         position: "absolute",
-        top: 0,
-        left: 0,
+        top: containerHeight / 2 - light.height / 2,
+        left: containerWidth / 2 - light.width / 2,
         width: `${light.width}px`,
         height: `${light.height}px`,
         opacity: light.opacity,

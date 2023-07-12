@@ -12,10 +12,11 @@ const LightAnimationGroup: React.FC<LightAnimationGroupProps> = ({
   recommendations,
 }) => {
   const { browserInfo } = useBrowserInfo();
-  const { height, width } = useViewportSize();
-  const lights = getLights(recommendations);
+  const viewportSize = useViewportSize();
+  const lights = getLights(recommendations, viewportSize);
+  const { height, width } = viewportSize;
 
-  return !browserInfo.isMobile ? (
+  return !browserInfo.isMobile && !(height === 0 || width === 0) ? (
     <>
       {lights.map((light) => (
         <LightAnimation
