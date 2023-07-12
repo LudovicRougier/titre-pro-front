@@ -1,4 +1,5 @@
 import React from "react";
+import { LOCALE } from "@/shared/enums/locale";
 import { convertDurationToString } from "@/utils/convertDurationToString";
 import {
   Avatar,
@@ -93,7 +94,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
                       />
                     }
                   >
-                    Buy on {provider.providerName}
+                    {LOCALE.BUY_ON} {provider.providerName}
                   </Badge>
                 ))}
             </Group>
@@ -115,7 +116,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
                       />
                     }
                   >
-                    Rent on {provider.providerName}
+                    {LOCALE.RENT_ON} {provider.providerName}
                   </Badge>
                 ))}
             </Group>
@@ -137,7 +138,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
                       />
                     }
                   >
-                    Stream on {provider.providerName}
+                    {LOCALE.STREAM_ON} {provider.providerName}
                   </Badge>
                 ))}
             </Group>

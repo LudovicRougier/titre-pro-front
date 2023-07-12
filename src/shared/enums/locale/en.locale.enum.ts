@@ -82,4 +82,7 @@ export enum EN_LOCALE {
   ERROR = "Error",
   PROFILE_UPDATED_SUCCESSFULY = "Profile updated successfuly.",
   MOOD_DELETED_SUCCESSFULY = "Mood deleted successfuly.",
+  BUY_ON = "Buy on",
+  RENT_ON = "Rent on",
+  STREAM_ON = "Stream on",
 }

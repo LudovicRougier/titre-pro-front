@@ -82,4 +82,7 @@ export enum FR_LOCALE {
   SUCCESS = "Succès",
   PROFILE_UPDATED_SUCCESSFULY = "Profil mis à jour avec succès.",
   MOOD_DELETED_SUCCESSFULY = "État d'esprit supprimé avec succès.",
+  BUY_ON = "Acheter sur",
+  RENT_ON = "Louer sur",
+  STREAM_ON = "Regarder sur",
 }
