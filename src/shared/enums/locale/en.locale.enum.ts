@@ -20,7 +20,6 @@ export enum EN_LOCALE {
   SIGNED_AS = "Signed as",
   SIGN_OUT = "Sign out",
   LOGIN = "Login",
-  ERROR = "Error",
   FORGOT_PASSWORD = "Forgot password?",
   DONT_HAVE_AN_ACCOUNT = "Don't have an account yet?",
   ALREADY_HAVE_AN_ACCOUNT = "Already have an account?",
@@ -79,4 +78,8 @@ export enum EN_LOCALE {
   CANCEL = "Cancel",
   NO_HISTORY = "You have no mood history yet.",
   PLEASE_WAIT = "Please wait",
+  SUCCESS = "Success",
+  ERROR = "Error",
+  PROFILE_UPDATED_SUCCESSFULY = "Profile updated successfuly.",
+  MOOD_DELETED_SUCCESSFULY = "Mood deleted successfuly.",
 }

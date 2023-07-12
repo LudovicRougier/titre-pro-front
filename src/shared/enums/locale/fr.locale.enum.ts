@@ -79,4 +79,7 @@ export enum FR_LOCALE {
   CANCEL = "Annuler",
   NO_HISTORY = "Vous n'avez pas encore d'historique d'état d'esprit.",
   PLEASE_WAIT = "Veuillez patienter.",
+  SUCCESS = "Succès",
+  PROFILE_UPDATED_SUCCESSFULY = "Profil mis à jour avec succès.",
+  MOOD_DELETED_SUCCESSFULY = "État d'esprit supprimé avec succès.",
 }

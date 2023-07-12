@@ -5,7 +5,9 @@ import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { useAccountDependencies } from "@/shared/contexts/dependencies/account";
 import { useShow } from "@/shared/hooks/useShow";
 import { useForm } from "@mantine/form";
+import { notifications } from "@mantine/notifications";
 import { useState, useEffect } from "react";
+import { LOCALE } from "../../shared/enums/locale/index";
 
 export const useViewModel = (userInfo: UserModel) => {
   const { updateAccountDetailsUseCase } = useAccountDependencies();
@@ -66,7 +68,7 @@ export const useViewModel = (userInfo: UserModel) => {
       wantedWatchProviders: selectedWantedWatchProviders,
     });
 
-    updateAccountDetailsUseCase.invoke(updatedUserInfo);
+    await updateAccountDetailsUseCase.invoke(updatedUserInfo);
     toggleEdit();
   });
 

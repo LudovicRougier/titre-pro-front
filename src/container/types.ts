@@ -1,4 +1,5 @@
 const TYPES = {
+  /* SERVICES */
   APIService: Symbol.for("APIService"),
 
   /* DATA SOURCES */

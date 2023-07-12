@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
 import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 import { RefreshTokenHandler } from "@/presentation/components/refreshToken";
 
 import LayoutMaster from "@/presentation/components/layoutMaster";
@@ -66,6 +67,7 @@ const MyApp = ({
             },
           }}
         >
+          <Notifications position="top-right" zIndex={2077} />
           {getLayout(<Component {...pageProps} />)}
         </MantineProvider>
       </SessionProvider>

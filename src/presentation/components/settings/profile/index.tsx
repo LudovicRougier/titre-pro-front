@@ -117,6 +117,7 @@ export const Profile: React.FC<ProfileProps> = ({ accountDetails }) => {
         variant="filled"
         radius="md"
         data={countries}
+        searchable
         {...form.getInputProps("country")}
         onClick={(event) => {
           if (!isOnEdit) {
