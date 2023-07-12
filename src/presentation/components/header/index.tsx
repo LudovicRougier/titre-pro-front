@@ -59,56 +59,52 @@ const Header: React.FC = () => {
     <>
       <HeaderMantine height={{ base: 50, md: 50 }} p="md" className={s.header}>
         <div className={s.headerWrapper}>
-          <Link href={Path.INDEX}>
+          <Link href={Path.INDEX} className={s.headerWrapperImg}>
             <Image src="/logo.png" alt="" width={50} height={50} priority />
           </Link>
-          <Container>
-            <Grid gutter={5} gutterXs="md" gutterMd="xl" gutterXl={50}>
-              <Grid.Col span={6}>
-                <Text
-                  onClick={handleClickHome}
-                  variant="subtle"
-                  color={IS_HOME ? "white" : "light gray"}
-                  className={s.headerNavLink}
-                  data-test="navbar-history"
-                >
-                  {LOCALE.HOME}
-                </Text>
-              </Grid.Col>
-              <Grid.Col span={6}>
-                {session && (
-                  <Text
-                    onClick={handleClickHistory}
-                    variant="subtle"
-                    color={IS_HISTORY ? "white" : "light gray"}
-                    className={s.headerNavLink}
-                  >
-                    {LOCALE.HISTORY}
-                  </Text>
-                )}
-              </Grid.Col>
-            </Grid>
-          </Container>
-          {status !== "loading" &&
-            (status === "authenticated" ? (
-              <Menu
-                label={`${LOCALE.SIGNED_AS} ${session?.user.email}`}
-                items={menuItems}
-                position="bottom-end"
-                data-test="authenticated"
-                target={
-                  <Avatar
-                    variant="filled"
-                    radius="xl"
-                    style={{ cursor: "pointer" }}
-                  />
-                }
-              />
-            ) : (
-              <Button color="gray" radius="md" onClick={handleLogin}>
-                {LOCALE.SIGN_IN}
-              </Button>
-            ))}
+          <div className={s.headerWrapperNav}>
+            <Text
+              onClick={handleClickHome}
+              variant="subtle"
+              color={IS_HOME ? "white" : "light gray"}
+              className={s.headerNavLink}
+              data-test="navbar-history"
+            >
+              {LOCALE.HOME}
+            </Text>
+            {session && (
+              <Text
+                onClick={handleClickHistory}
+                variant="subtle"
+                color={IS_HISTORY ? "white" : "light gray"}
+                className={s.headerNavLink}
+              >
+                {LOCALE.HISTORY}
+              </Text>
+            )}
+          </div>
+          <div className={s.headerWrapperButton}>
+            {status !== "loading" &&
+              (status === "authenticated" ? (
+                <Menu
+                  label={`${LOCALE.SIGNED_AS} ${session?.user.email}`}
+                  items={menuItems}
+                  position="bottom-end"
+                  data-test="authenticated"
+                  target={
+                    <Avatar
+                      variant="filled"
+                      radius="xl"
+                      style={{ cursor: "pointer" }}
+                    />
+                  }
+                />
+              ) : (
+                <Button color="gray" radius="md" onClick={handleLogin}>
+                  {LOCALE.SIGN_IN}
+                </Button>
+              ))}
+          </div>
         </div>
       </HeaderMantine>
 

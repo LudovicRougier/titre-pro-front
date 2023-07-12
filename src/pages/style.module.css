@@ -32,14 +32,4 @@
   width: 100%;
   display: flex;
   justify-content: center;
-
-  @media (min-width: 1440px) {
-    width: 70%;
-  }
-
-  @media (min-width: 2000px) {
-    width: 60%;
-  }
 }
-
-
