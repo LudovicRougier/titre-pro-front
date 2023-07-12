@@ -119,8 +119,8 @@ const Home: NextPage = () => {
               <Suggestions
                 movies={removeDuplicates(
                   [
-                    ...recommandations.moviesRelatedToEmotions,
                     ...recommandations.moviesRelatedToTopic,
+                    ...recommandations.moviesRelatedToEmotions,
                   ],
                   "id"
                 )}

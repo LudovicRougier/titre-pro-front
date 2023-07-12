@@ -54,9 +54,9 @@ export const MoodCard: React.FC<MoodCardProps> = ({ mood }) => {
     router.push(`/mood/${mood.id}`);
   };
   const handleClickMovie = () =>
-    router.push(`/movie/${mood.moviesRelatedToEmotions[0].id}`);
+    router.push(`/movie/${mood.moviesRelatedToTopic[0].id}`);
 
-  const movie = mood?.moviesRelatedToEmotions[0];
+  const movie = mood?.moviesRelatedToTopic[0];
   const mainEmotion = mood?.mainEmotion;
   const subEmotion = mood?.subEmotion;
   const date = new Date(mood?.date);

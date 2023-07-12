@@ -64,8 +64,8 @@ const MoodDetails: NextPage<MoodDetailsProps> = ({ moodId }) => {
           <Suggestions
             movies={removeDuplicates(
               [
-                ...moodDetails.moviesRelatedToEmotions,
                 ...moodDetails.moviesRelatedToTopic,
+                ...moodDetails.moviesRelatedToEmotions,
               ],
               "id"
             )}
