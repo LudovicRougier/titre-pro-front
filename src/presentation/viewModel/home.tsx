@@ -6,7 +6,7 @@ import { useDebouncedState } from "@mantine/hooks";
 
 export const useViewModel = () => {
   const { fetchMoodRecommandations } = useMoodDependencies();
-  const [userInput, setUserInput] = useDebouncedState("", 200);
+  const [userInput, setUserInput] = useDebouncedState("", 50);
   const [error, setError] = useState<boolean>(false);
   const textInputRef = useRef<HTMLInputElement>(null);
 

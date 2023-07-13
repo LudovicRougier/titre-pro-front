@@ -75,7 +75,7 @@ const Home: NextPage = () => {
         {error && (
           <TypingAnimation
             sentences={[
-              errorSentences.en[
+              errorSentences.fr[
                 Math.floor(Math.random() * (errorSentences.fr.length - 1))
               ],
             ]}
